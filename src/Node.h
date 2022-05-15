@@ -5,7 +5,6 @@
 template<class T>
 class Node {
 public:
-    Node(); // Do we need this?
     explicit Node(const T& data);
     Node(const T& data,Node<T> *leftPtr,Node<T> *rightPtr);
     T getData();
@@ -61,14 +60,14 @@ Node<T>* Node<T>::getRightPtr() const{
 
 //Sets the left pointer
 template<typename T>
-void Node<T>::setLeftPtr(Node<T> &childNode){
-    Node *left_ = &childNode;
+void Node<T>::setLeftPtr(Node<T> &leftPtr){
+    Node *left_ = &leftPtr;
 }
 
 //Sets the right pointer
 template<typename T>
-void Node<T>::setRightPtr(Node<T> &childNode){
-    Node *right_ = &childNode;
+void Node<T>::setRightPtr(Node<T> &rightPtr){
+    Node *right_ = &rightPtr;
 }
 
 #endif //ANCESTOR_CHART_NODE_H

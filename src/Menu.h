@@ -1,5 +1,7 @@
 #ifndef ANCESTOR_CHART_MENU_H
 #define ANCESTOR_CHART_MENU_H
+#include "AncestorChart.h"
+#include <iostream>
 #include <algorithm>
 /**
  * Menu class.
@@ -16,7 +18,7 @@ private:
 /**
  * Capitalizes a string.
  *
- * @param string input.
+ * @param string from user input.
  * @return string with capitalized first letter.
  */
 std::string Menu::capitalizeString(std::string word) {
@@ -24,7 +26,7 @@ std::string Menu::capitalizeString(std::string word) {
                    [](char const &c) {
                        return std::tolower(c);
                    });
-    word[0] = std::toupper(word[0]);
+    word[0] = std::toupper(word[0]); // NOLINT(cppcoreguidelines-narrowing-conversions)
     return word;
 }
 
@@ -50,9 +52,21 @@ bool Menu::yesOrNo() {
     }
 }
 
+void createRootPerson(){
+    std::cout << "Please create a root person for the ancestor chart: \n";
+    Person rootPerson = AncestorChart::createPerson();
+    AncestorChart tree(rootPerson);
+}
+
+/**
+ * Function to display a menu to the terminal.
+ *
+ * @param none.
+ * @return none.
+ */
 void Menu::display() {
-    bool quit = false;
-    while (!quit) {
+    bool exitMenu = false;
+    while (!exitMenu) {
         std::cout << R"(
     _                        _              ____ _                _
    / \   _ __   ___ ___  ___| |_ ___  _ __ / ___| |__   __ _ _ __| |_
@@ -60,23 +74,23 @@ void Menu::display() {
  / ___ \| | | | (_|  __/\__ \ || (_) | |  | |___| | | | (_| | |  | |_
 /_/   \_\_| |_|\___\___||___/\__\___/|_|   \____|_| |_|\__,_|_|   \__|
 )"
-                  << "\n";
-        std::cout << "Main menu:"
-                  << "\n";
-        std::cout << "[1] Print all persons"
-                  << "\n";
-        std::cout << "[2] Search for person"
-                  << "\n";
-        std::cout << "[3] Add person"
-                  << "\n";
-        std::cout << "[4] Edit person"
-                  << "\n";
-        std::cout << "[5] Delete person"
-                  << "\n";
-        std::cout << "[6] Exit"
                   << "\n"
-                  << "\n";
-        std::cout << "Enter choice:";
+                  << "Main menu:"
+                  << "\n"
+                  << "[1] Create a new ancestor chart"
+                  << "\n"
+                  << "[2] Search for person"
+                  << "\n"
+                  << "[3] Add person"
+                  << "\n"
+                  << "[4] Edit person"
+                  << "\n"
+                  << "[5] Delete person"
+                  << "\n"
+                  << "[6] Exit"
+                  << "\n"
+                  << "\n"
+                  << "Enter choice:";
         int choice;
         while (!(std::cin >> choice)) {
             std::cout << "Invalid input, please input a number"
@@ -87,7 +101,7 @@ void Menu::display() {
 
         switch (choice) {
             case 1: {
-                //printPeople();
+                createRootPerson();
                 break;
             }
             case 2: {
@@ -105,7 +119,7 @@ void Menu::display() {
                 break;
             }
             case 0:
-                quit = true;
+                exitMenu = true;
                 break;
             default:
                 std::cout << "Please enter a number between 0 and 5: "

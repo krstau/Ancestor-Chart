@@ -26,10 +26,10 @@ std::string Person::getDateOfDeath() const {
     return dateOfDeath_;
 }
 
-Gender Person::getGender() const {
+Person::Gender Person::getGender() const {
     return gender_;
 }
 
-State Person::getStatus() const {
+Person::State Person::getState() const {
     return state_;
 }

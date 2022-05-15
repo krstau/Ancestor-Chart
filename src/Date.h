@@ -3,6 +3,9 @@
 #include <iostream>
 #include <string>
 
+/**
+ * Date class.
+ */
 class Date {
 public:
     Date();
@@ -32,7 +35,6 @@ void Date::printDate() const {
 
 void Date::setDate() {
     std::string date;
-    char delimiter = '/';
     bool validDay = false, validMonth = false, validYear = false;
     while (!validDay || !validMonth || !validYear) {
         std::cout << "Please enter the date (DD/MM/YYYY): ";
@@ -60,5 +62,7 @@ void Date::setDate() {
         }
     }
 }
+
+
 
 #endif//ANCESTOR_CHART_DATE_H

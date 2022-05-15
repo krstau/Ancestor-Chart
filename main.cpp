@@ -1,16 +1,24 @@
-#include "src/Person.h"
-#include "src/FamilyTree.h"
+#include "src/AncestorChart.h"
 #include "src/Menu.h"
+#include "src/Person.h"
 #include <iostream>
 
+/**
+ * Main function.
+ *
+ * @param none.
+ * @return 0.
+ */
 int main() {
     Menu::display();
-    Person rootPerson = FamilyTree::createPerson();
-    FamilyTree tree(rootPerson);
-    // tree.printPersons();
-    std::cout << '\n';
-    tree.printPersonsWithName("Ole");
     return 0;
 }
 
 // TODO: Doxygen!
+
+/*
+// tree.printPersons();
+Person person2 = AncestorChart::createPerson();
+std::cout << '\n';
+tree.printPersonsWithName("Kristoffer");
+std::cout << person2;*/
