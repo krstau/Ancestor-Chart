@@ -1,7 +1,4 @@
-#include "src/AncestorChart.h"
 #include "src/Menu.h"
-#include "src/Person.h"
-#include <iostream>
 
 /**
  * Main function.
