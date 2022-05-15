@@ -13,6 +13,8 @@ public:
     void printDate() const;
     void setDate();
 
+    friend std::ostream& operator<<(std::ostream& os, const Date& dt);
+
 private:
     int day_;
     int month_;

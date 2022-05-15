@@ -1,0 +1,126 @@
+\hypertarget{_binary_tree_8h_source}{}\doxysection{Binary\+Tree.\+h}
+\label{_binary_tree_8h_source}\index{C:/Users/Kristoffer Staurset/CLionProjects/Ancestor-\/Chart/src/BinaryTree.h@{C:/Users/Kristoffer Staurset/CLionProjects/Ancestor-\/Chart/src/BinaryTree.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef ANCESTOR\_CHART\_BINARYTREE\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define ANCESTOR\_CHART\_BINARYTREE\_H}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include "{}Node.h"{}}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}Person.h"{}}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <functional>}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{comment}{// https://github.com/devos50/BinaryTree}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{11 \textcolor{keyword}{class }\mbox{\hyperlink{class_binary_tree}{BinaryTree}} \{}
+\DoxyCodeLine{12 \textcolor{keyword}{public}:}
+\DoxyCodeLine{13     \textcolor{comment}{// Constructors}}
+\DoxyCodeLine{14     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_binary_tree}{BinaryTree}}(\textcolor{keyword}{const} T\& data);}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16     \textcolor{comment}{// Destructor}}
+\DoxyCodeLine{17     \mbox{\hyperlink{class_binary_tree}{\string~BinaryTree}}();}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19     \textcolor{keywordtype}{void} addRoot(\textcolor{keyword}{const} T\&);}
+\DoxyCodeLine{20     \textcolor{keywordtype}{int} getSize();}
+\DoxyCodeLine{21     \mbox{\hyperlink{class_node}{Node<T>}} *getRoot();}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23     \mbox{\hyperlink{class_node}{Node<T>}} *getParent();}
+\DoxyCodeLine{24     \mbox{\hyperlink{class_node}{Node<T>}} *getRightChild();}
+\DoxyCodeLine{25     \mbox{\hyperlink{class_node}{Node<T>}} *getLeftChild();}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27     \textcolor{keywordtype}{void} traverseDepthFirst(std::function<\textcolor{keywordtype}{void}(\mbox{\hyperlink{class_node}{Node<T>}}*)>\&);}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29     \textcolor{keywordtype}{bool} isEmpty();}
+\DoxyCodeLine{30     \textcolor{keywordtype}{bool} isRoot();}
+\DoxyCodeLine{31     \textcolor{keywordtype}{bool} hasLeftChild();}
+\DoxyCodeLine{32     \textcolor{keywordtype}{bool} hasRightChild();}
+\DoxyCodeLine{33     \textcolor{keywordtype}{bool} hasParent();}
+\DoxyCodeLine{34     \textcolor{keywordtype}{void} insertLeft(\mbox{\hyperlink{class_node}{Node<T>}} *node, T);}
+\DoxyCodeLine{35     \textcolor{keywordtype}{void} insertRight(\mbox{\hyperlink{class_node}{Node<T>}} *node, T);}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{keyword}{private}:}
+\DoxyCodeLine{38     \textcolor{keywordtype}{void} traverseDepthFirst(\mbox{\hyperlink{class_node}{Node<T>}}* root, std::function<\textcolor{keywordtype}{void}(\mbox{\hyperlink{class_node}{Node<T>}}*)>\&);}
+\DoxyCodeLine{39     \mbox{\hyperlink{class_node}{Node<T>}} *root\_ = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{40     \textcolor{keywordtype}{int} size\_ = 0;}
+\DoxyCodeLine{41 \};}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{44 \mbox{\hyperlink{class_binary_tree}{BinaryTree<T>::\string~BinaryTree}}()\{ \textcolor{comment}{//TODO: start from root, delete all nodes}}
+\DoxyCodeLine{45 \}}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{49 \mbox{\hyperlink{class_binary_tree}{BinaryTree<T>::BinaryTree}}(\textcolor{keyword}{const} T\& data) : root\_(new \mbox{\hyperlink{class_node}{Node}}<T>(data)) \{}
+\DoxyCodeLine{50     size\_++;}
+\DoxyCodeLine{51 \}}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{54 \textcolor{keywordtype}{void} \mbox{\hyperlink{class_binary_tree}{BinaryTree<T>::insertLeft}}(\mbox{\hyperlink{class_node}{Node<T>}} *node, T) \{}
+\DoxyCodeLine{55     \textcolor{keywordflow}{if}(node == \mbox{\hyperlink{class_node}{Node<T>::getLeftPtr}}() != \textcolor{keyword}{nullptr}) \{}
+\DoxyCodeLine{56         std::cout << \textcolor{stringliteral}{"{}Node already has a left node!\(\backslash\)n"{}};}
+\DoxyCodeLine{57     \}}
+\DoxyCodeLine{58     \mbox{\hyperlink{class_node}{Node<T>}} *newNode = \textcolor{keyword}{new} \mbox{\hyperlink{class_node}{Node<T>}}();}
+\DoxyCodeLine{59     node = \mbox{\hyperlink{class_node}{Node<T>::setLeftPtr}}(newNode);}
+\DoxyCodeLine{60     size\_++;}
+\DoxyCodeLine{61 \}}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{64 \textcolor{keywordtype}{void} \mbox{\hyperlink{class_binary_tree}{BinaryTree<T>::insertRight}}(\mbox{\hyperlink{class_node}{Node<T>}} *node, T) \{}
+\DoxyCodeLine{65     \textcolor{keywordflow}{if}(node == \mbox{\hyperlink{class_node}{Node<T>::getRightPtr}}() != \textcolor{keyword}{nullptr}) \{}
+\DoxyCodeLine{66         std::cout << \textcolor{stringliteral}{"{}Node already has a right node!\(\backslash\)n"{}};}
+\DoxyCodeLine{67     \}}
+\DoxyCodeLine{68     \mbox{\hyperlink{class_node}{Node<T>}} *newNode = \textcolor{keyword}{new} \mbox{\hyperlink{class_node}{Node<T>}}();}
+\DoxyCodeLine{69     node = \mbox{\hyperlink{class_node}{Node<T>::setRightPtr}}(newNode);}
+\DoxyCodeLine{70     size\_++;}
+\DoxyCodeLine{71 \}}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{74 \textcolor{keywordtype}{void} \mbox{\hyperlink{class_binary_tree}{BinaryTree<T>::addRoot}}(\textcolor{keyword}{const} T\& data) \{}
+\DoxyCodeLine{75     \textcolor{keywordflow}{if} (root\_ == \textcolor{keyword}{nullptr}) \{}
+\DoxyCodeLine{76         root\_ = \textcolor{keyword}{new} \mbox{\hyperlink{class_node}{Node<T>}}(data);}
+\DoxyCodeLine{77         size\_++;}
+\DoxyCodeLine{78     \}}
+\DoxyCodeLine{79     \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{80         std::cout << \textcolor{stringliteral}{"{}Root node already exists!\(\backslash\)n"{}};}
+\DoxyCodeLine{81     \}}
+\DoxyCodeLine{82 \}}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{85 \textcolor{keywordtype}{int} \mbox{\hyperlink{class_binary_tree}{BinaryTree<T>::getSize}}() \{}
+\DoxyCodeLine{86     \textcolor{keywordflow}{return} size\_;}
+\DoxyCodeLine{87 \}}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{90 \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_binary_tree}{BinaryTree<T>::isEmpty}}() \{}
+\DoxyCodeLine{91     \textcolor{keywordflow}{return} (size\_ == 0);}
+\DoxyCodeLine{92 \}}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{95 \mbox{\hyperlink{class_node}{Node<T>}} *\mbox{\hyperlink{class_binary_tree}{BinaryTree<T>::getRoot}}() \{}
+\DoxyCodeLine{96     \textcolor{keywordflow}{if}(isEmpty())\{}
+\DoxyCodeLine{97         std::cout << \textcolor{stringliteral}{"{}Binarytree is empty!\(\backslash\)n"{}};}
+\DoxyCodeLine{98         \textcolor{keywordflow}{return} \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{99     \}}
+\DoxyCodeLine{100     \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{101         \textcolor{keywordflow}{return} root\_;}
+\DoxyCodeLine{102     \}}
+\DoxyCodeLine{103 \}}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{106 \textcolor{keywordtype}{void} \mbox{\hyperlink{class_binary_tree}{BinaryTree<T>::traverseDepthFirst}}(\mbox{\hyperlink{class_node}{Node<T>}}* root, std::function<\textcolor{keywordtype}{void}(\mbox{\hyperlink{class_node}{Node<T>}}*)>\& nodeFunction) \{}
+\DoxyCodeLine{107     \textcolor{keywordflow}{if} (root == \textcolor{keyword}{nullptr}) \{}
+\DoxyCodeLine{108         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{109     \}}
+\DoxyCodeLine{110     nodeFunction(root);}
+\DoxyCodeLine{111     traverseDepthFirst(root-\/>getLeftPtr(), nodeFunction);}
+\DoxyCodeLine{112     traverseDepthFirst(root-\/>getRightPtr(), nodeFunction);}
+\DoxyCodeLine{113 \}}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{115 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{116 \textcolor{keywordtype}{void} \mbox{\hyperlink{class_binary_tree}{BinaryTree<T>::traverseDepthFirst}}(std::function<\textcolor{keywordtype}{void}(\mbox{\hyperlink{class_node}{Node<T>}}*)>\& nodeFunction) \{}
+\DoxyCodeLine{117     traverseDepthFirst(root\_, nodeFunction);}
+\DoxyCodeLine{118 \}}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//ANCESTOR\_CHART\_BINARYTREE\_H}}
+
+\end{DoxyCode}

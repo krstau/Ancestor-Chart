@@ -1,0 +1,94 @@
+\hypertarget{md__c___users__kristoffer__staurset__c_lion_projects__ancestor__chart__feedback_autotoc_md1}{}\doxysection{README}\label{md__c___users__kristoffer__staurset__c_lion_projects__ancestor__chart__feedback_autotoc_md1}
+Har laget en README, med litt innhold. Forventer bedre beskrivelse av innholdet samt et enkelt UML diagram som viser sammenheng mellom klassene i endelig innlevering.\hypertarget{md__c___users__kristoffer__staurset__c_lion_projects__ancestor__chart__feedback_autotoc_md2}{}\doxysection{Git}\label{md__c___users__kristoffer__staurset__c_lion_projects__ancestor__chart__feedback_autotoc_md2}
+{\ttfamily .gitignore} lagt inn, og inneholder det som er vesentlig for dette prosjektet.\hypertarget{md__c___users__kristoffer__staurset__c_lion_projects__ancestor__chart__feedback_autotoc_md3}{}\doxysection{CMake}\label{md__c___users__kristoffer__staurset__c_lion_projects__ancestor__chart__feedback_autotoc_md3}
+Ikke så mye å her. Litt tips\+:
+
+
+\begin{DoxyItemize}
+\item Putt public headere i en folder {\ttfamily include} (interface til biblioteket ditt).
+\item Putt private headere (filer du vil .cpp skal ha tilgang på, men ingen andre) og .cpp filer som hører til biblioteket i en folder {\ttfamily src}.
+\item Lag en egen folder for tester, e.\+g., {\ttfamily tests}.
+\item Put kode som fører til en executable som skal distribueres e.\+g, i en folder {\ttfamily tool}.
+\item Kjørbar eksempelkode som viser bruk putter du f.\+eks i en folder {\ttfamily examples}.
+\end{DoxyItemize}
+
+Hold bibliotket, testkode, eksempelkode og kode for executable (main og tilhørende funksjoner) separert. Lag en {\ttfamily CMake\+Lists.\+txt} for hver folder og bruk {\ttfamily add\+\_\+subdirectory} i topp-\/nivå {\ttfamily CMake\+Lists.\+txt}.\hypertarget{md__c___users__kristoffer__staurset__c_lion_projects__ancestor__chart__feedback_autotoc_md4}{}\doxysection{Kode}\label{md__c___users__kristoffer__staurset__c_lion_projects__ancestor__chart__feedback_autotoc_md4}
+Prosjektet har ikke en definert formaterings stil (e.\+g., {\ttfamily .clang-\/format}). Hva skjer om noen andre jobber på koden og kjører formatering?\hypertarget{md__c___users__kristoffer__staurset__c_lion_projects__ancestor__chart__feedback_autotoc_md5}{}\doxysubsection{Person.\+h/cpp}\label{md__c___users__kristoffer__staurset__c_lion_projects__ancestor__chart__feedback_autotoc_md5}
+{\ttfamily \#include \texorpdfstring{$<$}{<}vector\texorpdfstring{$>$}{>}} -\/\texorpdfstring{$>$}{>} Brukes ikke, fjern.
+
+{\ttfamily using namespace std;} -\/\texorpdfstring{$>$}{>} Du drar ikke nytte av denne og det er uansett best å skrive {\ttfamily std\+:\+:} slik som du gjør. Fjern.
+
+Trenger du egentlig default constructor?
+
+Vurder enn annet type enn {\ttfamily bool} for gender. Ute av kontekst sier f.\+eks. {\ttfamily true} oss ingenting om hva det betyr. Kanskje du får forespørsel øsnker å legge alternative valg? Da må du skrive om store deler av programmet. Sjekk ut {\ttfamily enum}!
+
+Accessorene dine er {\ttfamily const}. Bra.
+
+Kunne være lurt å legge til en metode {\ttfamily std\+::string get\+Full\+Name() const}.\hypertarget{md__c___users__kristoffer__staurset__c_lion_projects__ancestor__chart__feedback_autotoc_md6}{}\doxysubsection{Node.\+h/cpp}\label{md__c___users__kristoffer__staurset__c_lion_projects__ancestor__chart__feedback_autotoc_md6}
+Først og fremst, template klasses er veldig dårlige kandidater for å splitte i .hpp/.cpp. Vil anbefale å unngå dette på det aller høyeste.
+
+{\ttfamily \mbox{\hyperlink{class_node}{Node}}(const T\& data,\mbox{\hyperlink{class_node}{Node}}\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}$\ast$ left\+Ptr,\mbox{\hyperlink{class_node}{Node}}\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}$\ast$ right\+Ptr);} -\/\texorpdfstring{$>$}{>} Tror ikke du får bruk for denne. Fjern.
+
+For i implementere et tre, trenger du også en parent. Det du har nå ligner på en singly-\/linkedlist som går to forskjellige veier.
+
+Fint å se at du konstruerer en node for å representere datastrukturen for seg selv. Kunne ha blitt fristen til å putte lgikken inn i en person, men da mister man gjenbrukbarhet og får en mer kompleks person klasse.
+
+{\ttfamily T get\+Data(const T\& data);} -\/\texorpdfstring{$>$}{>} Har du glemt å fjerne argumentet fra metoden? Merk at du nå returnerer by-\/value. Objektet klienten får er altså en kopi. Kanskje du ønsker å returnere by reference? Kan kjøre const reference om du ikke ønsker at klienten skal kunne kalle metoder som kan mutere. Altså view-\/only.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{bool} hasSpace();}
+\DoxyCodeLine{\textcolor{keywordtype}{bool} isLeaf();}
+
+\end{DoxyCode}
+
+
+Disse kan (og bør) merkes {\ttfamily const} . Alle metoder i en klasse som ikke muterer skal markeres {\ttfamily const}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void} setRightPtr(\mbox{\hyperlink{class_node}{Node<T>}} *rightPtr);}
+\DoxyCodeLine{\textcolor{keywordtype}{void} setLeftPtr(\mbox{\hyperlink{class_node}{Node<T>}} *leftPtr);}
+
+\end{DoxyCode}
+
+
+Kan det være en ide å ta inn {\ttfamily T} som argument og heller konstruere en {\ttfamily \mbox{\hyperlink{class_node}{Node}}} som en del av metoden? Da får du full kontroll på levetiden.\hypertarget{md__c___users__kristoffer__staurset__c_lion_projects__ancestor__chart__feedback_autotoc_md7}{}\doxysubsection{Binary\+Tree.\+h/cpp}\label{md__c___users__kristoffer__staurset__c_lion_projects__ancestor__chart__feedback_autotoc_md7}
+Igjen, templates er ikke en god kandidat for å splitte koden. Grunnen er at kompilatoren må ha tilgang på implementasjonen. Man kan komme rundt problemet, men vil ikke anbefale det.
+
+I teorien er ikke denne klasses nødvendig siden klassen {\ttfamily \mbox{\hyperlink{class_node}{Node}}} i seg selv kan sees på som et fullverdig tre. Med det sagt, så kunne denne klasses bli brukt til å skjule tilstedeværelsen av typen {\ttfamily \mbox{\hyperlink{class_node}{Node}}}. Altså at klassen er en del av implementasjonsdetaljen til {\ttfamily \mbox{\hyperlink{class_binary_tree}{Binary\+Tree}}} og skjules fra public API. Tenk litt på det. ~\newline
+
+
+{\ttfamily \mbox{\hyperlink{class_binary_tree}{Binary\+Tree()}};} -\/\texorpdfstring{$>$}{>} Default konstruktør har ikke et formål her. Fjern.
+
+{\ttfamily \mbox{\hyperlink{class_node}{Node}}\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}$\ast$ root\+\_\+;} -\/\texorpdfstring{$>$}{>} Trenger vi egentlig å bruke peker?
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{class} T>}
+\DoxyCodeLine{\mbox{\hyperlink{class_binary_tree}{BinaryTree<T>::BinaryTree}}(\mbox{\hyperlink{class_node}{Node<T>}}* root\_)\{\}}
+
+\end{DoxyCode}
+ Du har glemt å assigne argumentet {\ttfamily root\+\_\+} i konstruktøren til feltet {\ttfamily root\+\_\+}.\hypertarget{md__c___users__kristoffer__staurset__c_lion_projects__ancestor__chart__feedback_autotoc_md8}{}\doxysubsection{main.\+cpp}\label{md__c___users__kristoffer__staurset__c_lion_projects__ancestor__chart__feedback_autotoc_md8}
+Ser ut som noe som løser laben vi hadde tidligere. Oppgaven din blir da å tilpase dette til å bruke en tre datastruktur for å modellere familetreet i stedet for en liste.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{class_person}{Person}} createPerson() \{ \textcolor{comment}{// Function to create person}}
+\DoxyCodeLine{    \mbox{\hyperlink{class_person}{Person}} person\{\};}
+\DoxyCodeLine{    ...}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Hvorfor ikke kalle konstrøktøren med flere argument i stedet for å kalle settere etterhvert? Hva om du skulle glemme en setter f.\+eks (på generell basis)? Da kan du også fjerne settere om disse ikke er nødvendige videre i programmet. Jo mindre som kan mutere jo bedre.\hypertarget{md__c___users__kristoffer__staurset__c_lion_projects__ancestor__chart__feedback_autotoc_md9}{}\doxysection{Unit tests}\label{md__c___users__kristoffer__staurset__c_lion_projects__ancestor__chart__feedback_autotoc_md9}
+Ingen tester så langt. Ha alltid i hodet å designe koden slik at den enkelt kan bli testet. Dvs. klasser og funksjoner med klare formål som ikke gjør for mye på engang.
+
+Bruk gjerne Catch2 rammeverket som vi har brukt i klassen. Se f.\+eks \href{https://github.com/AIS1002-OOP/Pathfinding/tree/master/tests}{\texttt{ https\+://github.\+com/\+AIS1002-\/\+OOP/\+Pathfinding/tree/master/tests}}\hypertarget{md__c___users__kristoffer__staurset__c_lion_projects__ancestor__chart__feedback_autotoc_md10}{}\doxysection{Continuous integration (\+CI)}\label{md__c___users__kristoffer__staurset__c_lion_projects__ancestor__chart__feedback_autotoc_md10}
+Ingen CI oppsett lagt inn.
+
+\DoxyHorRuler{0}
+
+
+Disclaimer\+: Tilbakemeldingen er ikke nødvendigvis komplett og kan ikke brukes som fasit. Bruk skjønn. 

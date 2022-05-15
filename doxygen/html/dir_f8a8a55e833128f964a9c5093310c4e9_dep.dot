@@ -1,0 +1,11 @@
+digraph "C:/Users/Kristoffer Staurset/CLionProjects/Ancestor-Chart/cmake-build-debug/CMakeFiles/3.22.3/CompilerIdC"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  compound=true
+  subgraph clusterdir_efefa03227dbe1ce0cb3b94d4228a0f4 {
+    graph [ bgcolor="#edf0f7", pencolor="grey50", style="filled,dashed,", label="3.22.3", fontname="Helvetica", fontsize="10", URL="dir_efefa03227dbe1ce0cb3b94d4228a0f4.html"]
+  dir_f8a8a55e833128f964a9c5093310c4e9 [shape=box, label="CompilerIdC", style="filled,bold,", fillcolor="#edf0f7", color="grey25", URL="dir_f8a8a55e833128f964a9c5093310c4e9.html"];
+  }
+}

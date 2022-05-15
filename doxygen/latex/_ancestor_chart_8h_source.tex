@@ -1,0 +1,36 @@
+\hypertarget{_ancestor_chart_8h_source}{}\doxysection{Ancestor\+Chart.\+h}
+\label{_ancestor_chart_8h_source}\index{C:/Users/Kristoffer Staurset/CLionProjects/Ancestor-\/Chart/src/AncestorChart.h@{C:/Users/Kristoffer Staurset/CLionProjects/Ancestor-\/Chart/src/AncestorChart.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef ANCESTOR\_CHART\_ANCESTORCHART\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define ANCESTOR\_CHART\_ANCESTORCHART\_H}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include "{}BinaryTree.h"{}}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}Person.h"{}}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <algorithm>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{11 \textcolor{keyword}{class }\mbox{\hyperlink{class_ancestor_chart}{AncestorChart}} \{}
+\DoxyCodeLine{12 \textcolor{keyword}{public}:}
+\DoxyCodeLine{13     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_ancestor_chart}{AncestorChart}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_person}{Person}} \&rootPerson) : persons\_(\mbox{\hyperlink{class_binary_tree}{BinaryTree<Person>}}(rootPerson))\{\};}
+\DoxyCodeLine{14     \textcolor{keyword}{static} \mbox{\hyperlink{class_person}{Person}} createPerson();}
+\DoxyCodeLine{15     \textcolor{keyword}{static} \textcolor{keywordtype}{void} printPerson();}
+\DoxyCodeLine{16     \textcolor{keywordtype}{void} printPersons();}
+\DoxyCodeLine{17     \textcolor{keywordtype}{void} printPersonsWithName(\textcolor{keyword}{const} std::string \&name);}
+\DoxyCodeLine{18     std::vector<Person> getPersonsMatchingName(\textcolor{keyword}{const} std::string \&name);}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21     \textcolor{comment}{//TODO: Move these functions to menu-\/class.}}
+\DoxyCodeLine{22     \textcolor{keyword}{static} std::string \mbox{\hyperlink{class_ancestor_chart_aeb8328308319e6a2370c4f93f49f6b94}{genderValueToString}}(\mbox{\hyperlink{class_person_aff84ca16bd4dbf364614d86f20b29dd2}{Person::Gender}});}
+\DoxyCodeLine{23     \textcolor{comment}{//}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25     \textcolor{keyword}{static} \mbox{\hyperlink{class_person_aff84ca16bd4dbf364614d86f20b29dd2}{Person::Gender}} inputGender();}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 \textcolor{keyword}{private}:}
+\DoxyCodeLine{29     \textcolor{keyword}{typedef} std::function<void(\mbox{\hyperlink{class_node}{Node<Person>}} *)> nodePointerFunction;}
+\DoxyCodeLine{30     \mbox{\hyperlink{class_binary_tree}{BinaryTree<Person>}} persons\_;}
+\DoxyCodeLine{31 \};}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#endif}\textcolor{comment}{//ANCESTOR\_CHART\_ANCESTORCHART\_H}}
+
+\end{DoxyCode}

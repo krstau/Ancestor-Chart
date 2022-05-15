@@ -1,0 +1,17 @@
+digraph "C:/Users/Kristoffer Staurset/CLionProjects/Ancestor-Chart"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  compound=true
+  subgraph clusterdir_ed353eea8d78a173a119b387b77c750d {
+    graph [ bgcolor="#edf0f7", pencolor="grey25", style="filled,dashed,", label="CLionProjects", fontname="Helvetica", fontsize="10", URL="dir_ed353eea8d78a173a119b387b77c750d.html"]
+  subgraph clusterdir_e4d9aa0f8e867ad4a9e0e7911fccec84 {
+    graph [ bgcolor="#edf0f7", pencolor="grey25", style="filled,bold,", label="", fontname="Helvetica", fontsize="10", URL="dir_e4d9aa0f8e867ad4a9e0e7911fccec84.html"]
+    dir_e4d9aa0f8e867ad4a9e0e7911fccec84 [shape=plaintext, label="Ancestor-Chart"];
+  dir_8cd2b383adaacf721eac9a6d97636839 [shape=box, label="cmake-build-debug", style="filled,", fillcolor="#a2b4d6", color="grey25", URL="dir_8cd2b383adaacf721eac9a6d97636839.html"];
+  dir_fb64f2265b6bb50489b34c3ca1e19ffb [shape=box, label="src", style="filled,", fillcolor="#a2b4d6", color="grey25", URL="dir_fb64f2265b6bb50489b34c3ca1e19ffb.html"];
+  dir_889daa036119058ca820a9fa882c55b5 [shape=box, label="tests", style="filled,", fillcolor="#a2b4d6", color="grey25", URL="dir_889daa036119058ca820a9fa882c55b5.html"];
+  }
+  }
+}
