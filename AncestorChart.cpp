@@ -30,7 +30,7 @@ Person AncestorChart::createPerson() {
 
 void AncestorChart::createRootPerson(){
     Person rootPerson = AncestorChart::createPerson();
-    AncestorChart tree(rootPerson);
+    AncestorChart binaryTree(rootPerson);
 }
 
 std::vector<Person> AncestorChart::getPersonsMatchingFirstName(const std::string &firstName) {

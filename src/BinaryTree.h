@@ -5,7 +5,7 @@
 #include <iostream>
 #include <functional>
 
-// https://github.com/devos50/BinaryTree
+// Inspiration for code: https://github3.com/devos50/BinaryTree
 
 template<typename T>
 class BinaryTree {
@@ -50,8 +50,8 @@ BinaryTree<T>::BinaryTree(const T& data) : root_(new Node<T>(data)) {
 }
 
 template<typename T>
-void BinaryTree<T>::insertLeft(Node<T> *node, T) {
-    if(node == Node<T>::getLeftPtr() != nullptr) {
+void BinaryTree<T>::insertLeft(Node<T> *node, T data) {
+    if(node == node.Node<T>::getLeftPtr() != nullptr) {
         std::cout << "Node already has a left node!\n";
     }
     auto *newNode = new Node<T>();
@@ -64,7 +64,7 @@ void BinaryTree<T>::insertRight(Node<T> *node, T) {
     if(node == Node<T>::getRightPtr() != nullptr) {
         std::cout << "Node already has a right node!\n";
     }
-    auto *newNode = new Node<T>();
+    auto *newNode = new Node<T>(data);
     node = Node<T>::setRightPtr(newNode);
     size_++;
 }

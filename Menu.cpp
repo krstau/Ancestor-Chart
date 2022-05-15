@@ -44,6 +44,8 @@ std::string Menu::capitalizeString(std::string word) {
 * @param none.
 * @return none.
 */
+
+
 void selectSearchTerm() {
     int searchTerm;
     std::cout << "\n"
@@ -104,6 +106,7 @@ void selectSearchTerm() {
             break;
     }
 }
+
 
 /**
 * Function to display a menu to the terminal.

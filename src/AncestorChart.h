@@ -15,10 +15,10 @@ public:
     static Person createPerson();
     static void printPerson();
     void printPersons();
-    static void printPersonsWithFirstName(const std::string &firstName);
-    static void printPersonsWithLastName(const std::string &lastName);
-    static void printPersonsWithFullName(const std::string &fullName);
-    static void printPersonsWithGender(const Person::Gender &Gender);
+    void printPersonsWithFirstName(const std::string &firstName);
+    void printPersonsWithLastName(const std::string &lastName);
+    void printPersonsWithFullName(const std::string &fullName);
+    void printPersonsWithGender(const Person::Gender &Gender);
     std::vector<Person> getPersonsMatchingFirstName(const std::string &firstName);
     std::vector<Person> getPersonsMatchingLastName(const std::string &lastName);
     std::vector<Person> getPersonsMatchingFullName(const std::string &fullName);

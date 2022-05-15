@@ -9,10 +9,11 @@
  */
 class Menu {
 public:
-    static bool yesOrNo();
-    static std::string capitalizeString(std::string);
-    static void mainMenu();
+    bool yesOrNo();
+    std::string capitalizeString(std::string);
+    void mainMenu();
 private:
+    AncestorChart ancestorChart;
 };
 
 #endif//ANCESTOR_CHART_MENU_H
