@@ -1,4 +1,4 @@
-# Ancestor-Chart
+# Ancestor Chart
 
 ## A program that displays the ancestors of a given person's name.
 
