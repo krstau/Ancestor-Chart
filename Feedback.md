@@ -75,13 +75,13 @@ I teorien er ikke denne klasses nødvendig siden klassen `Node` i seg selv kan s
 
 `BinaryTree();` -> Default konstruktør har ikke et formål her. Fjern.
 
-`Node<T>* root;` -> Trenger vi egentlig å bruke peker?
+`Node<T>* root_;` -> Trenger vi egentlig å bruke peker?
 
 ```cpp
 template<class T>
-BinaryTree<T>::BinaryTree(Node<T>* root){}
+BinaryTree<T>::BinaryTree(Node<T>* root_){}
 ```
-Du har glemt å assigne argumentet `root` i konstruktøren til feltet `root`.
+Du har glemt å assigne argumentet `root_` i konstruktøren til feltet `root_`.
 
 ### main.cpp
 

@@ -8,7 +8,7 @@ public:
     Node(); // Do we need this?
     explicit Node(const T& data);
     Node(const T& data,Node<T> *leftPtr,Node<T> *rightPtr);
-    T getData(const T& data);
+    T getData();
     Node<T> *getLeftPtr() const;
     Node<T> *getRightPtr() const;
     void setData(const T& data);
@@ -19,26 +19,15 @@ public:
 
 private:
     T data_;
-    Node<T> *left_;
-    Node<T> *right_;
+    Node<T> *left_ = nullptr;
+    Node<T> *right_ = nullptr;
 };
 
-template<typename T>           //Default constructor, makes an empty node
-Node<T>::Node(){
-    left_, right_ = nullptr;
-}
-
 template<typename T>           //Make a node with data attached to it (rootnode)
-Node<T>::Node(const T& data){
-    data_ = data;
-    left_, right_ = nullptr;
-}
+Node<T>::Node(const T& data) : data_(data){}
+
 template<typename T>           //Make a node with data attached and pointers set
-Node<T>::Node(const T& data,Node<T>* leftPtr,Node<T>* rightPtr){
-    data_ = data;
-    left_ = leftPtr;
-    right_ = rightPtr;
-}
+Node<T>::Node(const T& data,Node<T>* leftPtr,Node<T>* rightPtr) : data_(data), left_(leftPtr), right_(rightPtr){}
 
 template<typename T>           //Set the data of a Node
 void Node<T>::setData(const T& data){
@@ -46,7 +35,7 @@ void Node<T>::setData(const T& data){
 }
 
 template<typename T>           //Returns the data of a Node
-T Node<T>::getData(const T& data){
+T Node<T>::getData(){
     return data_;
 }
 
