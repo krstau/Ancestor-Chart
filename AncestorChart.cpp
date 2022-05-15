@@ -28,6 +28,13 @@ Person AncestorChart::createPerson() {
     return {firstName, lastName, dateOfBirth, dateOfDeath, gender, state};
 }
 
+void AncestorChart::createRootPerson(){
+    std::cout << "Please create a root person for the ancestor chart: \n";
+    Person rootPerson = AncestorChart::createPerson();
+    AncestorChart tree(rootPerson);
+}
+
+
 std::vector<Person> AncestorChart::getPersonsMatchingName(const std::string &name) {
     std::vector<Person> persons;
     nodePointerFunction printPersons = [&persons, &name](Node<Person> *node) {

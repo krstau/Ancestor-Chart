@@ -16,7 +16,6 @@ public:
     // Destructor
     ~BinaryTree();
 
-    void addRoot(const T&);
     int getSize();
     Node<T> *getRoot();
 
@@ -55,7 +54,7 @@ void BinaryTree<T>::insertLeft(Node<T> *node, T) {
     if(node == Node<T>::getLeftPtr() != nullptr) {
         std::cout << "Node already has a left node!\n";
     }
-    Node<T> *newNode = new Node<T>();
+    auto *newNode = new Node<T>();
     node = Node<T>::setLeftPtr(newNode);
     size_++;
 }
@@ -65,20 +64,9 @@ void BinaryTree<T>::insertRight(Node<T> *node, T) {
     if(node == Node<T>::getRightPtr() != nullptr) {
         std::cout << "Node already has a right node!\n";
     }
-    Node<T> *newNode = new Node<T>();
+    auto *newNode = new Node<T>();
     node = Node<T>::setRightPtr(newNode);
     size_++;
-}
-
-template<typename T>
-void BinaryTree<T>::addRoot(const T& data) {
-    if (root_ == nullptr) {
-        root_ = new Node<T>(data);
-        size_++;
-    }
-    else {
-        std::cout << "Root node already exists!\n";
-    }
 }
 
 template<typename T>

@@ -3,4 +3,4 @@ project(ancestor_chart)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(ancestor_chart main.cpp Person.cpp)
+add_executable(ancestor_chart main.cpp AncestorChart.cpp Person.cpp Menu.cpp)
