@@ -15,8 +15,14 @@ public:
     static Person createPerson();
     static void printPerson();
     void printPersons();
-    void printPersonsWithName(const std::string &name);
-    std::vector<Person> getPersonsMatchingName(const std::string &name);
+    static void printPersonsWithFirstName(const std::string &firstName);
+    static void printPersonsWithLastName(const std::string &lastName);
+    static void printPersonsWithFullName(const std::string &fullName);
+    static void printPersonsWithGender(const Person::Gender &Gender);
+    std::vector<Person> getPersonsMatchingFirstName(const std::string &firstName);
+    std::vector<Person> getPersonsMatchingLastName(const std::string &lastName);
+    std::vector<Person> getPersonsMatchingFullName(const std::string &fullName);
+    std::vector<Person> getPersonsMatchingGender(const Person::Gender &Gender);
 
 
     //TODO: Move these functions to menu-class.

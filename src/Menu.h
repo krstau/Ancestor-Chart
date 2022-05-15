@@ -11,7 +11,7 @@ class Menu {
 public:
     static bool yesOrNo();
     static std::string capitalizeString(std::string);
-    static void display();
+    static void mainMenu();
 private:
 };
 

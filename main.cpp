@@ -7,6 +7,15 @@
  * @return 0.
  */
 int main() {
-    Menu::display();
+    Menu::mainMenu();
     return 0;
 }
+
+// TODO: Doxygen!
+
+/*
+// tree.printPersons();
+Person person2 = AncestorChart::createPerson();
+std::cout << '\n';
+tree.printPersonsWithName("Kristoffer");
+std::cout << person2;*/
