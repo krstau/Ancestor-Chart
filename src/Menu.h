@@ -12,6 +12,7 @@ public:
     static bool yesOrNo();
     static std::string capitalizeString(std::string);
     static void display();
+    static void createRootPerson();
 private:
 };
 
@@ -52,7 +53,7 @@ bool Menu::yesOrNo() {
     }
 }
 
-void createRootPerson(){
+void Menu::createRootPerson(){
     std::cout << "Please create a root person for the ancestor chart: \n";
     Person rootPerson = AncestorChart::createPerson();
     AncestorChart tree(rootPerson);
@@ -101,7 +102,7 @@ void Menu::display() {
 
         switch (choice) {
             case 1: {
-                createRootPerson();
+                Menu::createRootPerson();
                 break;
             }
             case 2: {
