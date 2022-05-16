@@ -1,9 +1,9 @@
-#ifndef ANCESTOR_CHART_BINARYTREE_H
-#define ANCESTOR_CHART_BINARYTREE_H
-#include "Node.h"
-#include "Person.h"
-#include <iostream>
+#ifndef ANCESTOR_CHART_BINARYTREE_HPP
+#define ANCESTOR_CHART_BINARYTREE_HPP
+#include "Node.hpp"
+#include "Person.hpp"
 #include <functional>
+#include <iostream>
 
 // Inspiration for code: https://github3.com/devos50/BinaryTree
 
@@ -49,13 +49,13 @@ BinaryTree<T>::BinaryTree(const T& data) : root_(new Node<T>(data)) {
 }
 
 template<typename T>
-void BinaryTree<T>::insertRight(Node<T> *node, T data) {
+void BinaryTree<T>::insertLeft(Node<T> *node, T data) {
     if (node == nullptr){
         // throw exception; TODO: Guard
     }
-    if (node->getRightPtr() == nullptr){
-        auto newNode = new Node<T>(data);
-        node->setRightPtr(*newNode);
+    if (node->getLeftPtr() == nullptr){
+        auto newNode = std::make_unique<Node<T>>(data);
+        node->setLeftPtr(*newNode);
         size_++;
     }
     else {
@@ -64,13 +64,13 @@ void BinaryTree<T>::insertRight(Node<T> *node, T data) {
 }
 
 template<typename T>
-void BinaryTree<T>::insertLeft(Node<T> *node, T data) {
+void BinaryTree<T>::insertRight(Node<T> *node, T data) {
     if (node == nullptr){
         // throw exception; TODO: Guard
     }
-    if (node->getLeftPtr() == nullptr){
-        auto *newNode = new Node<T>(data);
-        node->setLeftPtr(newNode);
+    if (node->getRightPtr() == nullptr){
+        auto newNode = new Node<T>(data);
+        node->setRightPtr(*newNode);
         size_++;
     }
     else {
@@ -121,4 +121,4 @@ void BinaryTree<T>::traverseDepthFirst(std::function<void(Node<T>*)>& nodeFuncti
     traverseDepthFirst(root_, nodeFunction);
 }
 
-#endif //ANCESTOR_CHART_BINARYTREE_H
+#endif//ANCESTOR_CHART_BINARYTREE_HPP

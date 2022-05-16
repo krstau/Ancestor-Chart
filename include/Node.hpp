@@ -1,6 +1,7 @@
-#ifndef ANCESTOR_CHART_NODE_H
-#define ANCESTOR_CHART_NODE_H
-#include "Person.h"
+#ifndef ANCESTOR_CHART_NODE_HPP
+#define ANCESTOR_CHART_NODE_HPP
+#include "Person.hpp"
+#include <memory>
 
 template<class T>
 class Node {
@@ -11,8 +12,8 @@ public:
     Node<T> *getLeftPtr() const;
     Node<T> *getRightPtr() const;
     void setData(const T& data);
-    void setRightPtr(Node<T> &rightPtr);
-    void setLeftPtr(Node<T> &leftPtr);
+    void setLeftPtr(std::unique_ptr<Node<T>> &leftPtr);
+    void setRightPtr(std::unique_ptr<Node<T>> &rightPtr);
     bool hasSpace();
     bool isLeaf();
 
@@ -60,14 +61,14 @@ Node<T>* Node<T>::getRightPtr() const{
 
 //Sets the left pointer
 template<typename T>
-void Node<T>::setLeftPtr(Node<T> &leftPtr){
-    Node *left_ = &leftPtr;
+void Node<T>::setLeftPtr(std::unique_ptr<Node<T>> &leftPtr){
+    left_ = std::move(leftPtr);
 }
 
 //Sets the right pointer
 template<typename T>
-void Node<T>::setRightPtr(Node<T> &rightPtr){
-    Node *right_ = &rightPtr;
+void Node<T>::setRightPtr(std::unique_ptr<Node<T>> &rightPtr){
+    right_ = std::move(rightPtr);
 }
 
-#endif //ANCESTOR_CHART_NODE_H
+#endif//ANCESTOR_CHART_NODE_HPP

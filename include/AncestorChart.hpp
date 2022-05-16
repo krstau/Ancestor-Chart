@@ -1,7 +1,7 @@
-#ifndef ANCESTOR_CHART_ANCESTORCHART_H
-#define ANCESTOR_CHART_ANCESTORCHART_H
-#include "BinaryTree.h"
-#include "Person.h"
+#ifndef ANCESTOR_CHART_ANCESTORCHART_HPP
+#define ANCESTOR_CHART_ANCESTORCHART_HPP
+#include "BinaryTree.hpp"
+#include "Person.hpp"
 #include <algorithm>
 #include <string>
 
@@ -11,11 +11,9 @@
 class AncestorChart {
 public:
     explicit AncestorChart(const Person &rootPerson) : persons_(BinaryTree<Person>(rootPerson)){}
-    AncestorChart();
-    ;
-    Person createRootPerson();
-    Person createPerson();
-    static void printPerson();
+    static Person createPerson();
+    void addPerson();
+    void printPerson();
     void printPersons();
     void printPersonsWithFirstName(const std::string &firstName);
     void printPersonsWithLastName(const std::string &lastName);
@@ -26,18 +24,9 @@ public:
     std::vector<Person> getPersonsMatchingFullName(const std::string &fullName);
     std::vector<Person> getPersonsMatchingGender(const Person::Gender &Gender);
 
-
-    //TODO: Move these functions to menu-class.
-    static std::string genderValueToString(Person::Gender);
-    //
-
-    static Person::Gender inputGender();
-
-
 private:
     typedef std::function<void(Node<Person> *)> nodePointerFunction;
     BinaryTree<Person> persons_;
-    void addPerson();
 };
 
-#endif//ANCESTOR_CHART_ANCESTORCHART_H
+#endif//ANCESTOR_CHART_ANCESTORCHART_HPP

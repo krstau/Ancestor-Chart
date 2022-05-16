@@ -1,4 +1,4 @@
-#include "../include/Menu.h"
+#include "../include/Menu.hpp"
 
 /**
  * Main function.
@@ -8,6 +8,6 @@
  */
 int main() {
     Menu menu;
-    menu.execute();
+    menu.run();
     return 0;
 }

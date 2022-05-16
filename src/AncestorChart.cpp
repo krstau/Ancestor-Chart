@@ -1,5 +1,5 @@
-#include "../include/AncestorChart.h"
-#include "../include/Menu.h"
+#include "../include/AncestorChart.hpp"
+#include "../include/Menu.hpp"
 #include <iostream>
 
 //TODO: ask user who this person is the parent of
@@ -9,7 +9,7 @@
 //if father, add or edit leftNode, if mother add or edit rightNode
 Person AncestorChart::createPerson() {
     std::string firstName, lastName, dateOfBirth, dateOfDeath;
-    Person::State state = Person::unknownState;
+    Person::State state = Person::alive;
     Person::Gender gender = Person::unknownGender;
     std::cout << "Enter firstname:";
     std::cin >> firstName;
@@ -24,28 +24,13 @@ Person AncestorChart::createPerson() {
         std::cin >> dateOfDeath;
         state = Person::deceased;
     }
-    gender = inputGender();
+    gender = Menu::inputGender();
     return {firstName, lastName, dateOfBirth, dateOfDeath, gender, state};
 }
 
-Person AncestorChart::createRootPerson(){
-    Person rootPerson = AncestorChart::createPerson();
-    return rootPerson;
-}
-
-void AncestorChart::addPerson() {
-    Person person = createPerson();
-    if (person.getGender() == 0) {
-        BinaryTree<person>.insertLeft(rootPerson, person);
-    }
-    if (person.getGender() == 1) {
-        BinaryTree<person.insertRight(rootPerson, person);
-    }
-}
-
-
+void addPerson() {
     Person person = AncestorChart::createPerson();
-    insertLeft
+    ancestorChart_.insertLeft(node, person);
 }
 
 std::vector<Person> AncestorChart::getPersonsMatchingFirstName(const std::string &firstName) {
@@ -148,7 +133,6 @@ void AncestorChart::printPersonsWithFirstName(const std::string &firstName) {
  * @param lastname.
  * @return none.
  */
-void AncestorC
 void AncestorChart::printPersonsWithLastName(const std::string &lastName) {
     nodePointerFunction printPersons = [&lastName](Node<Person> *node) {
         Person person = node->getData();
@@ -189,49 +173,6 @@ void AncestorChart::printPersonsWithGender(const Person::Gender &gender) {
         }
     };
     persons_.traverseDepthFirst(printPersons);
-}
-
-/**
- * Prompts the user for entering gender for either male or female.
- *
- * @param none.
- * @return none.
- */
-Person::Gender AncestorChart::inputGender() {
-    std::string gender;
-    std::cout << "Enter gender (male/female): ";
-    while (true) {
-        std::cin >> gender;
-        gender = Menu::capitalizeString(gender);
-        if (gender == "Male") {
-            return Person::Gender::male;
-        }
-        if (gender == "Female") {
-            return Person::Gender::female;
-        } else {
-            std::cout << "\nError: please enter a valid gender (male/female):";
-        }
-    }
-}
-
-/**
- * Converts a gender enum to a string.
- *
- * @param gender.
- * @return the gender in string format.
- */
-std::string AncestorChart::genderValueToString(Person::Gender gender) {
-    switch (gender) {
-        case Person::male: {
-            return "male";
-        }
-        case Person::female: {
-            return "female";
-        }
-        default: {
-            return "unknown";
-        }
-    }
 }
 
 std::ostream &operator<<(std::ostream &os, const Person &person) {

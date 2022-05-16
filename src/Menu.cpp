@@ -1,4 +1,4 @@
-#include "../include/Menu.h"
+#include "../include/Menu.hpp"
 
 /**
  * Prompts the user for yes or no.
@@ -35,6 +35,50 @@ std::string Menu::capitalizeString(std::string word) {
                    });
     word[0] = std::toupper(word[0]);// NOLINT(cppcoreguidelines-narrowing-conversions) TODO: Find better alternative?
     return word;
+}
+
+
+/**
+ * Prompts the user for entering gender for either male or female.
+ *
+ * @param none.
+ * @return none.
+ */
+Person::Gender Menu::inputGender() {
+    std::string gender;
+    std::cout << "Enter gender (male/female): ";
+    while (true) {
+        std::cin >> gender;
+        gender = Menu::capitalizeString(gender);
+        if (gender == "Male") {
+            return Person::Gender::male;
+        }
+        if (gender == "Female") {
+            return Person::Gender::female;
+        } else {
+            std::cout << "\nError: please enter a valid gender (male/female):";
+        }
+    }
+}
+
+/**
+ * Converts a gender enum to a string.
+ *
+ * @param gender.
+ * @return the gender in string format.
+ */
+std::string Menu::genderValueToString(Person::Gender gender) {
+    switch (gender) {
+        case Person::male: {
+            return "male";
+        }
+        case Person::female: {
+            return "female";
+        }
+        default: {
+            return "unknown";
+        }
+    }
 }
 
 /**
@@ -143,6 +187,8 @@ int getValidIntBetween(int lower, int upper) {
     return integer;
 }
 
+
+
 /**
 * Function to display a menu to the terminal.
 *
@@ -150,6 +196,8 @@ int getValidIntBetween(int lower, int upper) {
 * @return none.
 */
 void Menu::mainMenu() {
+    Person rootPerson = AncestorChart::createPerson();
+    ancestorChart_ = AncestorChart(rootPerson);
     while (!this->running_) { //TODO: change from this-> to
 
         this->printMainMenu();
@@ -158,13 +206,12 @@ void Menu::mainMenu() {
 
         switch (choice) {
             case 1: {
-                Person rootPerson.createPerson();
-                ancestorChart_ = new AncestorChart(rootPerson);
+
                 std::cout << "Please create a root person for the ancestor chart: \n";
                 break;
             }
             case 2: {
-                ancestorChart_.createPerson();
+                ancestorChart_.addPerson();
 
                 break;
             }
@@ -192,14 +239,12 @@ void Menu::mainMenu() {
     }
 }
 
-void Menu::execute(){
+void Menu::run(){
     running_ = true;
 }
 
 void Menu::shutdown(){
     running_ = false;
-}
-Menu::Menu() {
 }
 
 /**
@@ -229,7 +274,7 @@ void printMainMenu(){
               << "\n"
               << "[5] Delete person"
               << "\n"
-              << "[6] Exit"
+              << "[0] Exit"
               << "\n"
               << "\n"
               << "Enter choice:";
