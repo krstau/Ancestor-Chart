@@ -1,6 +1,6 @@
 #include "../external/Catch2/catch.hpp"
 #include "../include/Node.hpp"
-
+/*
 TEST_CASE("Node can be edited", "[Node<T>]"){
 
     int data = 1;
@@ -11,3 +11,4 @@ TEST_CASE("Node can be edited", "[Node<T>]"){
     REQUIRE(true);
 
 }
+*/
