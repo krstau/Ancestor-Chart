@@ -1,7 +1,7 @@
 #include "../external/Catch2/catch.hpp"
 #include "../include/Person.hpp"
 #include "../src/Person.cpp"
-
+/*
 TEST_CASE("Edit info in person", "[Person]"){
     std::string firstName = "Ivar";
     std::string lastName = "Aasen";
@@ -17,3 +17,4 @@ TEST_CASE("Edit info in person", "[Person]"){
 
 
 }
+*/
