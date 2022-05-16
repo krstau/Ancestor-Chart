@@ -1,4 +1,4 @@
-#include "src/Menu.h"
+#include "../include/Menu.h"
 
 /**
  * Prompts the user for yes or no.
@@ -13,7 +13,7 @@ bool Menu::yesOrNo() {
         answer = capitalizeString(answer);
         if (answer == "Yes") {
             return true;
-        }
+        }|
         if (answer == "No") {
             return false;
         } else {
@@ -44,8 +44,6 @@ std::string Menu::capitalizeString(std::string word) {
 * @param none.
 * @return none.
 */
-
-
 void selectSearchTerm() {
     int searchTerm;
     std::cout << "\n"
@@ -98,7 +96,6 @@ void selectSearchTerm() {
             break;
         }
         case 0: {
-            Menu::mainMenu();
             break;
         }
         default:
@@ -107,6 +104,74 @@ void selectSearchTerm() {
     }
 }
 
+/**
+* Function that that takes user input from user and checks if it is an integer.
+*
+* @param none.
+* @return a integer.
+*/
+int getNumberFromUser() {
+    int integer;
+    while (!(std::cin >> integer)) {
+        std::cout << "Invalid input, please input a number\n";
+        std::cin.clear();
+        std::cin.ignore(132, '\n');
+    }
+    return integer;
+}
+
+/**
+* Function that takes an integer between a lower and upper value.
+*
+* @param lower.
+* @param upper.
+* @return integer between upper and lower.
+*/
+int getValidIntBetween(int lower, int upper) {
+    int integer;
+    bool validInt = false;
+    while (!validInt) {
+        std::cout << "Please enter a number between: " << lower << "and" << upper << "\n";
+        integer = getNumberFromUser();
+        if (integer <= upper && integer >= lower) {
+            validInt = true;
+        }
+    }
+    return integer;
+}
+
+/**
+* Function to print main menu to terminal.
+*
+* @param none.
+* @return none.
+*/
+void printMainMenu(){
+    std::cout << R"(
+   _                        _              ____ _                _
+  / \   _ __   ___ ___  ___| |_ ___  _ __ / ___| |__   __ _ _ __| |_
+ / _ \ | '_ \ / __/ _ \/ __| __/ _ \| '__| |   | '_ \ / _` | '__| __|
+/ ___ \| | | | (_|  __/\__ \ || (_) | |  | |___| | | | (_| | |  | |_
+/_/   \_\_| |_|\___\___||___/\__\___/|_|   \____|_| |_|\__,_|_|   \__|
+)"
+              << "\n"
+              << "Main menu:"
+              << "\n"
+              << "[1] Create a new ancestor chart"
+              << "\n"
+              << "[2] Add person"
+              << "\n"
+              << "[3] Search for person"
+              << "\n"
+              << "[4] Edit person"
+              << "\n"
+              << "[5] Delete person"
+              << "\n"
+              << "[6] Exit"
+              << "\n"
+              << "\n"
+              << "Enter choice:";
+}
 
 /**
 * Function to display a menu to the terminal.
@@ -115,43 +180,17 @@ void selectSearchTerm() {
 * @return none.
 */
 void Menu::mainMenu() {
-    bool exitMenu = false;
-    while (!exitMenu) {
-        std::cout << R"(
-   _                        _              ____ _                _
-  / \   _ __   ___ ___  ___| |_ ___  _ __ / ___| |__   __ _ _ __| |_
- / _ \ | '_ \ / __/ _ \/ __| __/ _ \| '__| |   | '_ \ / _` | '__| __|
-/ ___ \| | | | (_|  __/\__ \ || (_) | |  | |___| | | | (_| | |  | |_
-/_/   \_\_| |_|\___\___||___/\__\___/|_|   \____|_| |_|\__,_|_|   \__|
-)"
-                  << "\n"
-                  << "Main menu:"
-                  << "\n"
-                  << "[1] Create a new ancestor chart"
-                  << "\n"
-                  << "[2] Add person"
-                  << "\n"
-                  << "[3] Search for person"
-                  << "\n"
-                  << "[4] Edit person"
-                  << "\n"
-                  << "[5] Delete person"
-                  << "\n"
-                  << "[6] Exit"
-                  << "\n"
-                  << "\n"
-                  << "Enter choice:";
-        int choice;
-        while (!(std::cin >> choice)) {
-            std::cout << "Invalid input, please input a number\n";
-            std::cin.clear();
-            std::cin.ignore(132, '\n');
-        }
+    while (!this->running_) { //TODO: change from this-> to
+
+        this->printMainMenu();
+
+        int choice = getValidIntBetween(0, 5);
 
         switch (choice) {
             case 1: {
                 std::cout << "Please create a root person for the ancestor chart: \n";
-                AncestorChart::createRootPerson();
+                Person rootPerson = AncestorChart::createPerson();
+                ancestorChart_ = new AncestorChart(rootPerson);
                 break;
             }
             case 2: {
@@ -171,7 +210,7 @@ void Menu::mainMenu() {
                 break;
             }
             case 0:
-                exitMenu = true;
+                shutdown();
                 break;
             default:
                 std::cout << "Please enter a number between 0 and 5: "

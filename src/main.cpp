@@ -1,4 +1,4 @@
-#include "src/Menu.h"
+#include "../include/Menu.h"
 
 /**
  * Main function.
@@ -7,6 +7,7 @@
  * @return 0.
  */
 int main() {
-    Menu::mainMenu();
+    Menu menu;
+    menu.mainMenu();
     return 0;
 }

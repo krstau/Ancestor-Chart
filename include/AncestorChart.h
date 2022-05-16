@@ -11,7 +11,7 @@
 class AncestorChart {
 public:
     explicit AncestorChart(const Person &rootPerson) : persons_(BinaryTree<Person>(rootPerson)){};
-    static void createRootPerson();
+    static Person createRootPerson();
     static Person createPerson();
     static void printPerson();
     void printPersons();

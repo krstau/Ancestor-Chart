@@ -1,5 +1,5 @@
-#include "src/AncestorChart.h"
-#include "src/Menu.h"
+#include "../include/AncestorChart.h"
+#include "../include/Menu.h"
 #include <iostream>
 
 //TODO: ask user who this person is the parent of

@@ -51,16 +51,17 @@ BinaryTree<T>::BinaryTree(const T& data) : root_(new Node<T>(data)) {
 
 template<typename T>
 void BinaryTree<T>::insertLeft(Node<T> *node, T data) {
-    if(node == node.Node<T>::getLeftPtr() != nullptr) {
-        std::cout << "Node already has a left node!\n";
+    if (node == null){
+        node = new Node
+
     }
-    auto *newNode = new Node<T>();
-    node = Node<T>::setLeftPtr(newNode);
-    size_++;
+
+
+
 }
 
 template<typename T>
-void BinaryTree<T>::insertRight(Node<T> *node, T) {
+void BinaryTree<T>::insertRight(Node<T> *node, T data) {
     if(node == Node<T>::getRightPtr() != nullptr) {
         std::cout << "Node already has a right node!\n";
     }
