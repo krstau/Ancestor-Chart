@@ -15,6 +15,11 @@ public:
     void addPerson();
     void printPerson();
     void printPersons();
+    Person getPersonMatchingFirstName(const std::string &firstName) const;
+    Person getPersonMatchingLastName(const std::string &lastName) const;
+    Person getPersonMatchingFullName(const std::string &fullName) const;
+    Person getPersonMatchingGender(const Person::Gender &Gender) const;
+
     void printPersonsWithFirstName(const std::string &firstName);
     void printPersonsWithLastName(const std::string &lastName);
     void printPersonsWithFullName(const std::string &fullName);

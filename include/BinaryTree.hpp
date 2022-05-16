@@ -23,8 +23,9 @@ public:
     Node<T> *getRightChild();
     Node<T> *getLeftChild();
 
-    void traverseDepthFirst(std::function<void(Node<T>*)>&);
+    void traverseDepthFirst(std::function<void(Node<T>*)>&) const;
 
+    void insertNode(Node<T> node, T data);
     bool isEmpty();
     bool isRoot();
     bool hasLeftChild();
@@ -34,7 +35,7 @@ public:
     void insertRight(Node<T> *node, T);
 
 private:
-    void traverseDepthFirst(Node<T>* root, std::function<void(Node<T>*)>&);
+    void traverseDepthFirst(Node<T>* root, std::function<void(Node<T>*)>&) const;
     Node<T> *root_ = nullptr;
     int size_ = 0;
 };
@@ -49,32 +50,18 @@ BinaryTree<T>::BinaryTree(const T& data) : root_(new Node<T>(data)) {
 }
 
 template<typename T>
-void BinaryTree<T>::insertLeft(Node<T> *node, T data) {
-    if (node == nullptr){
-        // throw exception; TODO: Guard
-    }
+void BinaryTree<T>::insertNode(Node<T> node, T data) {
+    auto newNode = std::make_unique<Node<T>> (data);
     if (node->getLeftPtr() == nullptr){
-        auto newNode = std::make_unique<Node<T>>(data);
-        node->setLeftPtr(*newNode);
+        node->setLeftPtr(newNode);
         size_++;
-    }
-    else {
-        std::cout << "Node already has a right node!\n";
-    }
-}
-
-template<typename T>
-void BinaryTree<T>::insertRight(Node<T> *node, T data) {
-    if (node == nullptr){
-        // throw exception; TODO: Guard
     }
     if (node->getRightPtr() == nullptr){
-        auto newNode = new Node<T>(data);
-        node->setRightPtr(*newNode);
+        node->setRightPtr(newNode);
         size_++;
     }
     else {
-        std::cout << "Node already has a right node!\n";
+        std::cout << "Error: \n";
     }
 }
 
@@ -107,7 +94,7 @@ Node<T> *BinaryTree<T>::getRoot() {
 * @return none.
 */
 template<typename T>
-void BinaryTree<T>::traverseDepthFirst(Node<T>* root, std::function<void(Node<T>*)>& nodeFunction) {
+void BinaryTree<T>::traverseDepthFirst(Node<T>* root, std::function<void(Node<T>*)>& nodeFunction) const {
     if (root == nullptr) {
         return;
     }
@@ -117,7 +104,7 @@ void BinaryTree<T>::traverseDepthFirst(Node<T>* root, std::function<void(Node<T>
 }
 
 template<typename T>
-void BinaryTree<T>::traverseDepthFirst(std::function<void(Node<T>*)>& nodeFunction) {
+void BinaryTree<T>::traverseDepthFirst(std::function<void(Node<T>*)>& nodeFunction) const {
     traverseDepthFirst(root_, nodeFunction);
 }
 

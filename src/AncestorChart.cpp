@@ -18,19 +18,63 @@ Person AncestorChart::createPerson() {
     std::cout << "Enter date of birth (DD/MM/YYYY):";
     std::cin >> dateOfBirth;
     std::cout << "Is the person deceased (Yes/No)?";
-    bool answer = Menu::yesOrNo();
+    bool answer = menu::yesOrNo();
     if (answer) {
         std::cout << "Enter date of death (DD/MM/YYYY):";
         std::cin >> dateOfDeath;
         state = Person::deceased;
     }
-    gender = Menu::inputGender();
+    gender = menu::inputGender();
     return {firstName, lastName, dateOfBirth, dateOfDeath, gender, state};
 }
 
 void addPerson() {
-    Person person = AncestorChart::createPerson();
-    ancestorChart_.insertLeft(node, person);
+    // Person person = AncestorChart::createPerson();
+    // ancestorChart_.insertLeft(node, person);
+}
+
+Person AncestorChart::getPersonMatchingFirstName(const std::string &firstName) const {
+    Person *person;
+    nodePointerFunction printPersons = [&person, &firstName](Node<Person> *node) {
+        if (node->getData().getFirstName() == firstName) {
+            *person = node->getData();
+        }
+    };
+    persons_.traverseDepthFirst(printPersons);
+    return *person;
+}
+
+Person AncestorChart::getPersonMatchingLastName(const std::string &lastName) const {
+    Person *person;
+    nodePointerFunction printPersons = [&person, &lastName](Node<Person> *node) {
+        if (node->getData().getFirstName() == lastName) {
+            *person = node->getData();
+        }
+    };
+    persons_.traverseDepthFirst(printPersons);
+    return *person;
+}
+
+Person AncestorChart::getPersonMatchingFullName(const std::string &fullName) const {
+    Person *person;
+    nodePointerFunction printPersons = [&person, &fullName](Node<Person> *node) {
+        if (node->getData().getFirstName() == fullName) {
+            *person = node->getData();
+        }
+    };
+    persons_.traverseDepthFirst(printPersons);
+    return *person;
+}
+
+Person AncestorChart::getPersonMatchingGender(const Person::Gender &gender) const {
+    Person *person;
+    nodePointerFunction printPersons = [&person, &gender](Node<Person> *node) {
+        if (node->getData().getGender() == gender) {
+            *person = node->getData();
+        }
+    };
+    persons_.traverseDepthFirst(printPersons);
+    return *person;
 }
 
 std::vector<Person> AncestorChart::getPersonsMatchingFirstName(const std::string &firstName) {
@@ -105,10 +149,10 @@ void AncestorChart::printPerson() {// Function to print a person by first and la
     std::string firstName, lastName;
     std::cout << "Enter the firstname of the person that you want to display: ";
     std::cin >> firstName;
-    firstName = Menu::capitalizeString(firstName);
+    firstName = menu::capitalizeString(firstName);
     std::cout << "Enter the lastname of the person that you want to display: ";
     std::cin >> lastName;
-    lastName = Menu::capitalizeString(lastName);
+    lastName = menu::capitalizeString(lastName);
 }
 
 /**

@@ -7,7 +7,6 @@
  * @return 0.
  */
 int main() {
-    Menu menu;
-    menu.run();
+    menu::mainMenu();
     return 0;
 }
