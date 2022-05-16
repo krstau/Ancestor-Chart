@@ -180,10 +180,10 @@ namespace menu {
     */
     void printLogo() {
         std::cout << R"(
-   _                        _              ____ _                _
-  / \   _ __   ___ ___  ___| |_ ___  _ __ / ___| |__   __ _ _ __| |_
- / _ \ | '_ \ / __/ _ \/ __| __/ _ \| '__| |   | '_ \ / _` | '__| __|
-/ ___ \| | | | (_|  __/\__ \ || (_) | |  | |___| | | | (_| | |  | |_
+    _                        _              ____ _                _
+   / \   _ __   ___ ___  ___| |_ ___  _ __ / ___| |__   __ _ _ __| |_
+  / _ \ | '_ \ / __/ _ \/ __| __/ _ \| '__| |   | '_ \ / _` | '__| __|
+ / ___ \| | | | (_|  __/\__ \ || (_) | |  | |___| | | | (_| | |  | |_
 /_/   \_\_| |_|\___\___||___/\__\___/|_|   \____|_| |_|\__,_|_|   \__|
 )" << "\n";
     }
@@ -207,18 +207,15 @@ namespace menu {
     */
     void printMainMenu() {
         printLogo();
-        std::cout << "\n"
-                  << "Main menu:"
+        std::cout << "Main menu:"
                   << "\n"
-                  << "[1] Create a new ancestor chart"
+                  << "[1] Add person"
                   << "\n"
-                  << "[2] Add person"
+                  << "[2] Search for person"
                   << "\n"
-                  << "[3] Search for person"
+                  << "[3] Edit person"
                   << "\n"
-                  << "[4] Edit person"
-                  << "\n"
-                  << "[5] Delete person"
+                  << "[4] Delete person"
                   << "\n"
                   << "[0] Exit"
                   << "\n"
@@ -238,7 +235,6 @@ namespace menu {
     * @return none.
     */
     Person selectSearchTerm(const AncestorChart &ancestorChart) {
-        int searchTerm;
         std::cout << "\n"
                   << "Please select a search term, or enter 0 to return to main menu:"
                   << "\n"
@@ -254,11 +250,9 @@ namespace menu {
                   << "\n"
                   << "\n"
                   << "Enter choice:";
-        while (!(std::cin >> searchTerm)) {
-            std::cout << "Invalid input, please input a number\n";
-            std::cin.clear();
-            std::cin.ignore(132, '\n');
-        }
+
+        int searchTerm = getValidIntBetween(0, 4);
+
         switch (searchTerm) {
             case 1: {
                 std::string firstName;
@@ -310,21 +304,20 @@ namespace menu {
 
             printMainMenu();
 
-            int choice = getValidIntBetween(0, 5);
+            int choice = getValidIntBetween(0, 4);
 
             switch (choice) {
                 case 1: {
-                    std::cout << "Please create a root person for the ancestor chart: \n";
-                    break;
-                }
-                case 2: {
                     // Person person();
                     // addPerson();
                     break;
                 }
-                case 3: {
+                case 2: {
                     Person person = selectSearchTerm(ancestorChart);
                     person.getGender();
+                    break;
+                }
+                case 3: {
                     break;
                 }
                 case 4: {
