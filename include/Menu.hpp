@@ -185,7 +185,7 @@ namespace menu {
  / _ \ | '_ \ / __/ _ \/ __| __/ _ \| '__| |   | '_ \ / _` | '__| __|
 / ___ \| | | | (_|  __/\__ \ || (_) | |  | |___| | | | (_| | |  | |_
 /_/   \_\_| |_|\___\___||___/\__\___/|_|   \____|_| |_|\__,_|_|   \__|
-)";
+)" << "\n";
     }
 
     /**
@@ -302,6 +302,7 @@ namespace menu {
     * @return none.
     */
     void mainMenu() {
+        std::cout << "Welcome to:\n";
         printMenu1();
         Person rootPerson = createPerson();
         AncestorChart ancestorChart = AncestorChart(rootPerson);
