@@ -1,5 +1,13 @@
-//
-// Created by Kristoffer Staurset on 15.05.2022.
-//
+#include "../external/Catch2/catch.hpp"
+#include "../include/Node.hpp"
 
-#include "NodeTest.h"
+TEST_CASE("Node can be edited", "[Node<T>]"){
+
+    int data = 1;
+    Node = Node(data);
+
+    
+
+    REQUIRE(true);
+
+}
