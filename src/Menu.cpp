@@ -13,7 +13,7 @@ bool Menu::yesOrNo() {
         answer = capitalizeString(answer);
         if (answer == "Yes") {
             return true;
-        }|
+        }
         if (answer == "No") {
             return false;
         } else {
@@ -33,7 +33,7 @@ std::string Menu::capitalizeString(std::string word) {
                    [](char const &c) {
                        return std::tolower(c);
                    });
-    word[0] = std::toupper(word[0]);// NOLINT(cppcoreguidelines-narrowing-conversions)
+    word[0] = std::toupper(word[0]);// NOLINT(cppcoreguidelines-narrowing-conversions) TODO: Find better alternative?
     return word;
 }
 
@@ -44,6 +44,8 @@ std::string Menu::capitalizeString(std::string word) {
 * @param none.
 * @return none.
 */
+
+/*
 void selectSearchTerm() {
     int searchTerm;
     std::cout << "\n"
@@ -71,7 +73,7 @@ void selectSearchTerm() {
             std::string firstName;
             std::cout << "Please enter firstname:";
             std::cin >> firstName;
-            AncestorChart::printPersonsWithFirstName(firstName);
+            ancestorChart_->printPersonsWithFirstName(firstName);
             break;
         }
         case 2: {
@@ -103,6 +105,7 @@ void selectSearchTerm() {
             break;
     }
 }
+/*
 
 /**
 * Function that that takes user input from user and checks if it is an integer.
@@ -141,6 +144,65 @@ int getValidIntBetween(int lower, int upper) {
 }
 
 /**
+* Function to display a menu to the terminal.
+*
+* @param none.
+* @return none.
+*/
+void Menu::mainMenu() {
+    while (!this->running_) { //TODO: change from this-> to
+
+        this->printMainMenu();
+
+        int choice = getValidIntBetween(0, 5);
+
+        switch (choice) {
+            case 1: {
+                Person rootPerson.createPerson();
+                ancestorChart_ = new AncestorChart(rootPerson);
+                std::cout << "Please create a root person for the ancestor chart: \n";
+                break;
+            }
+            case 2: {
+                ancestorChart_.createPerson();
+
+                break;
+            }
+            case 3: {
+                std::cout << "Please select a search term for the person you want to find: ";
+                // selectSearchTerm();
+                break;
+            }
+            case 4: {
+                // TODO editPerson(); Work in progress
+                break;
+            }
+            case 5: {
+                //deletePerson();
+                break;
+            }
+            case 0:
+                shutdown();
+                break;
+            default:
+                std::cout << "Please enter a number between 0 and 5: "
+                          << "\n";
+                break;
+        }
+    }
+}
+
+void Menu::execute(){
+    running_ = true;
+}
+
+void Menu::shutdown(){
+    running_ = false;
+}
+Menu::Menu() {
+}
+
+/**
 * Function to print main menu to terminal.
 *
 * @param none.
@@ -171,51 +233,4 @@ void printMainMenu(){
               << "\n"
               << "\n"
               << "Enter choice:";
-}
-
-/**
-* Function to display a menu to the terminal.
-*
-* @param none.
-* @return none.
-*/
-void Menu::mainMenu() {
-    while (!this->running_) { //TODO: change from this-> to
-
-        this->printMainMenu();
-
-        int choice = getValidIntBetween(0, 5);
-
-        switch (choice) {
-            case 1: {
-                std::cout << "Please create a root person for the ancestor chart: \n";
-                Person rootPerson = AncestorChart::createPerson();
-                ancestorChart_ = new AncestorChart(rootPerson);
-                break;
-            }
-            case 2: {
-                break;
-            }
-            case 3: {
-                std::cout << "Please select a search term for the person you want to find: ";
-                selectSearchTerm();
-                break;
-            }
-            case 4: {
-                // TODO editPerson(); Work in progress
-                break;
-            }
-            case 5: {
-                //deletePerson();
-                break;
-            }
-            case 0:
-                shutdown();
-                break;
-            default:
-                std::cout << "Please enter a number between 0 and 5: "
-                          << "\n";
-                break;
-        }
-    }
 }

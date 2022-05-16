@@ -43,31 +43,39 @@ template<typename T>
 BinaryTree<T>::~BinaryTree(){ //TODO: start from root, delete all nodes
 }
 
-
 template<typename T>
 BinaryTree<T>::BinaryTree(const T& data) : root_(new Node<T>(data)) {
     size_++;
 }
 
 template<typename T>
-void BinaryTree<T>::insertLeft(Node<T> *node, T data) {
-    if (node == null){
-        node = new Node
-
+void BinaryTree<T>::insertRight(Node<T> *node, T data) {
+    if (node == nullptr){
+        // throw exception; TODO: Guard
     }
-
-
-
+    if (node->getRightPtr() == nullptr){
+        auto newNode = new Node<T>(data);
+        node->setRightPtr(*newNode);
+        size_++;
+    }
+    else {
+        std::cout << "Node already has a right node!\n";
+    }
 }
 
 template<typename T>
-void BinaryTree<T>::insertRight(Node<T> *node, T data) {
-    if(node == Node<T>::getRightPtr() != nullptr) {
+void BinaryTree<T>::insertLeft(Node<T> *node, T data) {
+    if (node == nullptr){
+        // throw exception; TODO: Guard
+    }
+    if (node->getLeftPtr() == nullptr){
+        auto *newNode = new Node<T>(data);
+        node->setLeftPtr(newNode);
+        size_++;
+    }
+    else {
         std::cout << "Node already has a right node!\n";
     }
-    auto *newNode = new Node<T>(data);
-    node = Node<T>::setRightPtr(newNode);
-    size_++;
 }
 
 template<typename T>
@@ -91,6 +99,13 @@ Node<T> *BinaryTree<T>::getRoot() {
     }
 }
 
+/**
+* Depth first traversal function.
+*
+* @param rootnode.
+* @param nodeFunction.
+* @return none.
+*/
 template<typename T>
 void BinaryTree<T>::traverseDepthFirst(Node<T>* root, std::function<void(Node<T>*)>& nodeFunction) {
     if (root == nullptr) {

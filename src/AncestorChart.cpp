@@ -28,9 +28,24 @@ Person AncestorChart::createPerson() {
     return {firstName, lastName, dateOfBirth, dateOfDeath, gender, state};
 }
 
-void AncestorChart::createRootPerson(){
+Person AncestorChart::createRootPerson(){
     Person rootPerson = AncestorChart::createPerson();
-    AncestorChart binaryTree(rootPerson);
+    return rootPerson;
+}
+
+void AncestorChart::addPerson() {
+    Person person = createPerson();
+    if (person.getGender() == 0) {
+        BinaryTree<person>.insertLeft(rootPerson, person);
+    }
+    if (person.getGender() == 1) {
+        BinaryTree<person.insertRight(rootPerson, person);
+    }
+}
+
+
+    Person person = AncestorChart::createPerson();
+    insertLeft
 }
 
 std::vector<Person> AncestorChart::getPersonsMatchingFirstName(const std::string &firstName) {
@@ -81,6 +96,12 @@ std::vector<Person> AncestorChart::getPersonsMatchingGender(const Person::Gender
     return persons;
 }
 
+/**
+ * Prints all persons.
+ *
+ * @param none.
+ * @return none.
+ */
 void AncestorChart::printPersons() {
     nodePointerFunction printPersons = [](Node<Person> *node) {
         Person person = node->getData();
@@ -89,6 +110,12 @@ void AncestorChart::printPersons() {
     persons_.traverseDepthFirst(printPersons);
 }
 
+/**
+ * Prints a persons by first and lastname.
+ *
+ * @param none.
+ * @return none.
+ */
 void AncestorChart::printPerson() {// Function to print a person by first and last name
     std::string firstName, lastName;
     std::cout << "Enter the firstname of the person that you want to display: ";
@@ -99,6 +126,12 @@ void AncestorChart::printPerson() {// Function to print a person by first and la
     lastName = Menu::capitalizeString(lastName);
 }
 
+/**
+ * Prints all persons with corresponding firstname.
+ *
+ * @param firstname.
+ * @return none.
+ */
 void AncestorChart::printPersonsWithFirstName(const std::string &firstName) {
     nodePointerFunction printPersons = [&firstName](Node<Person> *node) {
         Person person = node->getData();
@@ -109,6 +142,13 @@ void AncestorChart::printPersonsWithFirstName(const std::string &firstName) {
     persons_.traverseDepthFirst(printPersons);
 }
 
+/**
+ * Prints all persons with corresponding lastname.
+ *
+ * @param lastname.
+ * @return none.
+ */
+void AncestorC
 void AncestorChart::printPersonsWithLastName(const std::string &lastName) {
     nodePointerFunction printPersons = [&lastName](Node<Person> *node) {
         Person person = node->getData();
@@ -119,6 +159,12 @@ void AncestorChart::printPersonsWithLastName(const std::string &lastName) {
     persons_.traverseDepthFirst(printPersons);
 }
 
+/**
+ * Prints all persons with corresponding full name.
+ *
+ * @param full name.
+ * @return none.
+ */
 void AncestorChart::printPersonsWithFullName(const std::string &fullName) {
     nodePointerFunction printPersons = [&fullName](Node<Person> *node) {
         Person person = node->getData();
@@ -129,6 +175,12 @@ void AncestorChart::printPersonsWithFullName(const std::string &fullName) {
     persons_.traverseDepthFirst(printPersons);
 }
 
+/**
+ * Prints all persons with corresponding gender.
+ *
+ * @param gender.
+ * @return none.
+ */
 void AncestorChart::printPersonsWithGender(const Person::Gender &gender) {
     nodePointerFunction printPersons = [&gender](Node<Person> *node) {
         Person person = node->getData();
@@ -139,6 +191,12 @@ void AncestorChart::printPersonsWithGender(const Person::Gender &gender) {
     persons_.traverseDepthFirst(printPersons);
 }
 
+/**
+ * Prompts the user for entering gender for either male or female.
+ *
+ * @param none.
+ * @return none.
+ */
 Person::Gender AncestorChart::inputGender() {
     std::string gender;
     std::cout << "Enter gender (male/female): ";
@@ -159,7 +217,7 @@ Person::Gender AncestorChart::inputGender() {
 /**
  * Converts a gender enum to a string.
  *
- * @param gender the enum representing the gender.
+ * @param gender.
  * @return the gender in string format.
  */
 std::string AncestorChart::genderValueToString(Person::Gender gender) {

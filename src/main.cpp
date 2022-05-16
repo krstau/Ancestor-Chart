@@ -8,6 +8,6 @@
  */
 int main() {
     Menu menu;
-    menu.mainMenu();
+    menu.execute();
     return 0;
 }

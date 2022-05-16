@@ -14,25 +14,11 @@ public:
     std::string capitalizeString(std::string);
     void printMainMenu();
     void mainMenu();
+    void execute();
     void shutdown();
-    ~Menu();
-    void startup();
+
 private:
     bool running_ = true;
     AncestorChart ancestorChart_;
 };
-
-void Menu::startup(){
-    running_ = true;
-}
-
-void Menu::shutdown(){
-    running_ = false;
-}
-
-Menu::~Menu() {
-    delete ancestorChart_;
-}
-Menu::Menu() {
-}
 #endif//ANCESTOR_CHART_MENU_H

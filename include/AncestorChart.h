@@ -10,9 +10,11 @@
  */
 class AncestorChart {
 public:
-    explicit AncestorChart(const Person &rootPerson) : persons_(BinaryTree<Person>(rootPerson)){};
-    static Person createRootPerson();
-    static Person createPerson();
+    explicit AncestorChart(const Person &rootPerson) : persons_(BinaryTree<Person>(rootPerson)){}
+    AncestorChart();
+    ;
+    Person createRootPerson();
+    Person createPerson();
     static void printPerson();
     void printPersons();
     void printPersonsWithFirstName(const std::string &firstName);
@@ -35,6 +37,7 @@ public:
 private:
     typedef std::function<void(Node<Person> *)> nodePointerFunction;
     BinaryTree<Person> persons_;
+    void addPerson();
 };
 
 #endif//ANCESTOR_CHART_ANCESTORCHART_H
