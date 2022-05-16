@@ -1,32 +1,5 @@
 #include "../include/AncestorChart.hpp"
-#include "../include/Menu.hpp"
 #include <iostream>
-
-//TODO: ask user who this person is the parent of
-//with lambda function; find all people matching description and return in a vector
-//from the returned vector, ask the user which is the correct person
-//ask the user; is the person the mother or the father of the correct person
-//if father, add or edit leftNode, if mother add or edit rightNode
-Person AncestorChart::createPerson() {
-    std::string firstName, lastName, dateOfBirth, dateOfDeath;
-    Person::State state = Person::alive;
-    Person::Gender gender = Person::unknownGender;
-    std::cout << "Enter firstname:";
-    std::cin >> firstName;
-    std::cout << "Enter lastname:";
-    std::cin >> lastName;
-    std::cout << "Enter date of birth (DD/MM/YYYY):";
-    std::cin >> dateOfBirth;
-    std::cout << "Is the person deceased (Yes/No)?";
-    bool answer = menu::yesOrNo();
-    if (answer) {
-        std::cout << "Enter date of death (DD/MM/YYYY):";
-        std::cin >> dateOfDeath;
-        state = Person::deceased;
-    }
-    gender = menu::inputGender();
-    return {firstName, lastName, dateOfBirth, dateOfDeath, gender, state};
-}
 
 void addPerson() {
     // Person person = AncestorChart::createPerson();
@@ -113,11 +86,11 @@ std::vector<Person> AncestorChart::getPersonsMatchingFullName(const std::string 
     return persons;
 }
 
-std::vector<Person> AncestorChart::getPersonsMatchingGender(const Person::Gender &Gender) {
+std::vector<Person> AncestorChart::getPersonsMatchingGender(const Person::Gender &gender) {
     std::vector<Person> persons;
-    nodePointerFunction printPersons = [&persons, &Gender](Node<Person> *node) {
+    nodePointerFunction printPersons = [&persons, &gender](Node<Person> *node) {
         Person person = node->getData();
-        if (person.getGender() == Gender) {
+        if (person.getGender() == gender) {
             persons.emplace_back(person);
         }
     };
@@ -137,22 +110,6 @@ void AncestorChart::printPersons() {
         std::cout << person.getFullName() << '\n';
     };
     persons_.traverseDepthFirst(printPersons);
-}
-
-/**
- * Prints a persons by first and lastname.
- *
- * @param none.
- * @return none.
- */
-void AncestorChart::printPerson() {// Function to print a person by first and last name
-    std::string firstName, lastName;
-    std::cout << "Enter the firstname of the person that you want to display: ";
-    std::cin >> firstName;
-    firstName = menu::capitalizeString(firstName);
-    std::cout << "Enter the lastname of the person that you want to display: ";
-    std::cin >> lastName;
-    lastName = menu::capitalizeString(lastName);
 }
 
 /**

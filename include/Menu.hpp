@@ -94,76 +94,47 @@ namespace menu {
     }
 
     /**
-    * Displays available search terms for finding a person.
-    * Lets the user select a search term and find a person.
+    |* Prints a persons by first and lastname.
     *
     * @param none.
     * @return none.
     */
-    Person selectSearchTerm(const AncestorChart &ancestorChart) {
-        int searchTerm;
-        std::cout << "\n"
-                  << "Please select a search term, or enter 0 to return to main menu:"
-                  << "\n"
-                  << "[1] Firstname"
-                  << "\n"
-                  << "[2] Lastname"
-                  << "\n"
-                  << "[3] Full name"
-                  << "\n"
-                  << "[4] Gender"
-                  << "\n"
-                  << "[0] Return to main menu"
-                  << "\n"
-                  << "\n"
-                  << "Enter choice:";
-        while (!(std::cin >> searchTerm)) {
-            std::cout << "Invalid input, please input a number\n";
-            std::cin.clear();
-            std::cin.ignore(132, '\n');
-        }
-        switch (searchTerm) {
-            case 1: {
-                std::string firstName;
-                std::cout << "Please enter firstname:";
-                std::cin >> firstName;
-                Person person = ancestorChart.getPersonMatchingFirstName(firstName);
-                return person;
-                break;
-            }
-            case 2: {
-                std::string lastName;
-                std::cout << "Please enter lastname:";
-                std::cin >> lastName;
-                Person person = ancestorChart.getPersonMatchingLastName(lastName);
-                return person;
-                break;
-            }
-            case 3: {
-                std::string fullName;
-                std::cout << "Please enter full name:";
-                std::cin >> fullName;
-                Person person = ancestorChart.getPersonMatchingFullName(fullName);
-                return person;
-                break;
-            }
-            case 4: {
-                Person::Gender gender;
-                std::cout << "Please enter gender:";
-                gender = inputGender();
-                Person person = ancestorChart.getPersonMatchingGender(gender);
-                return person;
-                break;
-            }
-            case 0: {
-                break;
-            }
-            default:
-                std::cout << "Please enter a number between 0 and 4:\n";
-                break;
-        }
+    void printPerson() {// Function to print a person by first and last name
+        std::string firstName, lastName;
+        std::cout << "Enter the firstname of the person that you want to display: ";
+        std::cin >> firstName;
+        firstName = menu::capitalizeString(firstName);
+        std::cout << "Enter the lastname of the person that you want to display: ";
+        std::cin >> lastName;
+        lastName = menu::capitalizeString(lastName);
     }
 
+
+    //TODO: ask user who this person is the parent of
+    //with lambda function; find all people matching description and return in a vector
+    //from the returned vector, ask the user which is the correct person
+    //ask the user; is the person the mother or the father of the correct person
+    //if father, add or edit leftNode, if mother add or edit rightNode
+    Person createPerson() {
+        std::string firstName, lastName, dateOfBirth, dateOfDeath;
+        Person::State state = Person::alive;
+        Person::Gender gender = Person::unknownGender;
+        std::cout << "Enter firstname:";
+        std::cin >> firstName;
+        std::cout << "Enter lastname:";
+        std::cin >> lastName;
+        std::cout << "Enter date of birth (DD/MM/YYYY):";
+        std::cin >> dateOfBirth;
+        std::cout << "Is the person deceased (Yes/No)?";
+        bool answer = yesOrNo();
+        if (answer) {
+            std::cout << "Enter date of death (DD/MM/YYYY):";
+            std::cin >> dateOfDeath;
+            state = Person::deceased;
+        }
+        gender = inputGender();
+        return {firstName, lastName, dateOfBirth, dateOfDeath, gender, state};
+    }
 
     /**
     * Function that that takes user input from user and checks if it is an integer.
@@ -189,13 +160,14 @@ namespace menu {
     * @return integer between upper and lower.
     */
     int getValidIntBetween(int lower, int upper) {
-        int integer;
+        int integer = getNumberFromUser();
         bool validInt = false;
         while (!validInt) {
-            std::cout << "Please enter a number between: " << lower << "and" << upper << "\n";
-            integer = getNumberFromUser();
             if (integer <= upper && integer >= lower) {
                 validInt = true;
+            }
+            else {
+                std::cout << "Please enter a number between: " << lower << " and " << upper << "\n";
             }
         }
         return integer;
@@ -224,7 +196,7 @@ namespace menu {
     */
     void printMenu1() {
         printLogo();
-        std::cout << "Please create a root person";
+        std::cout << "Please create a root person:\n";
     }
 
     /**
@@ -259,15 +231,79 @@ namespace menu {
     }
 
     /**
+    * Displays available search terms for finding a person.
+    * Lets the user select a search term and find a person.
+    *
+    * @param none.
+    * @return none.
+    */
+    Person selectSearchTerm(const AncestorChart &ancestorChart) {
+        int searchTerm;
+        std::cout << "\n"
+                  << "Please select a search term, or enter 0 to return to main menu:"
+                  << "\n"
+                  << "[1] Firstname"
+                  << "\n"
+                  << "[2] Lastname"
+                  << "\n"
+                  << "[3] Full name"
+                  << "\n"
+                  << "[4] Gender"
+                  << "\n"
+                  << "[0] Return to main menu"
+                  << "\n"
+                  << "\n"
+                  << "Enter choice:";
+        while (!(std::cin >> searchTerm)) {
+            std::cout << "Invalid input, please input a number\n";
+            std::cin.clear();
+            std::cin.ignore(132, '\n');
+        }
+        switch (searchTerm) {
+            case 1: {
+                std::string firstName;
+                std::cout << "Please enter firstname:";
+                std::cin >> firstName;
+                Person person = ancestorChart.getPersonMatchingFirstName(firstName);
+            }
+            case 2: {
+                std::string lastName;
+                std::cout << "Please enter lastname:";
+                std::cin >> lastName;
+                Person person = ancestorChart.getPersonMatchingLastName(lastName);
+            }
+            case 3: {
+                std::string fullName;
+                std::cout << "Please enter full name:";
+                std::cin >> fullName;
+                Person person = ancestorChart.getPersonMatchingFullName(fullName);
+            }
+            case 4: {
+                Person::Gender gender;
+                std::cout << "Please enter gender:";
+                gender = inputGender();
+                Person person = ancestorChart.getPersonMatchingGender(gender);
+            }
+            case 0: {
+                break;
+            }
+            default:
+                std::cout << "Please enter a number between 0 and 4:\n";
+                break;
+        }
+        //TODO: Need to find alternative to this:
+        return {"Ola", "Nordmann", "01/01/1970", "01/01/1970", Person::unknownGender, Person::alive};
+    }
+
+    /**
     * Function to display a menu to the terminal.
     *
     * @param none.
     * @return none.
     */
     void mainMenu() {
-
         printMenu1();
-        Person rootPerson = AncestorChart::createPerson();
+        Person rootPerson = createPerson();
         AncestorChart ancestorChart = AncestorChart(rootPerson);
         while (running) {
 
@@ -286,8 +322,8 @@ namespace menu {
                     break;
                 }
                 case 3: {
-                    std::cout << "Please select a search term for the person you want to find: ";
-                    selectSearchTerm(ancestorChart);
+                    Person person = selectSearchTerm(ancestorChart);
+                    person.getGender();
                     break;
                 }
                 case 4: {

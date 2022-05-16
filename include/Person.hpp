@@ -38,13 +38,13 @@ public:
      */
     Person(std::string firstName, std::string lastName, std::string dateOfBirth, std::string dateOfDeath, Gender gender, State state);
     friend std::ostream& operator << (std::ostream& os, const Person& dt);
-    [[nodiscard]] std::string getFirstName() const;
-    [[nodiscard]] std::string getLastName() const;
-    [[nodiscard]] std::string getFullName() const;
-    [[nodiscard]] std::string getDateOfBirth() const;
-    [[nodiscard]] std::string getDateOfDeath() const;
-    [[nodiscard]] Gender getGender() const;
-    [[nodiscard]] State getState() const;
+    std::string getFirstName() const;
+    std::string getLastName() const;
+    std::string getFullName() const;
+    std::string getDateOfBirth() const;
+    std::string getDateOfDeath() const;
+    Gender getGender() const;
+    State getState() const;
 
 private:
     std::string firstName_;
