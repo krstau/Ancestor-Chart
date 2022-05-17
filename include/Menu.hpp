@@ -93,23 +93,6 @@ namespace menu {
         }
     }
 
-    /**
-    |* Prints a persons by first and lastname.
-    *
-    * @param none.
-    * @return none.
-    */
-    void printPerson() {// Function to print a person by first and last name
-        std::string firstName, lastName;
-        std::cout << "Enter the firstname of the person that you want to display: ";
-        std::cin >> firstName;
-        firstName = menu::capitalizeString(firstName);
-        std::cout << "Enter the lastname of the person that you want to display: ";
-        std::cin >> lastName;
-        lastName = menu::capitalizeString(lastName);
-    }
-
-
     //TODO: ask user who this person is the parent of
     //with lambda function; find all people matching description and return in a vector
     //from the returned vector, ask the user which is the correct person
@@ -121,8 +104,10 @@ namespace menu {
         Person::Gender gender = Person::unknownGender;
         std::cout << "Enter firstname:";
         std::cin >> firstName;
+        firstName = capitalizeString(firstName);
         std::cout << "Enter lastname:";
         std::cin >> lastName;
+        firstName = capitalizeString(lastName);
         std::cout << "Enter date of birth (DD/MM/YYYY):";
         std::cin >> dateOfBirth;
         std::cout << "Is the person deceased (Yes/No)?";
@@ -232,7 +217,7 @@ namespace menu {
     * Lets the user select a search term and find a person.
     *
     * @param none.
-    * @return none.
+    * @return person.
     */
     Person selectSearchTerm(const AncestorChart &ancestorChart) {
         std::cout << "\n"
@@ -268,7 +253,7 @@ namespace menu {
             }
             case 3: {
                 std::string fullName;
-                std::cout << "Please enter full name:";
+                std::cout << "Please enter full name:"; // TODO: Capitalize
                 std::cin >> fullName;
                 Person person = ancestorChart.getPersonMatchingFullName(fullName);
             }

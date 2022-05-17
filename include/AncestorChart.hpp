@@ -6,10 +6,18 @@
 #include <string>
 
 /**
- * Ancestor chart class.
+ * AncestorChart class
+ *
+ * @param
+ * @param
  */
 class AncestorChart {
 public:
+    /**
+     * Constructor to create an ancestor chart.
+     *
+     * @param firstName Firstname of the person.
+     */
     explicit AncestorChart(const Person &rootPerson) : persons_(BinaryTree<Person>(rootPerson)){}
     static Person createPerson();
     void addPerson();

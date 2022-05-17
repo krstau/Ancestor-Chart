@@ -176,12 +176,20 @@ void AncestorChart::printPersonsWithGender(const Person::Gender &gender) {
     persons_.traverseDepthFirst(printPersons);
 }
 
+/**
+ * Prints all available information for a person.
+ *
+ * @param &person.
+ * @return os.
+ */
 std::ostream &operator<<(std::ostream &os, const Person &person) {
     os << "Firstname: " << person.getFirstName() << '\n'
        << "Lastname: " << person.getLastName() << '\n'
        << "Gender: " << person.getGender() << '\n'
        << "State: " << person.getState() << '\n'
-       << "Date of birth: " << person.getDateOfBirth() << '\n'
-       << "Date of death: " << person.getDateOfDeath() << '\n';
+       << "Date of birth: " << person.getDateOfBirth() << '\n';
+       if (person.getState() == Person::alive) {
+           os << "Date of death: " << person.getDateOfDeath() << '\n';
+            }
     return os;
 }
