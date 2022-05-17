@@ -7,6 +7,6 @@
  * @return 0.
  */
 int main() {
-    menu::mainMenu();
+    mainMenu();
     return 0;
 }

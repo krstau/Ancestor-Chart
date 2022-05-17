@@ -2,6 +2,9 @@
 #include <iostream>
 
 void addPerson() {
+    std::cout << "Please enter the name of the child of the person you want to add: \n";
+
+
     // Person person = AncestorChart::createPerson();
     // ancestorChart_.insertLeft(node, person);
 }
@@ -9,7 +12,7 @@ void addPerson() {
 Person AncestorChart::getPersonMatchingFirstName(const std::string &firstName) const {
     Person *person;
     nodePointerFunction printPersons = [&person, &firstName](Node<Person> *node) {
-        if (node->getData().getFirstName() == firstName) {
+        if (node->getData().getLastName() == firstName) {
             *person = node->getData();
         }
     };
@@ -174,22 +177,4 @@ void AncestorChart::printPersonsWithGender(const Person::Gender &gender) {
         }
     };
     persons_.traverseDepthFirst(printPersons);
-}
-
-/**
- * Prints all available information for a person.
- *
- * @param &person.
- * @return os.
- */
-std::ostream &operator<<(std::ostream &os, const Person &person) {
-    os << "Firstname: " << person.getFirstName() << '\n'
-       << "Lastname: " << person.getLastName() << '\n'
-       << "Gender: " << person.getGender() << '\n'
-       << "State: " << person.getState() << '\n'
-       << "Date of birth: " << person.getDateOfBirth().getDate() << '\n';
-       if (person.getState() == Person::alive) {
-           os << "Date of death: " << person.getDateOfDeath().getDate() << '\n';
-            }
-    return os;
 }

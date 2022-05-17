@@ -3,7 +3,7 @@
 
 // Multi-parameter constructor
 Person::Person(std::string firstName, std::string lastName, Date dateOfBirth, Date dateOfDeath, Gender gender, State state)
-    : firstName_(std::move(firstName)), lastName_(std::move(lastName)), dateOfBirth_(std::move(dateOfBirth)), dateOfDeath_(std::move(dateOfDeath)), gender_(gender), state_(state) {
+    : firstName_(std::move(firstName)), lastName_(std::move(lastName)), dateOfBirth_(dateOfBirth), dateOfDeath_(dateOfDeath), gender_(gender), state_(state) {
 }
 
 std::string Person::getFirstName() const {

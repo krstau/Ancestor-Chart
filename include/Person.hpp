@@ -24,7 +24,7 @@ public:
     enum State {
         alive, /**< State value alive. */
         deceased, /**< State value deceased. */
-        unknownState/**< State value unknown. */
+        unknownState /**< State value unknown. */
     };
     /**
      * Constructor to create a person.
@@ -37,7 +37,7 @@ public:
      * @param state State of the person.
      */
     Person(std::string firstName = "Unknown", std::string lastName = "Unknown", Date dateOfBirth = Date(), Date dateOfDeath = Date(), Gender gender = unknownGender, State state = unknownState);
-    friend std::ostream& operator << (std::ostream& os, const Person& dt);
+    friend std::ostream &operator << (std::ostream &os, const Person &person);
     std::string getFirstName() const;
     std::string getLastName() const;
     std::string getFullName() const;
@@ -54,6 +54,4 @@ private:
     Gender gender_;
     State state_;
 };
-
-
 #endif//PERSON_CLI_PERSON_H
