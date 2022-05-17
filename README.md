@@ -1,7 +1,8 @@
 # Ancestor Chart 
 
-Candidate numbers: 
+Candidate numbers:
 10028
+10015
  
 ## A program that let's a user create an ancestor chart.
 
