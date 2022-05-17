@@ -1,7 +1,6 @@
 #ifndef ANCESTOR_CHART_BINARYTREE_HPP
 #define ANCESTOR_CHART_BINARYTREE_HPP
 #include "Node.hpp"
-#include "Person.hpp"
 #include <functional>
 #include <iostream>
 

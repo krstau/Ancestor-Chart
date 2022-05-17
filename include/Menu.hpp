@@ -1,7 +1,6 @@
 #ifndef ANCESTOR_CHART_MENU_HPP
 #define ANCESTOR_CHART_MENU_HPP
 #include "AncestorChart.hpp"
-#include "Person.hpp"
 #include <algorithm>
 #include <iostream>
 #include <string>
@@ -100,7 +99,8 @@ namespace menu {
     //if father, add or edit leftNode, if mother add or edit rightNode
     Person createPerson() {
         std::string firstName, lastName;
-        Date dateOfBirth, dateOfDeath;
+        Date dateOfDeath;
+        Date dateOfBirth;
         Person::State state = Person::alive;
         Person::Gender gender = Person::unknownGender;
         std::cout << "Enter firstname:";
@@ -221,6 +221,7 @@ namespace menu {
     * @return person.
     */
     Person selectSearchTerm(const AncestorChart &ancestorChart) {
+        Person returnperson = Person();
         std::cout << "\n"
                   << "Please select a search term, or enter 0 to return to main menu:"
                   << "\n"
@@ -246,6 +247,7 @@ namespace menu {
                 std::cin >> firstName;
                 firstName = capitalizeString(firstName);
                 Person person = ancestorChart.getPersonMatchingFirstName(firstName);
+                return returnperson;
             }
             case 2: {
                 std::string lastName;
@@ -253,6 +255,7 @@ namespace menu {
                 std::cin >> lastName;
                 lastName = capitalizeString(lastName);
                 Person person = ancestorChart.getPersonMatchingLastName(lastName);
+                return returnperson;
             }
             case 3: {
                 std::string firstName, lastName;
@@ -263,12 +266,14 @@ namespace menu {
                 std::cin >> lastName;
                 lastName = capitalizeString(lastName);
                 Person person = ancestorChart.getPersonMatchingFullName(firstName, lastName);
+                return returnperson;
             }
             case 4: {
                 Person::Gender gender;
                 std::cout << "Please enter gender:";
                 gender = inputGender();
                 Person person = ancestorChart.getPersonMatchingGender(gender);
+                return returnperson;
             }
             case 0: {
                 break;
@@ -277,6 +282,7 @@ namespace menu {
                 std::cout << "Please enter a number between 0 and 4:\n";
                 break;
         }
+        return returnperson;
     }
 
     /**
