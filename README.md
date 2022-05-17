@@ -1,12 +1,11 @@
 # Ancestor Chart 
- 
-    _                        _              ____ _                _
-   / \   _ __   ___ ___  ___| |_ ___  _ __ / ___| |__   __ _ _ __| |_
-  / _ \ | '_ \ / __/ _ \/ __| __/ _ \| '__| |   | '_ \ / _` | '__| __|
- / ___ \| | | | (_|  __/\__ \ || (_) | |  | |___| | | | (_| | |  | |_
-/_/   \_\_| |_|\___\___||___/\__\___/|_|   \____|_| |_|\__,_|_|   \__|
 
-## A program that displays the ancestors of a given person's name.
+Candidate numbers: 
+10028
+ 
+## A program that let's a user create an ancestor chart.
+
+The program uses a binary tree where the nodes holds the data of each person.
 
 Persons will have the following attributes:
 
@@ -15,3 +14,4 @@ Persons will have the following attributes:
 * Year of birth
 * Year of death
 * Gender
+
