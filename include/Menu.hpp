@@ -243,19 +243,25 @@ namespace menu {
                 std::string firstName;
                 std::cout << "Please enter firstname:";
                 std::cin >> firstName;
+                firstName = capitalizeString(firstName);
                 Person person = ancestorChart.getPersonMatchingFirstName(firstName);
             }
             case 2: {
                 std::string lastName;
                 std::cout << "Please enter lastname:";
                 std::cin >> lastName;
+                lastName = capitalizeString(lastName);
                 Person person = ancestorChart.getPersonMatchingLastName(lastName);
             }
             case 3: {
-                std::string fullName;
-                std::cout << "Please enter full name:"; // TODO: Capitalize
-                std::cin >> fullName;
-                Person person = ancestorChart.getPersonMatchingFullName(fullName);
+                std::string firstName, lastName;
+                std::cout << "Please enter firstname:";
+                std::cin >> firstName;
+                firstName = capitalizeString(firstName);
+                std::cout << "Please enter lastname:";
+                std::cin >> lastName;
+                lastName = capitalizeString(lastName);
+                Person person = ancestorChart.getPersonMatchingFullName(firstName, lastName);
             }
             case 4: {
                 Person::Gender gender;

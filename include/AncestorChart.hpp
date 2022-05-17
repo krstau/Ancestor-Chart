@@ -25,7 +25,7 @@ public:
     void printPersons();
     Person getPersonMatchingFirstName(const std::string &firstName) const;
     Person getPersonMatchingLastName(const std::string &lastName) const;
-    Person getPersonMatchingFullName(const std::string &fullName) const;
+    Person getPersonMatchingFullName(const std::string &firstName, const std::string &lastName) const;
     Person getPersonMatchingGender(const Person::Gender &Gender) const;
 
     void printPersonsWithFirstName(const std::string &firstName);
@@ -40,6 +40,7 @@ public:
 private:
     typedef std::function<void(Node<Person> *)> nodePointerFunction;
     BinaryTree<Person> persons_;
+
 };
 
 #endif//ANCESTOR_CHART_ANCESTORCHART_HPP

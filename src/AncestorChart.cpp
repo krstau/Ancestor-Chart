@@ -20,7 +20,7 @@ Person AncestorChart::getPersonMatchingFirstName(const std::string &firstName) c
 Person AncestorChart::getPersonMatchingLastName(const std::string &lastName) const {
     Person *person;
     nodePointerFunction printPersons = [&person, &lastName](Node<Person> *node) {
-        if (node->getData().getFirstName() == lastName) {
+        if (node->getData().getLastName() == lastName) {
             *person = node->getData();
         }
     };
@@ -28,10 +28,10 @@ Person AncestorChart::getPersonMatchingLastName(const std::string &lastName) con
     return *person;
 }
 
-Person AncestorChart::getPersonMatchingFullName(const std::string &fullName) const {
+Person AncestorChart::getPersonMatchingFullName(const std::string &firstName, const std::string &lastName) const {
     Person *person;
-    nodePointerFunction printPersons = [&person, &fullName](Node<Person> *node) {
-        if (node->getData().getFirstName() == fullName) {
+    nodePointerFunction printPersons = [&person, &firstName, &lastName](Node<Person> *node) {
+        if (node->getData().getFirstName() == firstName and node->getData().getLastName() == lastName) {
             *person = node->getData();
         }
     };
