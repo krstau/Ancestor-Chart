@@ -8,20 +8,28 @@
  */
 class Date {
 public:
-    /**
-     * Date default constructor.
-     * Sets the date to 01/01/1970.
-     */
     Date();
+    Date(int day, int month, int year);
     std::string getDate() const;
     void setDate(int day, int month, int year);
-    void enterDate();
+    static void enterDate(Date dateType);
+    static bool checkIfDateIsValid(int day, int month, int year) ;
 
 private:
-    int day_ = 1;
-    int month_ = 1;
-    int year_ = 1970;
+    int day_;
+    int month_;
+    int year_;
 };
+
+/**
+* Date default constructor.
+* Sets the date to 01/01/1970.
+*/
+Date::Date() {
+    day_ = 1;
+    month_ = 1;
+    year_ = 1970;
+}
 
 /**
  * Function to get the date.
@@ -51,7 +59,7 @@ void Date::setDate(int day, int month, int year){
  * @param year Year of the date.
  * @return true if date is valid, false if not.
  */
-bool checkIfDateIsValid(int day, int month, int year) {
+bool Date::checkIfDateIsValid(int day, int month, int year) {
     if ((day >= 1 && day <= 30) &&
         (month == 4) || (month == 6) ||(month == 9) || (month == 11)) {
         return true;
@@ -61,10 +69,10 @@ bool checkIfDateIsValid(int day, int month, int year) {
              (month == 8) || (month == 10) || (month == 12)) {
         return true;
     }
-    else if ((day < 1 || day > 29) && (month == 2) && (year % 4 == 0)) {
+    else if ((day < 1 || day > 28) && (month == 2) && (year % 4 == 0)) {
         return true;
     }
-    else if ((day < 1 || day > 28) && (month == 2) && (year % 4 != 0)) {
+    else if ((day < 1 || day > 29) && (month == 2) && (year % 4 != 0)) {
         return true;
     }
     else {
@@ -78,17 +86,17 @@ bool checkIfDateIsValid(int day, int month, int year) {
  * splits the string into day, month and year.
  * Sets the date only if it is a valid date.
  */
-void Date::enterDate() {
-    std::string date;
+void Date::enterDate(Date dateType) {
+    std::string dateInput;
     int validDate = false;
     while (!validDate) {
         std::cout << "Please enter the date (DD/MM/YYYY): ";
-        std::cin >> date;
-        int day = std::stoi(date.substr(0, 2));
-        int month = std::stoi(date.substr(3, 2));
-        int year = std::stoi(date.substr(6));
+        std::cin >> dateInput;
+        int day = std::stoi(dateInput.substr(0, 2));
+        int month = std::stoi(dateInput.substr(3, 2));
+        int year = std::stoi(dateInput.substr(6));
         if (checkIfDateIsValid(day, month, year)) {
-            setDate(day, month, year);
+            dateType.setDate(day, month , year);
             validDate = true;
         }
         else {
@@ -96,5 +104,6 @@ void Date::enterDate() {
         }
     }
 }
+
 
 #endif//ANCESTOR_CHART_DATE_H

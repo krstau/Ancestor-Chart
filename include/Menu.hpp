@@ -179,7 +179,7 @@ namespace menu {
     * @param none.
     * @return none.
     */
-    void printMenu1() {
+    void printSetupMenu() {
         printLogo();
         std::cout << "Please create a root person:\n";
     }
@@ -288,7 +288,7 @@ namespace menu {
     */
     void mainMenu() {
         std::cout << "Welcome to:\n";
-        printMenu1();
+        printSetupMenu();
         Person rootPerson = createPerson();
         AncestorChart ancestorChart = AncestorChart(rootPerson);
         while (running) {
