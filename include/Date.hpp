@@ -69,10 +69,10 @@ bool Date::checkIfDateIsValid(int day, int month, int year) {
              (month == 8) || (month == 10) || (month == 12)) {
         return true;
     }
-    else if ((day < 1 || day > 28) && (month == 2) && (year % 4 == 0)) {
+    else if ((day >= 1 && day <= 28) && (month == 2) && (year % 4 == 0)) {
         return true;
     }
-    else if ((day < 1 || day > 29) && (month == 2) && (year % 4 != 0)) {
+    else if ((day >= 1 && day <= 29) && (month == 2) && (year % 4 != 0)) {
         return true;
     }
     else {
