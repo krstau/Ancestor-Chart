@@ -31,7 +31,7 @@ Person AncestorChart::getPersonMatchingLastName(const std::string &lastName) con
 Person AncestorChart::getPersonMatchingFullName(const std::string &firstName, const std::string &lastName) const {
     Person *person;
     nodePointerFunction printPersons = [&person, &firstName, &lastName](Node<Person> *node) {
-        if (node->getData().getFirstName() == firstName and node->getData().getLastName() == lastName) {
+        if ((node->getData().getFirstName() == firstName) && (node->getData().getLastName() == lastName)) {
             *person = node->getData();
         }
     };
