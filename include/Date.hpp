@@ -8,63 +8,93 @@
  */
 class Date {
 public:
+    /**
+     * Date default constructor.
+     * Sets the date to 01/01/1970.
+     */
     Date();
     std::string getDate() const;
-    void printDate() const;
-    void setDate();
-
-    friend std::ostream& operator<<(std::ostream& os, const Date& dt);
+    void setDate(int day, int month, int year);
+    void enterDate();
 
 private:
-    int day_;
-    int month_;
-    int year_;
+    int day_ = 1;
+    int month_ = 1;
+    int year_ = 1970;
 };
 
-Date::Date() {// Date defaults to 01/01/1970
-    day_ = 1;
-    month_ = 1;
-    year_ = 1970;
-}
-
+/**
+ * Function to get the date.
+ * @return Date as a string in XX/XX/XXXX-format.
+ */
 std::string Date::getDate() const {
     return std::to_string(day_) + "/" + std::to_string(month_) + "/" + std::to_string(year_);
 }
 
-void Date::printDate() const {
-    std::cout << day_ << "/" << month_ << "/" << year_;
+/**
+ * Function to set the date.
+ * @param day Day of the date.
+ * @param month Month of the date.
+ * @param year Year of the date.
+ */
+void Date::setDate(int day, int month, int year){
+    day_ = day;
+    month_ = month;
+    year_ = year;
 }
 
-void Date::setDate() {
+/**
+ * Function to check if date is a valid date.
+ *
+ * @param day Day of the date.
+ * @param month Month of the date.
+ * @param year Year of the date.
+ * @return true if date is valid, false if not.
+ */
+bool checkIfDateIsValid(int day, int month, int year) {
+    if ((day >= 1 && day <= 30) &&
+        (month == 4) || (month == 6) ||(month == 9) || (month == 11)) {
+        return true;
+    }
+    else if ((day >= 1 && day <= 31) &&
+             (month == 1) || (month == 3) || (month == 5) || (month == 7) ||
+             (month == 8) || (month == 10) || (month == 12)) {
+        return true;
+    }
+    else if ((day < 1 || day > 29) && (month == 2) && (year % 4 == 0)) {
+        return true;
+    }
+    else if ((day < 1 || day > 28) && (month == 2) && (year % 4 != 0)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+/**
+ * Enter date function.
+ * Takes user input as a string,
+ * splits the string into day, month and year.
+ * Sets the date only if it is a valid date.
+ */
+void Date::enterDate() {
     std::string date;
-    bool validDay = false, validMonth = false, validYear = false;
-    while (!validDay || !validMonth || !validYear) {
+    int validDate = false;
+    while (!validDate) {
         std::cout << "Please enter the date (DD/MM/YYYY): ";
         std::cin >> date;
         int day = std::stoi(date.substr(0, 2));
         int month = std::stoi(date.substr(3, 2));
         int year = std::stoi(date.substr(6));
-        if (day < 1 || day > 31) {
-            std::cout << "Day must be between 1 and 31\n";
-        } else {
-            day_ = day;
-            validDay = true;
+        if (checkIfDateIsValid(day, month, year)) {
+            setDate(day, month, year);
+            validDate = true;
         }
-        if (month < 1 || month > 12) {
-            std::cout << "Month must be between 1 and 12\n";
-        } else {
-            month_ = month;
-            validMonth = true;
-        }
-        if (year < 1500 || year > 3000) {
-            std::cout << "Year must be between 1500 and 3000\n";
-        } else {
-            year_ = year;
-            validYear = true;
+        else {
+            std::cout << "\nInvalid date! Please try again:";
         }
     }
 }
-
-
 
 #endif//ANCESTOR_CHART_DATE_H
