@@ -9,10 +9,9 @@
 class Date {
 public:
     Date();
-    Date(int day, int month, int year);
     std::string getDate() const;
     void setDate(int day, int month, int year);
-    static void enterDate(Date dateType);
+    static void enterDate(Date &dateType);
     static bool checkIfDateIsValid(int day, int month, int year) ;
 
 private:
@@ -86,7 +85,7 @@ bool Date::checkIfDateIsValid(int day, int month, int year) {
  * splits the string into day, month and year.
  * Sets the date only if it is a valid date.
  */
-void Date::enterDate(Date dateType) {
+void Date::enterDate(Date &dateType) {
     std::string dateInput;
     int validDate = false;
     while (!validDate) {
@@ -100,7 +99,7 @@ void Date::enterDate(Date dateType) {
             validDate = true;
         }
         else {
-            std::cout << "\nInvalid date! Please try again:";
+            std::cout << "\nInvalid date!\n";
         }
     }
 }
