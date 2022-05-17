@@ -1,6 +1,6 @@
 #ifndef PERSON_CLI_PERSON_H
 #define PERSON_CLI_PERSON_H
-//#include "Date.h"
+#include "Date.hpp"
 #include <string>
 
 /**
@@ -36,21 +36,21 @@ public:
      * @param gender Gender of the person.
      * @param state State of the person.
      */
-    Person(std::string firstName, std::string lastName, std::string dateOfBirth, std::string dateOfDeath, Gender gender, State state);
+    Person(std::string firstName, std::string lastName, Date dateOfBirth, Date dateOfDeath, Gender gender, State state);
     friend std::ostream& operator << (std::ostream& os, const Person& dt);
     std::string getFirstName() const;
     std::string getLastName() const;
     std::string getFullName() const;
-    std::string getDateOfBirth() const;
-    std::string getDateOfDeath() const;
+    Date getDateOfBirth() const;
+    Date getDateOfDeath() const;
     Gender getGender() const;
     State getState() const;
 
 private:
     std::string firstName_;
     std::string lastName_;
-    std::string dateOfBirth_;
-    std::string dateOfDeath_;
+    Date dateOfBirth_;
+    Date dateOfDeath_;
     Gender gender_;
     State state_;
 };

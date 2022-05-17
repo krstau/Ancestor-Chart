@@ -2,7 +2,7 @@
 #include <utility>
 
 // Multi-parameter constructor
-Person::Person(std::string firstName, std::string lastName, std::string dateOfBirth, std::string dateOfDeath, Gender gender, State state)
+Person::Person(std::string firstName, std::string lastName, Date dateOfBirth, Date dateOfDeath, Gender gender, State state)
     : firstName_(std::move(firstName)), lastName_(std::move(lastName)), dateOfBirth_(std::move(dateOfBirth)), dateOfDeath_(std::move(dateOfDeath)), gender_(gender), state_(state) {
 }
 
@@ -18,11 +18,11 @@ std::string Person::getFullName() const {
     return firstName_ + " " + lastName_;
 }
 
-std::string Person::getDateOfBirth() const {
+Date Person::getDateOfBirth() const {
     return dateOfBirth_;
 }
 
-std::string Person::getDateOfDeath() const {
+Date Person::getDateOfDeath() const {
     return dateOfDeath_;
 }
 

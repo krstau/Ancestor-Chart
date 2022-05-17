@@ -187,9 +187,9 @@ std::ostream &operator<<(std::ostream &os, const Person &person) {
        << "Lastname: " << person.getLastName() << '\n'
        << "Gender: " << person.getGender() << '\n'
        << "State: " << person.getState() << '\n'
-       << "Date of birth: " << person.getDateOfBirth() << '\n';
+       << "Date of birth: " << person.getDateOfBirth().getDate() << '\n';
        if (person.getState() == Person::alive) {
-           os << "Date of death: " << person.getDateOfDeath() << '\n';
+           os << "Date of death: " << person.getDateOfDeath().getDate() << '\n';
             }
     return os;
 }

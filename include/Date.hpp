@@ -89,7 +89,6 @@ void Date::enterDate(Date &dateType) {
     std::string dateInput;
     int validDate = false;
     while (!validDate) {
-        std::cout << "Please enter the date (DD/MM/YYYY): ";
         std::cin >> dateInput;
         int day = std::stoi(dateInput.substr(0, 2));
         int month = std::stoi(dateInput.substr(3, 2));
@@ -99,7 +98,7 @@ void Date::enterDate(Date &dateType) {
             validDate = true;
         }
         else {
-            std::cout << "\nInvalid date!\n";
+            std::cout << "\nInvalid date! Please enter a valid date (DD/MM/YYYY): \n";
         }
     }
 }

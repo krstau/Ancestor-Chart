@@ -99,7 +99,8 @@ namespace menu {
     //ask the user; is the person the mother or the father of the correct person
     //if father, add or edit leftNode, if mother add or edit rightNode
     Person createPerson() {
-        std::string firstName, lastName, dateOfBirth, dateOfDeath;
+        std::string firstName, lastName;
+        Date dateOfBirth, dateOfDeath;
         Person::State state = Person::alive;
         Person::Gender gender = Person::unknownGender;
         std::cout << "Enter firstname:";
@@ -109,12 +110,12 @@ namespace menu {
         std::cin >> lastName;
         firstName = capitalizeString(lastName);
         std::cout << "Enter date of birth (DD/MM/YYYY):";
-        std::cin >> dateOfBirth;
+        Date::enterDate(dateOfBirth);
         std::cout << "Is the person deceased (Yes/No)?";
         bool answer = yesOrNo();
         if (answer) {
             std::cout << "Enter date of death (DD/MM/YYYY):";
-            std::cin >> dateOfDeath;
+            Date::enterDate(dateOfDeath);
             state = Person::deceased;
         }
         gender = inputGender();
@@ -276,8 +277,6 @@ namespace menu {
                 std::cout << "Please enter a number between 0 and 4:\n";
                 break;
         }
-        //TODO: Need to find alternative to this:
-        return {"Ola", "Nordmann", "01/01/1970", "01/01/1970", Person::unknownGender, Person::alive};
     }
 
     /**
