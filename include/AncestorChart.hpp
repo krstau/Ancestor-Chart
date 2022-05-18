@@ -33,8 +33,8 @@ public:
     void printPersonsWithGender(const Person::Gender &Gender);
     std::vector<Node<Person>*> getPersonsMatchingFirstName(const std::string &firstName);
     std::vector<Node<Person>*> getPersonsMatchingLastName(const std::string &lastName);
-    std::vector<Person> getPersonsMatchingFullName(const std::string &firstName, const std::string &lastName);
-    std::vector<Person> getPersonsMatchingGender(const Person::Gender &Gender);
+    std::vector<Node<Person>*> getPersonsMatchingFullName(const std::string &firstName, const std::string &lastName);
+    std::vector<Node<Person>*> getPersonsMatchingGender(const Person::Gender &Gender);
 
 private:
     typedef std::function<void(Node<Person> *)> nodePointerFunction;

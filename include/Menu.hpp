@@ -5,6 +5,7 @@
 #include <iostream>
 #include <string>
 #include <utility>
+#include <limits>
 
 /**
 * Sets the state of the menu.
@@ -271,7 +272,7 @@ std::vector<Node<Person>*> selectSearchTerm(AncestorChart ancestorChart) {  //ch
             std::cout << "Please enter lastname:";
             std::cin >> lastName;
             lastName = capitalizeString(lastName);
-            //returnpersons = ancestorChart.getPersonsMatchingLastName(lastName);
+            returnpersons = ancestorChart.getPersonsMatchingLastName(lastName);
             return returnpersons;
         }
         case 3: {
@@ -282,14 +283,14 @@ std::vector<Node<Person>*> selectSearchTerm(AncestorChart ancestorChart) {  //ch
             std::cout << "Please enter lastname:";
             std::cin >> lastName;
             lastName = capitalizeString(lastName);
-            //returnpersons = ancestorChart.getPersonsMatchingFullName(firstName, lastName);
+            returnpersons = ancestorChart.getPersonsMatchingFullName(firstName, lastName);
             return returnpersons;
         }
         case 4: {
             Person::Gender gender;
             std::cout << "Please enter gender:";
             gender = inputGender();
-            //returnpersons = ancestorChart.getPersonsMatchingGender(gender);
+            returnpersons = ancestorChart.getPersonsMatchingGender(gender);
             return returnpersons;
         }
         case 0: {
@@ -328,13 +329,27 @@ void mainMenu() {
             }
             case 2: {
                 int selectedPerson;
-                std::vector<Node<Person>*> persons = selectSearchTerm(ancestorChart); //make this std::vector<Person> if node implementation does not work!
-                std::cout << "\n" << "List of persons: " << std::endl;
-                for(size_t index{}; index < persons.size(); ++index) {
-                    std::cout << "\n" << "[" << index << "]" << " " << persons[index]->getData().getFullName() << std::endl;
+                std::vector<Node<Person>*> persons = selectSearchTerm(ancestorChart);
+/*
+                if (persons.size() == 0){
+                    std::cout << "No person matching search could be found";
                 }
-                std::cout << "\n" << "Please select a person: " << std::endl;
-                std::cin >> selectedPerson;
+
+                if (persons.size() == 1){
+                    std::cout << persons[1]->getData().getFullName() << std::endl;
+                }
+                else { */
+                    std::cout << "\n"
+                              << "List of persons: " << std::endl;
+                    for (size_t index{}; index < persons.size(); ++index) {
+                        std::cout << "\n"
+                                  << "[" << index << "]"
+                                  << " " << persons[index]->getData().getFullName() << std::endl;
+                    }
+                    std::cout << "\n"
+                              << "Please select a person: " << std::endl;
+                    std::cin >> selectedPerson;
+                //}
                 break;
             }
             case 3: {

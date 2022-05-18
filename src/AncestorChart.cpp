@@ -14,31 +14,44 @@ std::vector<Node<Person>*> AncestorChart::getPersonsMatchingFirstName(const std:
     nodePointerFunction printPersons = [&persons, &firstName](Node<Person> *node) {
         Person person = node->getData();
         if (person.getFirstName() == firstName) {
-            persons.emplace_back(node);           //TODO: replace this with node pointers => adding new nodes is possible (for all)
-        }                                          //Only edit this function for testing purposes, leave others as is until this one works!
-    };
-    persons_.traverseDepthFirst(printPersons);
-    return persons;
-}
-
-std::vector<Person> AncestorChart::getPersonsMatchingFullName(const std::string &firstName, const std::string &lastName) {
-    std::vector<Person> persons;
-    nodePointerFunction printPersons = [&persons, &firstName, &lastName](Node<Person> *node) {
-        Person person = node->getData();
-        if ((person.getFirstName() == firstName) && (person.getLastName() == lastName)) {
-            persons.emplace_back(person);
+            persons.emplace_back(node);
         }
     };
     persons_.traverseDepthFirst(printPersons);
     return persons;
 }
 
-std::vector<Person> AncestorChart::getPersonsMatchingGender(const Person::Gender &gender) {
-    std::vector<Person> persons;
+std::vector<Node<Person>*> AncestorChart::getPersonsMatchingLastName(const std::string &lastName) {
+    std::vector<Node<Person>*> persons;
+    nodePointerFunction printPersons = [&persons, &lastName](Node<Person> *node) {
+        Person person = node->getData();
+        if (person.getFirstName() == lastName) {
+            persons.emplace_back(node);
+            //TODO: replace this with node pointers => adding new nodes is possible (for all)
+        }                                          //Only edit this function for testing purposes, leave others as is until this one works!
+    };
+    persons_.traverseDepthFirst(printPersons);
+    return persons;
+}
+
+std::vector<Node<Person>*> AncestorChart::getPersonsMatchingFullName(const std::string &firstName, const std::string &lastName) {
+    std::vector<Node<Person>*> persons;
+    nodePointerFunction printPersons = [&persons, &firstName, &lastName](Node<Person> *node) {
+        Person person = node->getData();
+        if ((person.getFirstName() == firstName) && (person.getLastName() == lastName)) {
+            persons.emplace_back(node);
+        }
+    };
+    persons_.traverseDepthFirst(printPersons);
+    return persons;
+}
+
+std::vector<Node<Person>*> AncestorChart::getPersonsMatchingGender(const Person::Gender &gender) {
+    std::vector<Node<Person>*> persons;
     nodePointerFunction printPersons = [&persons, &gender](Node<Person> *node) {
         Person person = node->getData();
         if (person.getGender() == gender) {
-            persons.emplace_back(person);
+            persons.emplace_back(node);
         }
     };
     persons_.traverseDepthFirst(printPersons);
@@ -59,18 +72,7 @@ void AncestorChart::printPersons() {
     persons_.traverseDepthFirst(printPersons);
 }
 
-std::vector<Node<Person>*> AncestorChart::getPersonsMatchingLastName(const std::string &firstName) {
-    std::vector<Node<Person>*> personNodes;
-    nodePointerFunction printPersons = [&personNodes, &firstName](Node<Person> *node) {
-        Person person = node->getData();
-        if (person.getFirstName() == firstName) {
-            personNodes.emplace_back(node);
-            //TODO: replace this with node pointers => adding new nodes is possible (for all)
-        }                                          //Only edit this function for testing purposes, leave others as is until this one works!
-    };
-    persons_.traverseDepthFirst(printPersons);
-    return personNodes;
-}
+
 
 /**
  * Prints all persons with corresponding firstname.
