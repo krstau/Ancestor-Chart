@@ -30,8 +30,6 @@ public:
     bool hasLeftChild();
     bool hasRightChild();
     bool hasParent();
-    void insertLeft(Node<T> *node, T);
-    void insertRight(Node<T> *node, T);
 
 private:
     void traverseDepthFirst(Node<T>* root, std::function<void(Node<T>*)>&) const;

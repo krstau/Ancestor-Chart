@@ -348,11 +348,12 @@ void mainMenu() {
 
         switch (choice) {
             case 1: {
-                /*Node<Person> *node = searchforNode(ancestorChart);
+                std::cout << "Who's parent do you want to add?" << "\n";
+                Node<Person> *node = searchforNode(ancestorChart);
                 if (node != nullptr){
                     Person person = createPerson();
                     BinaryTree<Person>::insertNode(node, person);
-                }*/
+                }
                 break;
             }
             case 2: {
