@@ -237,8 +237,7 @@ void shutdown() {
     * @param none.
     * @return person.
     */
-std::vector<Node<Person>*> selectSearchTerm(AncestorChart ancestorChart) {  //change back datatype to std::vector<Person> if node implementation does not work!
-    //std::vector<Person> returnpersons;   delete this if we make nodes return!
+std::vector<Node<Person>*> selectSearchTerm(AncestorChart ancestorChart) {
     std::vector<Node<Person>*> returnpersons;
     std::cout << "\n"
               << "Please select a search term, or enter 0 to return to main menu:"
@@ -303,6 +302,32 @@ std::vector<Node<Person>*> selectSearchTerm(AncestorChart ancestorChart) {  //ch
     return returnpersons;
 }
 
+
+Node<Person> * searchforNode(AncestorChart &ancestorChart) {
+    std::vector<Node<Person>*> persons = selectSearchTerm(ancestorChart);
+
+    if (persons.empty()){
+        std::cout << "No person matching search could be found";
+        return nullptr;
+    }
+
+    if (persons.size() == 1){
+        return persons[0];
+    }
+    else {
+        std::cout << "\n" << "List of persons: " << std::endl;
+        for (size_t index{}; index < persons.size(); ++index) {
+            std::cout << "\n"
+                      << "[" << index << "]"
+                      << " " << persons[index]->getData().getFullName() << std::endl;
+        }
+        std::cout << "\n"
+                  << "Please select a person: " << std::endl;
+        int selectedPerson = getValidIntBetween(0, persons.size());
+        return persons[selectedPerson];
+    }
+}
+
 /**
     * Function to display a menu to the terminal.
     *
@@ -328,27 +353,10 @@ void mainMenu() {
                 break;
             }
             case 2: {
-                std::vector<Node<Person>*> persons = selectSearchTerm(ancestorChart);
-
-                if (persons.empty()){
-                    std::cout << "No person matching search could be found";
+                Node<Person> * node = searchforNode(ancestorChart);
+                if (node != nullptr){
+                    std::cout << node->getData().getFullName();
                 }
-
-                if (persons.size() == 1){
-                    std::cout << persons[0]->getData().getFullName() << std::endl;
-                }
-                else {
-                    std::cout << "\n" << "List of persons: " << std::endl;
-                    for (size_t index{}; index < persons.size(); ++index) {
-                        std::cout << "\n"
-                                  << "[" << index << "]"
-                                  << " " << persons[index]->getData().getFullName() << std::endl;
-                    }
-                    std::cout << "\n"
-                              << "Please select a person: " << std::endl;
-                    int selectedPerson = getValidIntBetween(0, persons.size());
-                    std::cout << persons[selectedPerson]->getData().getFullName() << std::endl;
-                    }
                 break;
             }
             case 3: {
@@ -374,31 +382,7 @@ void mainMenu() {
     }
 }
 
-Node<Person> * searchforNode(AncestorChart &ancestorChart) {
-    int selectedPerson;
-    std::vector<Node<Person>*> persons = selectSearchTerm(ancestorChart);
-    /*
-                if (persons.size() == 0){
-                    std::cout << "No person matching search could be found";
-                }
 
-    if (persons.size() == 1){
-        std::cout << persons[0]->getData().getFullName() << std::endl;
-    }
-    else { */
-                        std::cout << "\n"
-                << "List of persons: " << std::endl;
-        for (size_t index{}; index < persons.size(); ++index) {
-            std::cout << "\n"
-                      << "[" << index << "]"
-                      << " " << persons[index]->getData().getFullName() << std::endl;
-        }
-        std::cout << "\n"
-                  << "Please select a person: " << std::endl;
-        std::cin >> selectedPerson;
-        return persons[selectedPerson];
-        //}
-}
 
 
 
