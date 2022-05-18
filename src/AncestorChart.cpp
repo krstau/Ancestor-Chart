@@ -27,8 +27,7 @@ std::vector<Node<Person>*> AncestorChart::getPersonsMatchingLastName(const std::
         Person person = node->getData();
         if (person.getFirstName() == lastName) {
             persons.emplace_back(node);
-            //TODO: replace this with node pointers => adding new nodes is possible (for all)
-        }                                          //Only edit this function for testing purposes, leave others as is until this one works!
+        }
     };
     persons_.traverseDepthFirst(printPersons);
     return persons;
