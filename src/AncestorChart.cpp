@@ -9,13 +9,13 @@ void addPerson() {
     // ancestorChart_.insertLeft(node, person);
 }
 
-std::vector<Person> AncestorChart::getPersonsMatchingFirstName(const std::string &firstName) {
-    std::vector<Person> persons;
+std::vector<Node<Person>*> AncestorChart::getPersonsMatchingFirstName(const std::string &firstName) {
+    std::vector<Node<Person>*> persons;
     nodePointerFunction printPersons = [&persons, &firstName](Node<Person> *node) {
         Person person = node->getData();
         if (person.getFirstName() == firstName) {
-            persons.emplace_back(person);
-        }
+            persons.emplace_back(node);           //TODO: replace this with node pointers => adding new nodes is possible (for all)
+        }                                          //Only edit this function for testing purposes, leave others as is until this one works!
     };
     persons_.traverseDepthFirst(printPersons);
     return persons;

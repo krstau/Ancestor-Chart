@@ -236,8 +236,9 @@ void shutdown() {
     * @param none.
     * @return person.
     */
-std::vector<Person> selectSearchTerm(AncestorChart ancestorChart) {
-    std::vector<Person> returnpersons;
+std::vector<Node<Person>*> selectSearchTerm(AncestorChart ancestorChart) {  //change back datatype to std::vector<Person> if node implementation does not work!
+    //std::vector<Person> returnpersons;   delete this if we make nodes return!
+    std::vector<Node<Person>*> returnpersons;
     std::cout << "\n"
               << "Please select a search term, or enter 0 to return to main menu:"
               << "\n"
@@ -270,7 +271,7 @@ std::vector<Person> selectSearchTerm(AncestorChart ancestorChart) {
             std::cout << "Please enter lastname:";
             std::cin >> lastName;
             lastName = capitalizeString(lastName);
-            returnpersons = ancestorChart.getPersonsMatchingLastName(lastName);
+            //returnpersons = ancestorChart.getPersonsMatchingLastName(lastName);
             return returnpersons;
         }
         case 3: {
@@ -281,14 +282,14 @@ std::vector<Person> selectSearchTerm(AncestorChart ancestorChart) {
             std::cout << "Please enter lastname:";
             std::cin >> lastName;
             lastName = capitalizeString(lastName);
-            returnpersons = ancestorChart.getPersonsMatchingFullName(firstName, lastName);
+            //returnpersons = ancestorChart.getPersonsMatchingFullName(firstName, lastName);
             return returnpersons;
         }
         case 4: {
             Person::Gender gender;
             std::cout << "Please enter gender:";
             gender = inputGender();
-            returnpersons = ancestorChart.getPersonsMatchingGender(gender);
+            //returnpersons = ancestorChart.getPersonsMatchingGender(gender);
             return returnpersons;
         }
         case 0: {
@@ -326,8 +327,8 @@ void mainMenu() {
                 break;
             }
             case 2: {
-                std::vector<Person> persons = selectSearchTerm(ancestorChart);
-                //TODO: add print vector function here
+                std::vector<Node<Person>*> persons = selectSearchTerm(ancestorChart); //make this std::vector<Person> if node implementation does not work!
+                //TODO: add print vector with numbers so user can choose
                 break;
             }
             case 3: {
