@@ -33,7 +33,7 @@ public:
     void printPersonsWithGender(const Person::Gender &Gender);
     std::vector<Person> getPersonsMatchingFirstName(const std::string &firstName);
     std::vector<Person> getPersonsMatchingLastName(const std::string &lastName);
-    std::vector<Person> getPersonsMatchingFullName(const std::string &fullName);
+    std::vector<Person> getPersonsMatchingFullName(const std::string &firstName, const std::string &lastName);
     std::vector<Person> getPersonsMatchingGender(const Person::Gender &Gender);
 
 private:
