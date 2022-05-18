@@ -352,7 +352,7 @@ void mainMenu() {
                 Node<Person> *node = searchforNode(ancestorChart);
                 if (node != nullptr){
                     Person person = createPerson();
-                    BinaryTree<Person>::insertNode(node, person);
+                    persons_.insertNode(node, person);
                 }
                 break;
             }

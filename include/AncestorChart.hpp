@@ -6,9 +6,6 @@
 
 /**
  * AncestorChart class
- *
- * @param
- * @param
  */
 class AncestorChart {
 public:
@@ -39,7 +36,6 @@ public:
 private:
     typedef std::function<void(Node<Person> *)> nodePointerFunction;
     BinaryTree<Person> persons_;
-
 };
 
 #endif//ANCESTOR_CHART_ANCESTORCHART_HPP

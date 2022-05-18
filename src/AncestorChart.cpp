@@ -1,12 +1,13 @@
 #include "../include/AncestorChart.hpp"
 #include <iostream>
 
-void addPerson() {
-    std::cout << "Please enter the name of the child of the person you want to add: \n";
-
-
-    // Person person = AncestorChart::createPerson();
-    // ancestorChart_.insertLeft(node, person);
+void AncestorChart::addPerson() {
+    std::cout << "Who's parent do you want to add?" << "\n";
+    Node<Person> *node = searchforNode(ancestorChart);
+    if (node != nullptr){
+        Person person = AncestorChart::createPerson();
+        persons_->insertNode(node, person);
+    }
 }
 
 std::vector<Node<Person>*> AncestorChart::getPersonsMatchingFirstName(const std::string &firstName) {
