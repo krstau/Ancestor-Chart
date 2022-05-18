@@ -55,7 +55,7 @@ void BinaryTree<T>::insertNode(Node<T> node, T data) {
         node->setLeftPtr(newNode);
         size_++;
     }
-    if (node->getRightPtr() == nullptr){
+    else if (node->getRightPtr() == nullptr){
         node->setRightPtr(newNode);
         size_++;
     }

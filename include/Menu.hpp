@@ -330,17 +330,17 @@ void mainMenu() {
             case 2: {
                 int selectedPerson;
                 std::vector<Node<Person>*> persons = selectSearchTerm(ancestorChart);
-/*
+                /*
                 if (persons.size() == 0){
                     std::cout << "No person matching search could be found";
                 }
 
                 if (persons.size() == 1){
-                    std::cout << persons[1]->getData().getFullName() << std::endl;
+                    std::cout << persons[0]->getData().getFullName() << std::endl;
                 }
                 else { */
-                    std::cout << "\n"
-                              << "List of persons: " << std::endl;
+                                    std::cout << "\n"
+                            << "List of persons: " << std::endl;
                     for (size_t index{}; index < persons.size(); ++index) {
                         std::cout << "\n"
                                   << "[" << index << "]"
@@ -349,7 +349,8 @@ void mainMenu() {
                     std::cout << "\n"
                               << "Please select a person: " << std::endl;
                     std::cin >> selectedPerson;
-                //}
+                    std::cout << persons[selectedPerson]->getData().getFullName() << std::endl;
+                    //}
                 break;
             }
             case 3: {
@@ -374,4 +375,33 @@ void mainMenu() {
         }
     }
 }
+
+Node<Person> * searchforNode(AncestorChart &ancestorChart) {
+    int selectedPerson;
+    std::vector<Node<Person>*> persons = selectSearchTerm(ancestorChart);
+    /*
+                if (persons.size() == 0){
+                    std::cout << "No person matching search could be found";
+                }
+
+    if (persons.size() == 1){
+        std::cout << persons[0]->getData().getFullName() << std::endl;
+    }
+    else { */
+                        std::cout << "\n"
+                << "List of persons: " << std::endl;
+        for (size_t index{}; index < persons.size(); ++index) {
+            std::cout << "\n"
+                      << "[" << index << "]"
+                      << " " << persons[index]->getData().getFullName() << std::endl;
+        }
+        std::cout << "\n"
+                  << "Please select a person: " << std::endl;
+        std::cin >> selectedPerson;
+        return persons[selectedPerson];
+        //}
+}
+
+
+
 #endif//ANCESTOR_CHART_MENU_HPP
