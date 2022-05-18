@@ -330,7 +330,7 @@ void mainMenu() {
             case 2: {
                 int selectedPerson;
                 std::vector<Node<Person>*> persons = selectSearchTerm(ancestorChart);
-                /*
+
                 if (persons.size() == 0){
                     std::cout << "No person matching search could be found";
                 }
@@ -338,9 +338,8 @@ void mainMenu() {
                 if (persons.size() == 1){
                     std::cout << persons[0]->getData().getFullName() << std::endl;
                 }
-                else { */
-                                    std::cout << "\n"
-                            << "List of persons: " << std::endl;
+                else {
+                    std::cout << "\n" << "List of persons: " << std::endl;
                     for (size_t index{}; index < persons.size(); ++index) {
                         std::cout << "\n"
                                   << "[" << index << "]"
@@ -348,9 +347,9 @@ void mainMenu() {
                     }
                     std::cout << "\n"
                               << "Please select a person: " << std::endl;
-                    std::cin >> selectedPerson;
+                    int selectedPerson = getValidIntBetween(0, persons.size());
                     std::cout << persons[selectedPerson]->getData().getFullName() << std::endl;
-                    //}
+                    }
                 break;
             }
             case 3: {
