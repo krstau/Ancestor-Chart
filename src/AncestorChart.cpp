@@ -2,8 +2,7 @@
 #include <iostream>
 
 void AncestorChart::addPerson(AncestorChart &ancestorChart) {
-    std::cout << "Who's parent do you want to add?"
-              << "\n";
+    std::cout << "Who's parent do you want to add?" << std::endl;
     Node<Person> *node = searchForNode(ancestorChart);
     if (node != nullptr) {
         Person person = Person::createPerson();
@@ -28,7 +27,6 @@ void AncestorChart::deletePerson(AncestorChart &ancestorChart) {
 BinaryTree<Person> AncestorChart::getBinaryTree() const {
     return binaryTree_;
 }
-
 
 /**
     * Displays available search terms for finding a person.

@@ -57,7 +57,7 @@ std::string capitalizeString(std::string word) {
                    [](char const &c) {
                        return std::tolower(c);
                    });
-    word[0] = std::toupper(word[0]);// NOLINT(cppcoreguidelines-narrowing-conversions) TODO: Find better alternative?
+    word[0] = std::toupper(word[0]);
     return word;
 }
 

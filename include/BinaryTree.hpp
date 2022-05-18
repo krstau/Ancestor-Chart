@@ -4,7 +4,7 @@
 #include <functional>
 #include <iostream>
 
-// Inspiration for code: https://github3.com/devos50/BinaryTree
+// Inspiration for code: https://github.com/devos50/BinaryTree
 
 template<typename T>
 class BinaryTree {

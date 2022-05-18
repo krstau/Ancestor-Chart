@@ -16,8 +16,8 @@ public:
     Node<T> *getLeftPtr() const;
     Node<T> *getRightPtr() const;
     void setData(const T& data);
-    void setLeftPtr(std::unique_ptr<Node<T>> &leftPtr);
-    void setRightPtr(std::unique_ptr<Node<T>> &rightPtr);
+    void setLeftPtr(Node<T> *leftPtr);
+    void setRightPtr(Node<T> *RightPtr);
     bool hasSpace();
     bool isLeaf();
 
@@ -104,8 +104,8 @@ Node<T>* Node<T>::getRightPtr() const{
  * @param leftPtr pointer the nodes left pointer will be set to
  */
 template<typename T>
-void Node<T>::setLeftPtr(std::unique_ptr<Node<T>> &leftPtr){
-    left_ = std::move(leftPtr);
+void Node<T>::setLeftPtr(Node<T> *leftPtr){
+    left_ = leftPtr;
 }
 
 /**
@@ -113,8 +113,8 @@ void Node<T>::setLeftPtr(std::unique_ptr<Node<T>> &leftPtr){
  * @param rightPtr pointer the nodes right pointer will be set to
  */
 template<typename T>
-void Node<T>::setRightPtr(std::unique_ptr<Node<T>> &rightPtr){
-    right_ = std::move(rightPtr);
+void Node<T>::setRightPtr(Node<T> *rightPtr){
+    right_ = rightPtr;
 }
 
 #endif//ANCESTOR_CHART_NODE_HPP
