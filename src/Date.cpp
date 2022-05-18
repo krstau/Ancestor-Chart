@@ -12,7 +12,7 @@ Date::Date() {
 
 /**
  * Function to get the date.
- * @return Date as a string in XX/XX/XXXX-format.
+ * @return Date as a string in 00/00/0000-format.
  */
 std::string Date::getDate() const {
     return std::to_string(day_) + "/" + std::to_string(month_) + "/" + std::to_string(year_);
@@ -91,7 +91,7 @@ void Date::enterDate(Date &dateType) {
             int day = std::stoi(dateInput.substr(0, 2));
             int month = std::stoi(dateInput.substr(3, 2));
             int year = std::stoi(dateInput.substr(6));
-            if (isValidDate(day, month, year))  {
+            if (isValidDate(day, month, year)) {
                 dateType.setDate(day, month , year);
                 validDate = true;
             }

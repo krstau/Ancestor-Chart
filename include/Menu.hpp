@@ -87,7 +87,7 @@ std::string genderValueToString(Person::Gender gender) {
             return "Female";
         }
         default: {
-            return "unknown";
+            return "Unknown";
         }
     }
 }
@@ -175,11 +175,11 @@ int getValidIntBetween(int lower, int upper) {
     return integer;
 }
 /**
-    * Function to print logo to terminal.
-    *
-    * @param none.
-    * @return none.
-    */
+* Function to print logo to terminal.
+*
+* @param none.
+* @return none.
+*/
 void printLogo() {
     std::cout << R"(
     _                        _              ____ _                _
