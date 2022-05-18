@@ -49,12 +49,12 @@ BinaryTree<T>::BinaryTree(const T& data) : root_(new Node<T>(data)) {
 template<typename T>
 void BinaryTree<T>::insertNode(Node<T> *node, T data) {
     if (node->getLeftPtr() == nullptr){
-        auto newNode = std::make_unique<Node<T>> (data);
+        auto newNode = new Node(data);
         node->setLeftPtr(newNode);
         size_++;
     }
     else if (node->getRightPtr() == nullptr){
-        auto newNode = std::make_unique<Node<T>> (data);
+        auto newNode = new Node(data);
         node->setRightPtr(newNode);
         size_++;
     }

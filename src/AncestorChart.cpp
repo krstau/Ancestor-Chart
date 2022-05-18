@@ -1,5 +1,4 @@
 #include "../include/AncestorChart.hpp"
-#include <iostream>
 
 void AncestorChart::addPerson(AncestorChart &ancestorChart) {
     std::cout << "Who's parent do you want to add?" << std::endl;

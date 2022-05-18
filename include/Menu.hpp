@@ -1,6 +1,5 @@
 #ifndef ANCESTOR_CHART_MENU_HPP
 #define ANCESTOR_CHART_MENU_HPP
-#include "Formatting.hpp"
 #include "AncestorChart.hpp"
 #include <algorithm>
 #include <iostream>

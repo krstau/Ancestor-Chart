@@ -2,6 +2,7 @@
 #define ANCESTOR_CHART_DATE_H
 #include <iostream>
 #include <string>
+#include "../include/Formatting.hpp"
 
 /**
  * Date class.
