@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <iostream>
 #include <string>
+#include <limits>
 
 /**
     * Function that that takes user input from user and checks if it is an integer.
