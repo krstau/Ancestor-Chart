@@ -46,7 +46,9 @@ public:
     Date getDateOfDeath() const;
     Gender getGender() const;
     State getState() const;
+    static Person createPerson();
     static Gender inputGender();
+    static std::string genderValueToString(Gender gender);
 
 private:
     std::string firstName_;

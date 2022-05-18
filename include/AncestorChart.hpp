@@ -14,24 +14,15 @@ public:
      *
      * @param firstName Firstname of the person.
      */
-    explicit AncestorChart(const Person &rootPerson) : persons_(BinaryTree<Person>(rootPerson)){}
-    static Person createPerson();
-    void addPerson();
-    void deletePerson();
-    void editPerson();
-    void printPerson();
+    explicit AncestorChart(const Person &rootPerson) : binaryTree_(BinaryTree<Person>(rootPerson)){}
+    static void addPerson(AncestorChart &ancestorChart);
+    static void searchForPerson(AncestorChart &ancestorChart);
+    static void deletePerson(AncestorChart &ancestorChart);
+    static void editPerson(AncestorChart &ancestorChart);
+    static void printPerson();
     void printPersons();
-    void searchForPerson();
-    Node<Person>* searchforNode(AncestorChart &ancestorChart);
-    Person getPersonMatchingFirstName(const std::string &firstName) const;
-    Person getPersonMatchingLastName(const std::string &lastName) const;
-    Person getPersonMatchingFullName(const std::string &firstName, const std::string &lastName) const;
-    Person getPersonMatchingGender(const Person::Gender &Gender) const;
-
-    void printPersonsWithFirstName(const std::string &firstName);
-    void printPersonsWithLastName(const std::string &lastName);
-    void printPersonsWithFullName(const std::string &fullName);
-    void printPersonsWithGender(const Person::Gender &Gender);
+    BinaryTree<Person> getBinaryTree() const;
+    static Node<Person>* searchForNode(AncestorChart &ancestorChart);
     std::vector<Node<Person>*> getPersonsMatchingFirstName(const std::string &firstName);
     std::vector<Node<Person>*> getPersonsMatchingLastName(const std::string &lastName);
     std::vector<Node<Person>*> getPersonsMatchingFullName(const std::string &firstName, const std::string &lastName);
@@ -39,7 +30,7 @@ public:
 
 private:
     typedef std::function<void(Node<Person> *)> nodePointerFunction;
-    BinaryTree<Person> persons_;
+    BinaryTree<Person> binaryTree_;
 };
 
 #endif//ANCESTOR_CHART_ANCESTORCHART_HPP

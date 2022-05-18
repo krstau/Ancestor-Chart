@@ -76,7 +76,7 @@ Person::State Person::getState() const {
     * @param none.
     * @return none.
     */
-Person::Gender inputGender() {
+Person::Gender Person::inputGender() {
     std::string gender;
     std::cout << "Enter gender (male/female):" << std::endl;
     while (true) {
@@ -99,7 +99,7 @@ Person::Gender inputGender() {
     * @param gender.
     * @return the gender in string format.
     */
-std::string genderValueToString(Person::Gender gender) {
+std::string Person::genderValueToString(Person::Gender gender) {
     switch (gender) {
         case Person::male: {
             return "Male";
@@ -118,7 +118,7 @@ std::string genderValueToString(Person::Gender gender) {
 //from the returned vector, ask the user which is the correct person
 //ask the user; is the person the mother or the father of the correct person
 //if father, add or edit leftNode, if mother add or edit rightNode
-Person createPerson() {
+Person Person::createPerson() {
     std::string firstName, lastName;
     Date dateOfDeath;
     Date dateOfBirth;
@@ -152,7 +152,7 @@ Person createPerson() {
 std::ostream &operator<<(std::ostream &os, const Person &person) {
     os << "Firstname: " << person.getFirstName() << '\n'
        << "Lastname: " << person.getLastName() << '\n'
-       << "Gender: " << genderValueToString(person.getGender()) << '\n'
+       << "Gender: " << Person::genderValueToString(person.getGender()) << '\n'
        << "Date of birth: " << person.getDateOfBirth().getDate() << '\n';
     if (person.getState() == Person::deceased) {
         os << "Date of death: " << person.getDateOfDeath().getDate() << '\n';
