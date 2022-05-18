@@ -328,10 +328,9 @@ void mainMenu() {
                 break;
             }
             case 2: {
-                int selectedPerson;
                 std::vector<Node<Person>*> persons = selectSearchTerm(ancestorChart);
 
-                if (persons.size() == 0){
+                if (persons.empty()){
                     std::cout << "No person matching search could be found";
                 }
 
