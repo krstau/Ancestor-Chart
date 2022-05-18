@@ -18,7 +18,7 @@ bool running = true;
     * @param string from user input.
     * @return string with capitalized first letter.
     */
-std::string capitalizeString(std::string word) {
+std::string capitalizeString(std::string word) {         //TODO: trim function
     std::transform(std::begin(word), std::end(word), std::begin(word),
                    [](char const &c) {
                        return std::tolower(c);
@@ -348,14 +348,17 @@ void mainMenu() {
 
         switch (choice) {
             case 1: {
-                // Person person();
-                // addPerson();
+                /*Node<Person> *node = searchforNode(ancestorChart);
+                if (node != nullptr){
+                    Person person = createPerson();
+                    BinaryTree<Person>::insertNode(node, person);
+                }*/
                 break;
             }
             case 2: {
                 Node<Person> * node = searchforNode(ancestorChart);
                 if (node != nullptr){
-                    std::cout << node->getData().getFullName();
+                    std::cout << node->getData();
                 }
                 break;
             }

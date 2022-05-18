@@ -24,7 +24,7 @@ public:
 
     void traverseDepthFirst(std::function<void(Node<T>*)>&) const;
 
-    void insertNode(Node<T> node, T data);
+    void insertNode(Node<T> *node, T data);
     bool isEmpty();
     bool isRoot();
     bool hasLeftChild();
@@ -49,18 +49,19 @@ BinaryTree<T>::BinaryTree(const T& data) : root_(new Node<T>(data)) {
 }
 
 template<typename T>
-void BinaryTree<T>::insertNode(Node<T> node, T data) {
-    auto newNode = std::make_unique<Node<T>> (data);
+void BinaryTree<T>::insertNode(Node<T> *node, T data) {
     if (node->getLeftPtr() == nullptr){
+        auto newNode = std::make_unique<Node<T>> (data);
         node->setLeftPtr(newNode);
         size_++;
     }
     else if (node->getRightPtr() == nullptr){
+        auto newNode = std::make_unique<Node<T>> (data);
         node->setRightPtr(newNode);
         size_++;
     }
     else {
-        std::cout << "Error: \n";
+        std::cout << "Error: node is full \n";
     }
 }
 
