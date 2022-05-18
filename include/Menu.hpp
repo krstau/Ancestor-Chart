@@ -56,7 +56,7 @@ bool yesOrNo() {
     */
 Person::Gender inputGender() {
     std::string gender;
-    std::cout << "Enter gender (male/female): ";
+    std::cout << "Enter gender (male/female):" << std::endl;
     while (true) {
         std::cin >> gender;
         gender = capitalizeString(gender);
@@ -66,7 +66,7 @@ Person::Gender inputGender() {
         if (gender == "Female") {
             return Person::Gender::female;
         } else {
-            std::cout << "\nError: please enter a valid gender (male/female):";
+            std::cout << std::endl << "Error: please enter a valid gender (male/female):" << std::endl;
         }
     }
 }
@@ -101,19 +101,19 @@ Person createPerson() {
     Date dateOfDeath;
     Date dateOfBirth;
     Person::State state = Person::alive;
-    Person::Gender gender = Person::unknownGender;
-    std::cout << "Enter firstname:";
+    Person::Gender gender;
+    std::cout << "Enter firstname:" << std::endl;
     std::cin >> firstName;
     firstName = capitalizeString(firstName);
-    std::cout << "Enter lastname:";
+    std::cout << "Enter lastname:" << std::endl;
     std::cin >> lastName;
     lastName = capitalizeString(lastName);
-    std::cout << "Enter date of birth (DD/MM/YYYY):";
+    std::cout << "Enter date of birth (DD/MM/YYYY):" << std::endl;
     Date::enterDate(dateOfBirth);
-    std::cout << "Is the person deceased (Yes/No)?";
+    std::cout << "Is the person deceased (Yes/No)?" << std::endl;
     bool answer = yesOrNo();
     if (answer) {// TODO: Check if date of year isn't less than year of birth
-        std::cout << "Enter date of death (DD/MM/YYYY):";
+        std::cout << "Enter date of death (DD/MM/YYYY):" << std::endl;
         Date::enterDate(dateOfDeath);
         state = Person::deceased;
     }
@@ -147,9 +147,9 @@ std::ostream &operator<<(std::ostream &os, const Person &person) {
 int getNumberFromUser() {
     int integer;
     while (!(std::cin >> integer)) {
-        std::cout << "Invalid input, please input a number\n";
+        std::cout << "Invalid input, please input a number" << std::endl;
         std::cin.clear();
-        std::cin.ignore(132, '\n');
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max() , '\n');
     }
     return integer;
 }
@@ -309,7 +309,7 @@ std::vector<Node<Person>*> selectSearchTerm(AncestorChart ancestorChart) {  //ch
     * @return none.
     */
 void mainMenu() {
-    std::cout << "Welcome to:\n";
+    std::cout << "Welcome to:";
     printSetupMenu();
     Person rootPerson = createPerson();
     AncestorChart ancestorChart = AncestorChart(rootPerson);
@@ -328,18 +328,21 @@ void mainMenu() {
             }
             case 2: {
                 std::vector<Node<Person>*> persons = selectSearchTerm(ancestorChart); //make this std::vector<Person> if node implementation does not work!
-                //TODO: add print vector with numbers so user can choose
+                std::cout << "List of persons: " << std::endl;
+                for(size_t index{}; index < persons.size(); ++index)
+                    std::cout << "\n" << "[" << index << "]" << " " << persons[index]->getData().getFullName() << std::endl;
                 break;
             }
             case 3: {
+                // addPerson();
                 break;
             }
             case 4: {
-                // TODO editPerson(); Work in progress
+
                 break;
             }
             case 5: {
-                //deletePerson();
+                // deletePerson();
                 break;
             }
             case 0:
