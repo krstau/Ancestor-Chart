@@ -38,7 +38,7 @@ void Date::setDate(int day, int month, int year){
  * @param year Year of the date.
  * @return true if date is valid, false if not.
  */
-bool Date::checkIfDateIsValid(int day, int month, int year) {
+bool Date::isValidDate(int day, int month, int year) {
     if ((day >= 1 && day <= 30) &&
                 (month == 4) || (month == 6) ||(month == 9) || (month == 11)) {
         return true;
@@ -60,6 +60,23 @@ bool Date::checkIfDateIsValid(int day, int month, int year) {
 }
 
 /**
+ * Validates if date is correct format.
+ *
+ * @param Date as a string.
+ * @return true if the date is correct format 00/00/0000.
+ */
+bool Date::isValidDateFormat(std::string dateString) {
+    if (dateString.size() != 10) return false;
+    char delimiter = '/';
+    if ((dateString[2] != delimiter) || (dateString[5] != delimiter)) return false;
+    for (int i = 0; i < 10; i++){
+        if (i == 2 || i == 5) continue;
+        if (!isdigit(dateString[i])) return false;
+    }
+    return true;
+}
+
+/**
  * Enter date function.
  * Takes user input as a string,
  * splits the string into day, month and year.
@@ -70,12 +87,14 @@ void Date::enterDate(Date &dateType) {
     int validDate = false;
     while (!validDate) {
         std::cin >> dateInput;
-        int day = std::stoi(dateInput.substr(0, 2));
-        int month = std::stoi(dateInput.substr(3, 2));
-        int year = std::stoi(dateInput.substr(6));
-        if (checkIfDateIsValid(day, month, year)) {
-            dateType.setDate(day, month , year);
-            validDate = true;
+        if (isValidDateFormat(dateInput)) {
+            int day = std::stoi(dateInput.substr(0, 2));
+            int month = std::stoi(dateInput.substr(3, 2));
+            int year = std::stoi(dateInput.substr(6));
+            if (isValidDate(day, month, year))  {
+                dateType.setDate(day, month , year);
+                validDate = true;
+            }
         }
         else {
             std::cout << "\nInvalid date! Please enter a valid date (DD/MM/YYYY): \n";

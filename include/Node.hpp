@@ -7,7 +7,6 @@
  * Node class.
  * @tparam T template for input data for node
  */
-
 template<class T>
 class Node {
 public:

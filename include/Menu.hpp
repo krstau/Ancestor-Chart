@@ -366,7 +366,8 @@ void mainMenu() {
                 // addPerson();
                 break;
             }
-            case 4: {
+            case 4:
+            {
 
                 break;
             }
