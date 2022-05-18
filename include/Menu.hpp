@@ -6,7 +6,6 @@
 #include <iostream>
 #include <string>
 #include <utility>
-#include <limits>
 
 /**
 * Sets the state of the menu.
@@ -45,7 +44,7 @@ void printLogo() {
     */
 AncestorChart setupAncestorChart() {
     std::cout << "Please create a root person:\n";
-    Person rootPerson = AncestorChart::createPerson();
+    Person rootPerson = Person::createPerson();
     AncestorChart ancestorChart = AncestorChart(rootPerson);
     return ancestorChart;
 }

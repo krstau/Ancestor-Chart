@@ -16,15 +16,15 @@ TEST_CASE( "Date can be set", "[Date]" ){
         REQUIRE(dateOutput == "24/12/2000");
     }
     SECTION( "invalid date will be detected") {
-        REQUIRE(!Date::checkIfDateIsValid(35, 1, 1970));
-        REQUIRE(!Date::checkIfDateIsValid(1, 15, 1970));
-        REQUIRE(!Date::checkIfDateIsValid(1, 1, 300000));
-        REQUIRE(!Date::checkIfDateIsValid(0, 1, 1970));
-        REQUIRE(!Date::checkIfDateIsValid(1, 0, 1970));
-        REQUIRE(!Date::checkIfDateIsValid(1, 1, 0));
-        REQUIRE(!Date::checkIfDateIsValid(30, 2, 1970));
-        REQUIRE(!Date::checkIfDateIsValid(29, 2, 1970));
-        REQUIRE(Date::checkIfDateIsValid(29, 2, 1972));
-        REQUIRE(Date::checkIfDateIsValid(1, 1, 1970));
+        REQUIRE(!Date::isValidDate(35, 1, 1970));
+        REQUIRE(!Date::isValidDate(1, 15, 1970));
+        REQUIRE(!Date::isValidDate(1, 1, 300000));
+        REQUIRE(!Date::isValidDate(0, 1, 1970));
+        REQUIRE(!Date::isValidDate(1, 0, 1970));
+        REQUIRE(!Date::isValidDate(1, 1, 0));
+        REQUIRE(!Date::isValidDate(30, 2, 1970));
+        REQUIRE(!Date::isValidDate(29, 2, 1970));
+        REQUIRE(Date::isValidDate(29, 2, 1972));
+        REQUIRE(Date::isValidDate(1, 1, 1970));
     }
 }
