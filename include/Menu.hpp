@@ -6,6 +6,7 @@
 #include <string>
 #include <utility>
 #include <limits>
+#include "Formatting.hpp"
 
 /**
 * Sets the state of the menu.
@@ -13,167 +14,12 @@
 bool running = true;
 
 /**
-    * Capitalizes a string.
-    *
-    * @param string from user input.
-    * @return string with capitalized first letter.
-    */
-std::string capitalizeString(std::string word) {         //TODO: trim function
-    std::transform(std::begin(word), std::end(word), std::begin(word),
-                   [](char const &c) {
-                       return std::tolower(c);
-                   });
-    word[0] = std::toupper(word[0]);// NOLINT(cppcoreguidelines-narrowing-conversions) TODO: Find better alternative?
-    return word;
+ * Shuts down menu.
+ */
+void shutdown() {
+    running = false;
 }
 
-/**
-    * Prompts the user for yes or no.
-    *
-    * @param none.
-     * @return true for yes, false for no.
-    */
-bool yesOrNo() {
-    std::string answer;
-    while (true) {
-        std::cin >> answer;
-        answer = capitalizeString(answer);
-        if (answer == "Yes") {
-            return true;
-        }
-        if (answer == "No") {
-            return false;
-        } else {
-            std::cout << "\nError: please enter a valid choice (yes/no):";
-        }
-    }
-}
-
-/**
-     * Prompts the user for entering gender for either male or female.
-    *
-    * @param none.
-    * @return none.
-    */
-Person::Gender inputGender() {
-    std::string gender;
-    std::cout << "Enter gender (male/female):" << std::endl;
-    while (true) {
-        std::cin >> gender;
-        gender = capitalizeString(gender);
-        if (gender == "Male") {
-            return Person::Gender::male;
-        }
-        if (gender == "Female") {
-            return Person::Gender::female;
-        } else {
-            std::cout << std::endl << "Error: please enter a valid gender (male/female):" << std::endl;
-        }
-    }
-}
-
-/**
-    * Converts a gender enum to a string.
-    *
-    * @param gender.
-    * @return the gender in string format.
-    */
-std::string genderValueToString(Person::Gender gender) {
-    switch (gender) {
-        case Person::male: {
-            return "Male";
-        }
-        case Person::female: {
-            return "Female";
-        }
-        default: {
-            return "Unknown";
-        }
-    }
-}
-
-//TODO: ask user who this person is the parent of
-//with lambda function; find all people matching description and return in a vector
-//from the returned vector, ask the user which is the correct person
-//ask the user; is the person the mother or the father of the correct person
-//if father, add or edit leftNode, if mother add or edit rightNode
-Person createPerson() {
-    std::string firstName, lastName;
-    Date dateOfDeath;
-    Date dateOfBirth;
-    Person::State state = Person::alive;
-    Person::Gender gender;
-    std::cout << "Enter firstname:" << std::endl;
-    std::cin >> firstName;
-    firstName = capitalizeString(firstName);
-    std::cout << "Enter lastname:" << std::endl;
-    std::cin >> lastName;
-    lastName = capitalizeString(lastName);
-    std::cout << "Enter date of birth (DD/MM/YYYY):" << std::endl;
-    Date::enterDate(dateOfBirth);
-    std::cout << "Is the person deceased (Yes/No)?" << std::endl;
-    bool answer = yesOrNo();
-    if (answer) {// TODO: Check if date of year isn't less than year of birth
-        std::cout << "Enter date of death (DD/MM/YYYY):" << std::endl;
-        Date::enterDate(dateOfDeath);
-        state = Person::deceased;
-    }
-    gender = inputGender();
-    return {firstName, lastName, dateOfBirth, dateOfDeath, gender, state};
-}
-
-/**
-    * Prints all available information for a person.
-    *
-    * @param &person.
-    * @return os.
-    */
-std::ostream &operator<<(std::ostream &os, const Person &person) {
-    os << "Firstname: " << person.getFirstName() << '\n'
-       << "Lastname: " << person.getLastName() << '\n'
-       << "Gender: " << genderValueToString(person.getGender()) << '\n'
-       << "Date of birth: " << person.getDateOfBirth().getDate() << '\n';
-    if (person.getState() == Person::deceased) {
-        os << "Date of death: " << person.getDateOfDeath().getDate() << '\n';
-    }
-    return os;
-}
-
-/**
-    * Function that that takes user input from user and checks if it is an integer.
-    *
-    * @param none.
-    * @return a integer.
-    */
-int getNumberFromUser() {
-    int integer;
-    while (!(std::cin >> integer)) {
-        std::cout << "Invalid input, please input a number" << std::endl;
-        std::cin.clear();
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max() , '\n');
-    }
-    return integer;
-}
-
-/**
-    * Function that takes an integer between a lower and upper value.
-    *
-    * @param lower.
-    * @param upper.
-    * @return integer between upper and lower.
-    */
-int getValidIntBetween(int lower, int upper) {
-    int integer = getNumberFromUser();
-    bool validInt = false;
-    while (!validInt) {
-        if (integer <= upper && integer >= lower) {
-            validInt = true;
-        } else {
-            std::cout << "Please enter a number between: " << lower << " and " << upper << "\n";
-        }
-    }
-    return integer;
-}
 /**
 * Function to print logo to terminal.
 *
@@ -197,9 +43,11 @@ void printLogo() {
     * @param none.
     * @return none.
     */
-void printSetupMenu() {
-    printLogo();
+AncestorChart setupAncestorChart() {
     std::cout << "Please create a root person:\n";
+    Person rootPerson = AncestorChart::createPerson();
+    AncestorChart ancestorChart = AncestorChart(rootPerson);
+    return ancestorChart;
 }
 
 /**
@@ -226,19 +74,7 @@ void printMainMenu() {
               << "Enter choice:";
 }
 
-void shutdown() {
-    running = false;
-}
-
-/**
-    * Displays available search terms for finding a person.
-    * Lets the user select a search term and find a person.
-    *
-    * @param none.
-    * @return person.
-    */
-std::vector<Node<Person>*> selectSearchTerm(AncestorChart ancestorChart) {
-    std::vector<Node<Person>*> persons;
+void printSearchMenu(){
     std::cout << "\n"
               << "Please select a search term, or enter 0 to return to main menu:"
               << "\n"
@@ -254,78 +90,6 @@ std::vector<Node<Person>*> selectSearchTerm(AncestorChart ancestorChart) {
               << "\n"
               << "\n"
               << "Enter choice:";
-
-    int searchTerm = getValidIntBetween(0, 4);
-
-    switch (searchTerm) {
-        case 1: {
-            std::string firstName;
-            std::cout << "Please enter firstname:";
-            std::cin >> firstName;
-            firstName = capitalizeString(firstName);
-            persons = ancestorChart.getPersonsMatchingFirstName(firstName);
-            return persons;
-        }
-        case 2: {
-            std::string lastName;
-            std::cout << "Please enter lastname:";
-            std::cin >> lastName;
-            lastName = capitalizeString(lastName);
-            persons = ancestorChart.getPersonsMatchingLastName(lastName);
-            return persons;
-        }
-        case 3: {
-            std::string firstName, lastName;
-            std::cout << "Please enter firstname:";
-            std::cin >> firstName;
-            firstName = capitalizeString(firstName);
-            std::cout << "Please enter lastname:";
-            std::cin >> lastName;
-            lastName = capitalizeString(lastName);
-            persons = ancestorChart.getPersonsMatchingFullName(firstName, lastName);
-            return persons;
-        }
-        case 4: {
-            Person::Gender gender;
-            std::cout << "Please enter gender:";
-            gender = inputGender();
-            persons = ancestorChart.getPersonsMatchingGender(gender);
-            return persons;
-        }
-        case 0: {
-            break;
-        }
-        default:
-            std::cout << "Please enter a number between 0 and 4:\n";
-            break;
-    }
-    return persons;
-}
-
-
-Node<Person> * searchforNode(AncestorChart &ancestorChart) {
-    std::vector<Node<Person>*> persons = selectSearchTerm(ancestorChart);
-
-    if (persons.empty()){
-        std::cout << "No person matching search could be found";
-        return nullptr;
-    }
-
-    if (persons.size() == 1){
-        return persons[0];
-    }
-    else {
-        std::cout << "\n" << "List of persons: " << std::endl;
-        for (size_t index{}; index < persons.size(); ++index) {
-            std::cout << "\n"
-                      << "[" << index << "]"
-                      << " " << persons[index]->getData().getFullName() << std::endl;
-        }
-        std::cout << "\n"
-                  << "Please select a person: " << std::endl;
-        int selectedPerson = getValidIntBetween(0, persons.size());
-        return persons[selectedPerson];
-    }
 }
 
 /**
@@ -336,51 +100,42 @@ Node<Person> * searchforNode(AncestorChart &ancestorChart) {
     */
 void mainMenu() {
     std::cout << "Welcome to:";
-    printSetupMenu();
-    Person rootPerson = createPerson();
-    AncestorChart ancestorChart = AncestorChart(rootPerson);
-    std::cout << rootPerson;
+    printLogo();
+    AncestorChart ancestorChart = setupAncestorChart();
     while (running) {
-
         printMainMenu();
-
         int choice = getValidIntBetween(0, 4);
-
         switch (choice) {
             case 1: {
                 std::cout << "Who's parent do you want to add?" << "\n";
-                Node<Person> *node = searchforNode(ancestorChart);
-                if (node != nullptr){
-                    Person person = createPerson();
-                }
+                printSearchMenu();
+                ancestorChart.addPerson();
                 break;
             }
             case 2: {
-                Node<Person> * node = searchforNode(ancestorChart);
-                if (node != nullptr){
-                    std::cout << node->getData();
-                }
+                std::cout << "Something" << "\n";
+                printSearchMenu();
+                ancestorChart.searchForPerson();
                 break;
             }
             case 3: {
-                // addPerson();
+                std::cout << "Something" << "\n";
+                printSearchMenu();
+                ancestorChart.editPerson();
                 break;
             }
-            case 4:
-            {
-
+            case 4: {
+                std::cout << "Something" << "\n";
+                printSearchMenu();
+                ancestorChart.deletePerson();
                 break;
             }
-            case 5: {
-                // deletePerson();
-                break;
-            }
-            case 0:
+            case 0: {
                 shutdown();
                 break;
+            }
             default:
-                std::cout << "Please enter a number between 0 and 5: "
-                          << "\n";
+                std::cout << "Please enter a number between 0 and 5:" << std::endl;
                 break;
         }
     }

@@ -17,8 +17,12 @@ public:
     explicit AncestorChart(const Person &rootPerson) : persons_(BinaryTree<Person>(rootPerson)){}
     static Person createPerson();
     void addPerson();
+    void deletePerson();
+    void editPerson();
     void printPerson();
     void printPersons();
+    void searchForPerson();
+    Node<Person>* searchforNode(AncestorChart &ancestorChart);
     Person getPersonMatchingFirstName(const std::string &firstName) const;
     Person getPersonMatchingLastName(const std::string &lastName) const;
     Person getPersonMatchingFullName(const std::string &firstName, const std::string &lastName) const;

@@ -1,12 +1,109 @@
 #include "../include/AncestorChart.hpp"
 #include <iostream>
 
+/*
 void AncestorChart::addPerson() {
     std::cout << "Who's parent do you want to add?" << "\n";
     Node<Person> *node = searchforNode(ancestorChart);
     if (node != nullptr){
         Person person = AncestorChart::createPerson();
         persons_.insertNode(node, person);
+    }
+}
+*/
+
+void AncestorChart::searchForPerson() {
+    Node<Person> *node = searchforNode(ancestorChart);
+    if (node != nullptr) {
+        std::cout << node->getData();
+    }
+}
+
+void AncestorChart::editPerson(){
+
+}
+
+void AncestorChart::deletePerson(){
+
+}
+
+/**
+    * Displays available search terms for finding a person.
+    * Lets the user select a search term and find a person.
+    *
+    * @param none.
+    * @return person.
+    */
+std::vector<Node<Person>*> selectSearchTerm(AncestorChart ancestorChart) {
+    std::vector<Node<Person>*> persons;
+    int searchTerm = getValidIntBetween(0, 4);
+    switch (searchTerm) {
+        case 1: {
+            std::string firstName;
+            std::cout << "Please enter firstname:";
+            std::cin >> firstName;
+            firstName = capitalizeString(firstName);
+            persons = ancestorChart.getPersonsMatchingFirstName(firstName);
+            return persons;
+        }
+        case 2: {
+            std::string lastName;
+            std::cout << "Please enter lastname:";
+            std::cin >> lastName;
+            lastName = capitalizeString(lastName);
+            persons = ancestorChart.getPersonsMatchingLastName(lastName);
+            return persons;
+        }
+        case 3: {
+            std::string firstName, lastName;
+            std::cout << "Please enter firstname:";
+            std::cin >> firstName;
+            firstName = capitalizeString(firstName);
+            std::cout << "Please enter lastname:";
+            std::cin >> lastName;
+            lastName = capitalizeString(lastName);
+            persons = ancestorChart.getPersonsMatchingFullName(firstName, lastName);
+            return persons;
+        }
+        case 4: {
+            Person::Gender gender;
+            std::cout << "Please enter gender:";
+            gender = Person::inputGender();
+            persons = ancestorChart.getPersonsMatchingGender(gender);
+            return persons;
+        }
+        case 0: {
+            break;
+        }
+        default:
+            std::cout << "Please enter a number between 0 and 4:\n";
+            break;
+    }
+    return persons;
+}
+
+Node<Person>* AncestorChart::searchforNode(AncestorChart &ancestorChart) {
+    std::vector<Node<Person>*> persons = selectSearchTerm(ancestorChart);
+
+    if (persons.empty()){
+        std::cout << "No person matching search could be found";
+        return nullptr;
+    }
+
+    if (persons.size() == 1){
+        return persons[0];
+    }
+    else {
+        std::cout << "\n" << "List of persons: " << std::endl;
+        for (size_t index{}; index < persons.size(); ++index) {
+            std::cout << "\n"
+                      << "[" << index << "]"
+                      << " " << persons[index]->getData().getFullName() << std::endl;
+        }
+        std::cout << "\n"
+                  << "Please select a person: " << std::endl;
+        int selectedPerson = getValidIntBetween(0, persons.size());
+        return persons[selectedPerson];
     }
 }
 

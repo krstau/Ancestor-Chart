@@ -1,6 +1,7 @@
 #ifndef PERSON_CLI_PERSON_H
 #define PERSON_CLI_PERSON_H
 #include "Date.hpp"
+#include "Formatting.hpp"
 #include <string>
 
 /**
@@ -45,6 +46,7 @@ public:
     Date getDateOfDeath() const;
     Gender getGender() const;
     State getState() const;
+    static Gender inputGender();
 
 private:
     std::string firstName_;
