@@ -46,7 +46,12 @@ int getValidIntBetween(int lower, int upper) {
     * @param string from user input.
     * @return string with capitalized first letter.
     */
-std::string capitalizeString(std::string word) {         //TODO: trim function
+std::string capitalizeString(std::string word) {
+    std::string WHITESPACE = " \n\r\t\f\v";
+    size_t start = word.find_first_not_of(WHITESPACE);
+    word = (start == std::string::npos) ? "" : word.substr(start);
+    size_t end = word.find_last_not_of(WHITESPACE);
+    word = (end == std::string::npos) ? "" : word.substr(0, end + 1);
     std::transform(std::begin(word), std::end(word), std::begin(word),
                    [](char const &c) {
                        return std::tolower(c);
@@ -77,6 +82,5 @@ bool yesOrNo() {
         }
     }
 }
-
 
 #endif//ANCESTORCHART_FORMATTING_HPP
