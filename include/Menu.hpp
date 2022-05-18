@@ -327,10 +327,14 @@ void mainMenu() {
                 break;
             }
             case 2: {
+                int selectedPerson;
                 std::vector<Node<Person>*> persons = selectSearchTerm(ancestorChart); //make this std::vector<Person> if node implementation does not work!
                 std::cout << "List of persons: " << std::endl;
-                for(size_t index{}; index < persons.size(); ++index)
+                for(size_t index{}; index < persons.size(); ++index) {
                     std::cout << "\n" << "[" << index << "]" << " " << persons[index]->getData().getFullName() << std::endl;
+                }
+                std::cout << std::endl << "Please select a person: " << std::endl;
+                std::cin >> selectedPerson;
                 break;
             }
             case 3: {
