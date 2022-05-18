@@ -6,7 +6,7 @@ void AncestorChart::addPerson() {
     Node<Person> *node = searchforNode(ancestorChart);
     if (node != nullptr){
         Person person = AncestorChart::createPerson();
-        persons_->insertNode(node, person);
+        persons_.insertNode(node, person);
     }
 }
 

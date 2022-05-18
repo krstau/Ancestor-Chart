@@ -238,7 +238,7 @@ void shutdown() {
     * @return person.
     */
 std::vector<Node<Person>*> selectSearchTerm(AncestorChart ancestorChart) {
-    std::vector<Node<Person>*> returnpersons;
+    std::vector<Node<Person>*> persons;
     std::cout << "\n"
               << "Please select a search term, or enter 0 to return to main menu:"
               << "\n"
@@ -263,16 +263,16 @@ std::vector<Node<Person>*> selectSearchTerm(AncestorChart ancestorChart) {
             std::cout << "Please enter firstname:";
             std::cin >> firstName;
             firstName = capitalizeString(firstName);
-            returnpersons = ancestorChart.getPersonsMatchingFirstName(firstName);
-            return returnpersons;
+            persons = ancestorChart.getPersonsMatchingFirstName(firstName);
+            return persons;
         }
         case 2: {
             std::string lastName;
             std::cout << "Please enter lastname:";
             std::cin >> lastName;
             lastName = capitalizeString(lastName);
-            returnpersons = ancestorChart.getPersonsMatchingLastName(lastName);
-            return returnpersons;
+            persons = ancestorChart.getPersonsMatchingLastName(lastName);
+            return persons;
         }
         case 3: {
             std::string firstName, lastName;
@@ -282,15 +282,15 @@ std::vector<Node<Person>*> selectSearchTerm(AncestorChart ancestorChart) {
             std::cout << "Please enter lastname:";
             std::cin >> lastName;
             lastName = capitalizeString(lastName);
-            returnpersons = ancestorChart.getPersonsMatchingFullName(firstName, lastName);
-            return returnpersons;
+            persons = ancestorChart.getPersonsMatchingFullName(firstName, lastName);
+            return persons;
         }
         case 4: {
             Person::Gender gender;
             std::cout << "Please enter gender:";
             gender = inputGender();
-            returnpersons = ancestorChart.getPersonsMatchingGender(gender);
-            return returnpersons;
+            persons = ancestorChart.getPersonsMatchingGender(gender);
+            return persons;
         }
         case 0: {
             break;
@@ -299,7 +299,7 @@ std::vector<Node<Person>*> selectSearchTerm(AncestorChart ancestorChart) {
             std::cout << "Please enter a number between 0 and 4:\n";
             break;
     }
-    return returnpersons;
+    return persons;
 }
 
 
@@ -352,7 +352,6 @@ void mainMenu() {
                 Node<Person> *node = searchforNode(ancestorChart);
                 if (node != nullptr){
                     Person person = createPerson();
-                    persons_.insertNode(node, person);
                 }
                 break;
             }
