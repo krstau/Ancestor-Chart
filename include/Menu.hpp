@@ -105,7 +105,7 @@ void mainMenu() {
     AncestorChart ancestorChart = setupAncestorChart();
     while (running) {
         printMainMenu();
-        int choice = getValidIntBetween(0, 4);
+        int choice = getValidIntBetween(0, 5);
         switch (choice) {
             case 1: {
                 std::cout << "Who's parent do you want to add?" << "\n";
