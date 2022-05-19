@@ -34,9 +34,9 @@ void AncestorChart::deletePerson(AncestorChart &ancestorChart) {
 }
 
 /**
- * Prints all persons.
+ * Prints all persons in the ancestor chart.
  *
- * @param none.
+ * @param &ancestorChart.
  * @return none.
  */
 void AncestorChart::printAllPersons(AncestorChart &ancestorChart) {
@@ -46,12 +46,16 @@ void AncestorChart::printAllPersons(AncestorChart &ancestorChart) {
     };
     ancestorChart.getBinaryTree().traverseDepthFirst(printPersons);
     std::cout << "\n" << "Enter 0 to return to main menu." << std::endl;
-    int input;
-    std::cin >> input;
-    if (input == 0) {
-    }
-    else {
-        std::cout << "Invalid input, please enter 0 to return to main menu." << std::endl;
+    bool validInput = false; // TODO: Make a global function
+    while (!validInput) {
+        int input;
+        std::cin >> input;
+        if (input == 0) {
+            validInput = true;
+        }
+        else {
+            std::cout << "Invalid input, please enter 0 to return to main menu." << std::endl;
+        }
     }
 }
 

@@ -106,19 +106,19 @@ void mainMenu() {
         int choice = getValidIntBetween(0, 5);
         switch (choice) {
             case 1: {
-                std::cout << "Who's parent do you want to add?" << "\n";
+                std::cout << "Who's parent do you want to add?" << "\n" << std::endl;
                 printSearchMenu();
                 AncestorChart::addPerson(ancestorChart);
                 break;
             }
             case 2: {
-                std::cout << "Who's detailed information to search for?" << "\n";
+                std::cout << "Who's detailed information to search for?" << "\n" << std::endl;
                 printSearchMenu();
                 AncestorChart::searchForPerson(ancestorChart);
                 break;
             }
             case 3: {
-                std::cout << "Who's information do you want to edit?" << "\n";
+                std::cout << "Who's information do you want to edit?" << "\n" << std::endl;
                 printSearchMenu();
                 AncestorChart::editPerson(ancestorChart);
                 break;
