@@ -147,7 +147,6 @@ Person Person::createPerson() {
             }
             else {
                 std::cout << "Date of death cannot be before date of birth!" << std::endl;
-                validDate = false;
             }
         }
     }

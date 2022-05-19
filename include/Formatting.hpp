@@ -91,18 +91,16 @@ namespace {
     * @param none.
     */
     void promptToReturnToMainMenu() {
+        bool validInput = false;
         std::cout << "\n"
                   << "Enter 0 to return to main menu." << std::endl;
-        bool validInput = false;
-        while (!validInput) {
-            std::string input;
-            std::cin >> input;
-            if (stoi(input) == 0) {
+        int input = validateNumberInput();
+        while (!validInput)
+            if (input == 0) {
                 validInput = true;
             } else {
                 std::cout << "Invalid input, please enter 0 to return to main menu." << std::endl;
             }
-        }
     }
 }// namespace
 #endif//ANCESTORCHART_FORMATTING_HPP
