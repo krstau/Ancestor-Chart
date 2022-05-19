@@ -1,11 +1,5 @@
 #include "../include/AncestorChart.hpp"
 
-/**
- * Adds a person to the ancestor chart.
- *
- * @param &ancestorChart.
- * @return none.
- */
 void AncestorChart::addPerson(AncestorChart &ancestorChart) {
     Node<Person> *node = searchForNode(ancestorChart);
     if (node != nullptr) {
@@ -15,25 +9,13 @@ void AncestorChart::addPerson(AncestorChart &ancestorChart) {
     }
 }
 
-/**
- * Search for one person and print information.
- *
- * @param &ancestorChart.
- * @return none.
- */
-void AncestorChart::printPerson(AncestorChart &ancestorChart) {
+void AncestorChart::searchForPerson(AncestorChart &ancestorChart) {
     Node<Person> *node = searchForNode(ancestorChart);
     if (node != nullptr) {
         std::cout << node->getData();
     }
 }
 
-/**
- * Delete a person in the ancestor chart.
- *
- * @param &ancestorChart.
- * @return none.
- */
 void AncestorChart::editPerson(AncestorChart &ancestorChart) {
     Node<Person> *node = searchForNode(ancestorChart);
     if (node != nullptr) {
@@ -43,18 +25,11 @@ void AncestorChart::editPerson(AncestorChart &ancestorChart) {
     }
 }
 
-/**
- * Delete a person in the ancestor chart.
- *
- * @param &ancestorChart.
- * @return none.
- */
 void AncestorChart::deletePerson(AncestorChart &ancestorChart) {
     Node<Person> *node = searchForNode(ancestorChart);
     if (node != nullptr) {
-        if (node->isLeaf()){
-            delete node;
-        }
+        if ()
+        std::cout << node->setData();
     }
 }
 
@@ -70,38 +45,32 @@ void AncestorChart::printAllPersons(AncestorChart &ancestorChart) {
         std::cout << person.getFullName() << std::endl;
     };
     ancestorChart.getBinaryTree().traverseDepthFirst(printPersons);
-    std::cout << "\n"
-              << "Enter 0 to return to main menu." << std::endl;
-    bool validInput = false;// TODO: Doesn't work. Make a global function
+    std::cout << "\n" << "Enter 0 to return to main menu." << std::endl;
+    bool validInput = false; // TODO: Make a global function
     while (!validInput) {
         int input;
         std::cin >> input;
         if (input == 0) {
             validInput = true;
-        } else {
+        }
+        else {
             std::cout << "Invalid input, please enter 0 to return to main menu." << std::endl;
         }
     }
 }
 
-/**
-* Displays available search terms for finding a person.
-* Lets the user select a search term and find a person.
-*
-* @param none.
-* @return person.
-*/
+
 BinaryTree<Person> AncestorChart::getBinaryTree() const {
     return binaryTree_;
 }
 
 /**
-* Displays available search terms for finding a person.
-* Lets the user select a search term and find a person.
-*
-* @param none.
-* @return person.
-*/
+    * Displays available search terms for finding a person.
+    * Lets the user select a search term and find a person.
+    *
+    * @param none.
+    * @return person.
+    */
 std::vector<Node<Person> *> selectSearchTerm(AncestorChart ancestorChart) {
     std::vector<Node<Person> *> persons;
     int searchTerm = getValidIntBetween(0, 4);
@@ -183,7 +152,7 @@ std::vector<Node<Person> *> AncestorChart::getPersonsMatchingFirstName(const std
             persons.emplace_back(node);
         }
     };
-    binaryTree_.traverseDepthFirst(printPersons);//TODO: ancestorChart.getBinaryTree()
+    binaryTree_.traverseDepthFirst(printPersons);
     return persons;
 }
 
