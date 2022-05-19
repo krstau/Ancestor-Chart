@@ -77,7 +77,7 @@ Person::State Person::getState() const {
     */
 Person::Gender Person::inputGender() {
     std::string gender;
-    std::cout << "Enter gender (male/female):" << std::endl;
+    std::cout << "Enter gender (male/female/unknown):" << std::endl;
     while (true) {
         std::cin >> gender;
         gender = capitalizeString(gender);
@@ -86,8 +86,12 @@ Person::Gender Person::inputGender() {
         }
         if (gender == "Female") {
             return Person::Gender::female;
+        }
+        if (gender == "Unknown") {
+            return Person::Gender::unknownGender;
         } else {
-            std::cout << std::endl << "Error: please enter a valid gender (male/female):" << std::endl;
+            std::cout << std::endl
+                      << "Error: please enter a valid gender (male/female/unknown):" << std::endl;
         }
     }
 }
@@ -122,6 +126,7 @@ Person Person::createPerson() {
     Date dateOfBirth;
     Person::State state = Person::alive;
     Person::Gender gender;
+    bool validDate = false;
     std::cout << "Enter firstname:" << std::endl;
     std::cin >> firstName;
     firstName = capitalizeString(firstName);
@@ -132,10 +137,18 @@ Person Person::createPerson() {
     Date::enterDate(dateOfBirth);
     std::cout << "Is the person deceased (Yes/No)?" << std::endl;
     bool answer = yesOrNo();
-    if (answer) {// TODO: Check if date of year isn't less than year of birth
-        std::cout << "Enter date of death (DD/MM/YYYY):" << std::endl;
-        Date::enterDate(dateOfDeath);
-        state = Person::deceased;
+    if (answer) {
+        while (!validDate) {
+            Date::enterDate(dateOfDeath);
+            if (Date::compareDates(dateOfBirth, dateOfDeath)) {
+                state = Person::deceased;
+                validDate = true;
+            }
+            else {
+                std::cout << "Date of death cannot be before date of birth!" << std::endl;
+                validDate = false;
+            }
+        }
     }
     gender = inputGender();
     return {firstName, lastName, dateOfBirth, dateOfDeath, gender, state};
@@ -150,10 +163,10 @@ std::ostream &operator<<(std::ostream &os, const Person &person) {
     os << "Firstname: " << person.getFirstName() << '\n'
        << "Lastname: " << person.getLastName() << '\n'
        << "Gender: " << Person::genderValueToString(person.getGender()) << '\n';
-    Date dateOfBirth = person.getDateOfBirth();
+    std::string dateOfBirth = "01/01/1970";
     os << "Date of birth: " << dateOfBirth << '\n';
     if (person.getState() == Person::deceased) {
-        os << "Date of death: " << person.getDateOfDeath() << '\n';
+        os << "Date of death: " << dateOfBirth << '\n';
     }
     return os;
 }

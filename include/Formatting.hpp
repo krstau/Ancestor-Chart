@@ -68,7 +68,6 @@ namespace {
     * @param none.
      * @return true for yes, false for no.
     */
-
     bool yesOrNo() {
         std::string answer;
         while (true) {
@@ -81,6 +80,26 @@ namespace {
                 return false;
             } else {
                 std::cout << "\nError: please enter a valid choice (yes/no):";
+            }
+        }
+    }
+
+    /**
+    * Prompts the user an option to return to main menu.
+    *
+    * @param none.
+    */
+    void promptToReturnToMainMenu() {
+        std::cout << "\n"
+                  << "Enter 0 to return to main menu." << std::endl;
+        bool validInput = false;
+        while (!validInput) {
+            std::string input;
+            std::cin >> input;
+            if (stoi(input) == 0) {
+                validInput = true;
+            } else {
+                std::cout << "Invalid input, please enter 0 to return to main menu." << std::endl;
             }
         }
     }

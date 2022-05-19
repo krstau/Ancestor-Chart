@@ -19,7 +19,7 @@ public:
     static void printPerson(AncestorChart &ancestorChart);
     static void deletePerson(AncestorChart &ancestorChart);
     static void editPerson(AncestorChart &ancestorChart);
-    static void printAllPersons(AncestorChart &ancestorChart);
+    static void printAllPersons(AncestorChart &ancestorChart) ;
     BinaryTree<Person> getBinaryTree() const;
     static Node<Person>* searchForNode(AncestorChart &ancestorChart);
     std::vector<Node<Person>*> getPersonsMatchingFirstName(const std::string &firstName);

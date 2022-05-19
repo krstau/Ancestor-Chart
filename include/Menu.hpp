@@ -130,7 +130,7 @@ void mainMenu() {
                 break;
             }
             case 5: {
-                std::cout << "Printing all persons in ancestor chart" << "\n" << std::endl;
+                std::cout << "\nPrinting all persons in ancestor chart: " << "\n" << std::endl;
                 AncestorChart::printAllPersons(ancestorChart);
                 break;
             }

@@ -7,11 +7,13 @@ void AncestorChart::addPerson(AncestorChart &ancestorChart) {
         Person person = Person::createPerson();
         ancestorChart.getBinaryTree().insertNode(node, person);
     }
+    promptToReturnToMainMenu();
 }
 
 void AncestorChart::printPerson(AncestorChart &ancestorChart) {
     Node<Person> *node = searchForNode(ancestorChart);
     if (node != nullptr) {
+        std::cout << "\nDisplaying information for " << node->getData().getFullName() << ":" << std::endl;
         std::cout << node->getData();
     }
 }
@@ -25,15 +27,11 @@ void AncestorChart::editPerson(AncestorChart &ancestorChart) {
     }
 }
 
-/*
 void AncestorChart::deletePerson(AncestorChart &ancestorChart) {
     Node<Person> *node = searchForNode(ancestorChart);
     if (node != nullptr) {
-        if ()
-        std::cout << node->setData();
     }
 }
-*/
 
 /**
  * Prints all persons in the ancestor chart.
@@ -47,18 +45,7 @@ void AncestorChart::printAllPersons(AncestorChart &ancestorChart) {
         std::cout << person.getFullName() << std::endl;
     };
     ancestorChart.getBinaryTree().traverseDepthFirst(printPersons);
-    std::cout << "\n" << "Enter 0 to return to main menu." << std::endl;
-    bool validInput = false; // TODO: Make a global function
-    while (!validInput) {
-        int input;
-        std::cin >> input;
-        if (input == 0) {
-            validInput = true;
-        }
-        else {
-            std::cout << "Invalid input, please enter 0 to return to main menu." << std::endl;
-        }
-    }
+    promptToReturnToMainMenu();
 }
 
 
