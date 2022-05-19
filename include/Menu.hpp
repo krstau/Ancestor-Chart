@@ -124,7 +124,7 @@ void mainMenu() {
                 break;
             }
             case 4: {
-                std::cout << "Something" << "\n";
+                std::cout << "Who do you want to delete?" << "\n";
                 printSearchMenu();
                 AncestorChart::deletePerson(ancestorChart);
                 break;
