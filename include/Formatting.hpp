@@ -30,9 +30,10 @@ namespace {
     * @return integer between upper and lower.
     */
     int inputValidIntBetween(int lower, int upper) {
-        int choice = validateNumberInput();
+        int choice;
         bool validInt = false;
         while (!validInt) {
+            choice = validateNumberInput();
             if (choice <= upper && choice >= lower) {
                 validInt = true;
             } else {
