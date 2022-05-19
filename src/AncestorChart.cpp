@@ -31,6 +31,13 @@ void AncestorChart::editPerson(AncestorChart &ancestorChart) {
 void AncestorChart::deletePerson(AncestorChart &ancestorChart) {
     Node<Person> *node = searchForNode(ancestorChart);
     if (node != nullptr) {
+        if(node->isLeaf()){
+            //delete
+        }
+        else { //TODO: add logic asking user if setting data to unknown instead of deleting is fine
+            Person unknownperson = Person();
+            node->setData(unknownperson);
+        }
     }
 }
 
