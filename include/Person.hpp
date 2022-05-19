@@ -28,14 +28,7 @@ public:
         unknownState /**< State value unknown. */
     };
     /**
-     * Constructor to create a person.
-     *
-     * @param firstName Firstname of the person.
-     * @param lastName Lastname of the person.
-     * @param dateOfBirth Date of birth of the person.
-     * @param dateOfDeath Date of death of the person.
-     * @param gender Gender of the person.
-     * @param state State of the person.
+     * Person default constructor.
      */
     Person();
     Person(std::string firstName, std::string lastName, Date dateOfBirth, Date dateOfDeath, Gender gender, State state);
@@ -47,7 +40,7 @@ public:
     Date getDateOfDeath() const;
     Gender getGender() const;
     State getState() const;
-    static Person createPerson();
+    Person createPerson();
     static Gender inputGender();
     static std::string genderValueToString(Gender gender);
 

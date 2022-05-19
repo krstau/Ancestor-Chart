@@ -14,9 +14,11 @@ public:
      *
      * @param firstName Firstname of the person.
      */
-    explicit AncestorChart(const Person &rootPerson) : binaryTree_(BinaryTree<Person>(rootPerson)){}
+    AncestorChart();
+    void createAncestorChart();
     static void addPerson(AncestorChart &ancestorChart);
     static void printPerson(AncestorChart &ancestorChart);
+    void setRootPerson(Person person);
     // static void deletePerson(AncestorChart &ancestorChart);
     static void editPerson(AncestorChart &ancestorChart);
     static void printAllPersons(AncestorChart &ancestorChart) ;
@@ -31,9 +33,9 @@ public:
 
 
 private:
+    Person rootPerson_;
     BinaryTree<Person> binaryTree_;
     typedef std::function<void(Node<Person> *)> nodePointerFunction;
-
 };
 
 #endif//ANCESTOR_CHART_ANCESTORCHART_HPP

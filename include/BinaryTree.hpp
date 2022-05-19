@@ -17,13 +17,15 @@ public:
      *
      * @param data
      */
+    BinaryTree();
     explicit BinaryTree(const T& data);
 
     // Destructor
     ~BinaryTree();
 
-    int getSize();
-    Node<T> *getRoot();
+    int getSize() const;
+    Node<T> *getRoot() const;
+    void setRoot();
     Node<T> *getParent();
     Node<T> *getRightChild();
     Node<T> *getLeftChild();
@@ -37,10 +39,15 @@ public:
     bool hasParent();
 
 private:
-    void traverseDepthFirst(Node<T>* root, std::function<void(Node<T>*)>&) const;
     Node<T> *root_ = nullptr;
     int size_ = 0;
+    void traverseDepthFirst(Node<T>* root, std::function<void(Node<T>*)>&) const;
 };
+
+template<typename T>
+Node<T> *BinaryTree<T>::setRoot(){}() {
+}
+
 
 template<typename T>
 BinaryTree<T>::~BinaryTree(){
@@ -81,7 +88,7 @@ void BinaryTree<T>::insertNode(Node<T> *node, T data) {
 }
 
 template<typename T>
-int BinaryTree<T>::getSize() {
+int BinaryTree<T>::getSize() const {
     return size_;
 }
 
@@ -91,7 +98,7 @@ bool BinaryTree<T>::isEmpty() {
 }
 
 template<typename T>
-Node<T> *BinaryTree<T>::getRoot() {
+Node<T> *BinaryTree<T>::getRoot() const {
     if(isEmpty()){
         std::cout << "BinaryTree is empty!" << std::endl;
         return nullptr;

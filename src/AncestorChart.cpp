@@ -1,5 +1,20 @@
 #include "../include/AncestorChart.hpp"
 
+/**
+ * Create new ancestorchart.
+ * @param &ancestorChart.
+ * @return none.
+ */
+void AncestorChart::createAncestorChart() {
+    AncestorChart ancestorChart = new ancestorChart;
+    Person rootPerson = createPerson();
+    ancestorChart.getBinaryTree().setRoot(rootPerson);
+}
+
+
+/**
+ * Add person to ancestor chart.
+ */
 void AncestorChart::addPerson(AncestorChart &ancestorChart) {
     Node<Person> *node = searchForNode(ancestorChart);
     if (node != nullptr) {
@@ -11,6 +26,9 @@ void AncestorChart::addPerson(AncestorChart &ancestorChart) {
     promptToReturnToMainMenu();
 }
 
+/**
+ * Print person in ancestor chart.
+ */
 void AncestorChart::printPerson(AncestorChart &ancestorChart) {
     Node<Person> *node = searchForNode(ancestorChart);
     if (node != nullptr) {
@@ -19,6 +37,9 @@ void AncestorChart::printPerson(AncestorChart &ancestorChart) {
     }
 }
 
+/**
+ * Edit person in ancestor chart.
+ */
 void AncestorChart::editPerson(AncestorChart &ancestorChart) {
     Node<Person> *node = searchForNode(ancestorChart);
     if (node != nullptr) {
@@ -26,6 +47,18 @@ void AncestorChart::editPerson(AncestorChart &ancestorChart) {
         Person person = Person::createPerson();
         node->setData(person);
     }
+}
+
+/**
+ * Delete all persons in ancestor chart.
+ */
+void AncestorChart::deleteAllPersons(AncestorChart &ancestorChart) {
+    nodePointerFunction printPersons = [](Node<Person> *node) {
+        Person person = node->getData();
+        std::cout << person.getFullName() << std::endl;
+    };
+    ancestorChart.getBinaryTree().traverseDepthFirst(printPersons);
+    promptToReturnToMainMenu();
 }
 
 /*void AncestorChart::deletePerson(AncestorChart &ancestorChart) {
