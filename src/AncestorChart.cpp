@@ -28,8 +28,8 @@ void AncestorChart::editPerson(AncestorChart &ancestorChart) {
 void AncestorChart::deletePerson(AncestorChart &ancestorChart) {
     Node<Person> *node = searchForNode(ancestorChart);
     if (node != nullptr) {
-        if ()
-        std::cout << node->setData();
+        if (true) {}
+        std::cout << node->getData();
     }
 }
 
@@ -73,7 +73,7 @@ BinaryTree<Person> AncestorChart::getBinaryTree() const {
     */
 std::vector<Node<Person> *> selectSearchTerm(AncestorChart ancestorChart) {
     std::vector<Node<Person> *> persons;
-    int searchTerm = getValidIntBetween(0, 4);
+    int searchTerm = inputValidIntBetween(0, 4);
     switch (searchTerm) {
         case 1: {
             std::string firstName;
@@ -139,7 +139,7 @@ Node<Person> *AncestorChart::searchForNode(AncestorChart &ancestorChart) {
         }
         std::cout << "\n"
                   << "Please select a person: " << std::endl;
-        int selectedPerson = getValidIntBetween(0, persons.size());
+        int selectedPerson = inputValidIntBetween(0, persons.size());
         return persons[selectedPerson];
     }
 }

@@ -76,15 +76,15 @@ Person::State Person::getState() const {
     * @return none.
     */
 Person::Gender Person::inputGender() {
-    std::string gender;
+    std::string genderInput;
     std::cout << "Enter gender (male/female):" << std::endl;
     while (true) {
-        std::cin >> gender;
-        gender = capitalizeString(gender);
-        if (gender == "Male") {
+        std::cin >> genderInput;
+        genderInput = capitalizeString(genderInput);
+        if (genderInput == "Male") {
             return Person::Gender::male;
         }
-        if (gender == "Female") {
+        if (genderInput == "Female") {
             return Person::Gender::female;
         } else {
             std::cout << std::endl << "Error: please enter a valid gender (male/female):" << std::endl;
@@ -112,7 +112,6 @@ std::string Person::genderValueToString(Person::Gender gender) {
     }
 }
 
-//TODO: ask user who this person is the parent of
 //with lambda function; find all people matching description and return in a vector
 //from the returned vector, ask the user which is the correct person
 //ask the user; is the person the mother or the father of the correct person
@@ -130,12 +129,12 @@ Person Person::createPerson() {
     std::cin >> lastName;
     lastName = capitalizeString(lastName);
     std::cout << "Enter date of birth (DD/MM/YYYY):" << std::endl;
-    Date::enterDate(dateOfBirth);
+    Date::inputDate(dateOfBirth);
     std::cout << "Is the person deceased (Yes/No)?" << std::endl;
     bool answer = yesOrNo();
-    if (answer) {// TODO: Check if date of year isn't less than year of birth
+    if (answer) {
         std::cout << "Enter date of death (DD/MM/YYYY):" << std::endl;
-        Date::enterDate(dateOfDeath);
+        Date::inputDate(dateOfDeath);
         state = Person::deceased;
     }
     gender = inputGender();

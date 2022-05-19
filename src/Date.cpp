@@ -82,7 +82,7 @@ bool Date::isValidDateFormat(std::string dateString) {
  * splits the string into day, month and year.
  * Sets the date only if it is a valid date.
  */
-void Date::enterDate(Date &dateType) {
+void Date::inputDate(Date &dateType) {
     std::string dateInput;
     int validDate = false;
     while (!validDate) {

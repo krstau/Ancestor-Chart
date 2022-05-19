@@ -12,7 +12,7 @@ public:
     Date();
     std::string getDate() const;
     void setDate(int day, int month, int year);
-    static void enterDate(Date &dateType);
+    static void inputDate(Date &dateType);
     static bool isValidDateFormat(std::string dateString);
     static bool isValidDate(int day, int month, int year) ;
 

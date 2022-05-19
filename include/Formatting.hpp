@@ -12,7 +12,7 @@ namespace {
     * @param none.
     * @return a integer.
     */
-    int getNumberFromUser() {
+    int validateNumberInput() {
         int integer;
         while (!(std::cin >> integer)) {
             std::cout << "Invalid input, please input a number" << std::endl;
@@ -29,17 +29,17 @@ namespace {
     * @param upper.
     * @return integer between upper and lower.
     */
-    int getValidIntBetween(int lower, int upper) {
-        int integer = getNumberFromUser();
+    int inputValidIntBetween(int lower, int upper) {
+        int choice = validateNumberInput();
         bool validInt = false;
         while (!validInt) {
-            if (integer <= upper && integer >= lower) {
+            if (choice <= upper && choice >= lower) {
                 validInt = true;
             } else {
                 std::cout << "Please enter a number between: " << lower << " and " << upper << "\n";
             }
         }
-        return integer;
+        return choice;
     }
 
     /**
@@ -49,10 +49,10 @@ namespace {
     * @return string with capitalized first letter.
     */
     std::string capitalizeString(std::string word) {
-        std::string WHITESPACE = " \n\r\t\f\v";
-        size_t start = word.find_first_not_of(WHITESPACE);
+        std::string filter = " \n\r\t\f\v";
+        size_t start = word.find_first_not_of(filter);
         word = (start == std::string::npos) ? "" : word.substr(start);
-        size_t end = word.find_last_not_of(WHITESPACE);
+        size_t end = word.find_last_not_of(filter);
         word = (end == std::string::npos) ? "" : word.substr(0, end + 1);
         std::transform(std::begin(word), std::end(word), std::begin(word),
                        [](char const &c) {
