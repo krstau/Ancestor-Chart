@@ -6,6 +6,7 @@ void AncestorChart::addPerson(AncestorChart &ancestorChart) {
         std::cout << "Adding parent to " << node->getData().getFullName() << ": " << std::endl;
         Person person = Person::createPerson();
         ancestorChart.getBinaryTree().insertNode(node, person);
+        std::cout << person.getFullName() << " has been added as " << node->getData().getFullName() << "'s parent!" << std::endl;
     }
     promptToReturnToMainMenu();
 }
