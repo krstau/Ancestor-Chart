@@ -191,7 +191,7 @@ std::vector<Node<Person> *> AncestorChart::getPersonsMatchingLastName(const std:
     std::vector<Node<Person> *> persons;
     nodePointerFunction printPersons = [&persons, &lastName](Node<Person> *node) {
         Person person = node->getData();
-        if (person.getFirstName() == lastName) {
+        if (person.getLastName() == lastName) {
             persons.emplace_back(node);
         }
     };
