@@ -12,7 +12,7 @@ class Node {
 public:
     explicit Node(const T& data);
     Node(const T& data,Node<T> *leftPtr,Node<T> *rightPtr);
-    T getData();
+    T getData() const;
     Node<T> *getLeftPtr() const;
     Node<T> *getRightPtr() const;
     void setData(const T& data);
@@ -60,7 +60,7 @@ void Node<T>::setData(const T& data){
  * @return data the node is holding
  */
 template<typename T>
-T Node<T>::getData(){
+T Node<T>::getData() const{
     return data_;
 }
 

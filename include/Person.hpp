@@ -37,7 +37,8 @@ public:
      * @param gender Gender of the person.
      * @param state State of the person.
      */
-    Person(std::string firstName = "Unknown", std::string lastName = "Unknown", Date dateOfBirth = Date(), Date dateOfDeath = Date(), Gender gender = unknownGender, State state = unknownState);
+    Person();
+    Person(std::string firstName, std::string lastName, Date dateOfBirth, Date dateOfDeath, Gender gender, State state);
     friend std::ostream &operator << (std::ostream &os, const Person &person);
     std::string getFirstName() const;
     std::string getLastName() const;
@@ -51,11 +52,11 @@ public:
     static std::string genderValueToString(Gender gender);
 
 private:
-    std::string firstName_;
-    std::string lastName_;
+    std::string firstName_ = "Unknown";
+    std::string lastName_ = "Unknown";
     Date dateOfBirth_;
     Date dateOfDeath_;
-    Gender gender_;
-    State state_;
+    Gender gender_ = unknownGender;
+    State state_ = unknownState;
 };
 #endif//PERSON_CLI_PERSON_H

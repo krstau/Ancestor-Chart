@@ -70,14 +70,28 @@ Person::State Person::getState() const {
 }
 
 /**
-     * Prompts the user for entering gender for either male or female.
-    *
-    * @param none.
-    * @return none.
-    */
+ * Prints all available information for a person.
+ * @param &person.
+ * @return os.
+ */
+std::ostream &operator<<(std::ostream &os, const Person &person) {
+    os << "Firstname: " << person.getFirstName() << '\n'
+       << "Lastname: " << person.getLastName() << '\n'
+       << "Gender: " << Person::genderValueToString(person.getGender()) << '\n';
+    os << "Date of birth: " << person.getDateOfBirth() << '\n';
+    if (person.getState() == Person::deceased) {
+        os << "Date of death: " << person.getDateOfDeath() << '\n';
+    }
+    return os;
+}
+
+/**
+ * Prompts the user for entering gender for either male or female.
+ * @return gender.
+ */
 Person::Gender Person::inputGender() {
     std::string gender;
-    std::cout << "Enter gender (male/female/unknown):" << std::endl;
+    std::cout << "Enter gender (male/female/unknown):";
     while (true) {
         std::cin >> gender;
         gender = capitalizeString(gender);
@@ -90,18 +104,16 @@ Person::Gender Person::inputGender() {
         if (gender == "Unknown") {
             return Person::Gender::unknownGender;
         } else {
-            std::cout << std::endl
-                      << "Error: please enter a valid gender (male/female/unknown):" << std::endl;
+            std::cout << std::endl << "Error: please enter a valid gender (male/female/unknown):" << std::endl;
         }
     }
 }
 
 /**
-* Converts a gender enum to a string.
-*
-* @param gender.
-* @return the gender in string format.
-*/
+ * Converts a gender enum to a string.
+ * @param gender.
+ * @return the gender in string format.
+ */
 std::string Person::genderValueToString(Person::Gender gender) {
     switch (gender) {
         case Person::male: {
@@ -127,46 +139,29 @@ Person Person::createPerson() {
     Person::State state = Person::alive;
     Person::Gender gender;
     bool validDate = false;
-    std::cout << "Enter firstname:" << std::endl;
+    std::cout << "Enter firstname:";
     std::cin >> firstName;
     firstName = capitalizeString(firstName);
-    std::cout << "Enter lastname:" << std::endl;
+    std::cout << "Enter lastname:";
     std::cin >> lastName;
     lastName = capitalizeString(lastName);
-    std::cout << "Enter date of birth (DD/MM/YYYY):" << std::endl;
+    std::cout << "Enter date of birth (DD/MM/YYYY):";
     Date::inputDate(dateOfBirth);
-    std::cout << "Is the person deceased (Yes/No)?" << std::endl;
+    std::cout << "Is the person deceased (Yes/No)?";
     bool isDead = yesOrNo();
     if (isDead) {
         while (!validDate) {
-            std::cout << "Enter date of death (DD/MM/YYYY):" << std::endl;
+            std::cout << "Enter date of death (DD/MM/YYYY):";
             Date::inputDate(dateOfDeath);
             if (Date::compareDates(dateOfBirth, dateOfDeath)) {
                 state = Person::deceased;
                 validDate = true;
             }
             else {
-                std::cout << "Date of death cannot be before date of birth!" << std::endl;
+                std::cout << std::endl << "Date of death cannot be before date of birth!" << std::endl;
             }
         }
     }
     gender = inputGender();
     return {firstName, lastName, dateOfBirth, dateOfDeath, gender, state};
-}
-
-/**
-* Prints all available information for a person.
-* @param &person.
-* @return os.
-*/
-std::ostream &operator<<(std::ostream &os, const Person &person) {
-    os << "Firstname: " << person.getFirstName() << '\n'
-       << "Lastname: " << person.getLastName() << '\n'
-       << "Gender: " << Person::genderValueToString(person.getGender()) << '\n';
-    std::string dateOfBirth = "01/01/1970";
-    os << "Date of birth: " << dateOfBirth << '\n';
-    if (person.getState() == Person::deceased) {
-        os << "Date of death: " << dateOfBirth << '\n';
-    }
-    return os;
 }

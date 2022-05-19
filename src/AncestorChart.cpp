@@ -1,5 +1,17 @@
 #include "../include/AncestorChart.hpp"
 
+/**
+ * Function to get binary tree.
+ * @return binary tree.
+ */
+BinaryTree<Person> AncestorChart::getBinaryTree() const {
+    return binaryTree_;
+}
+
+/**
+  * Function to add a person to the ancestor chart.
+  * @param ancestorChart
+  */
 void AncestorChart::addPerson(AncestorChart &ancestorChart) {
     Node<Person> *node = searchForNode(ancestorChart);
     if (node != nullptr) {
@@ -11,6 +23,10 @@ void AncestorChart::addPerson(AncestorChart &ancestorChart) {
     promptToReturnToMainMenu();
 }
 
+/**
+  * Function to print a person in the ancestor chart.
+  * @param ancestorChart
+  */
 void AncestorChart::printPerson(AncestorChart &ancestorChart) {
     Node<Person> *node = searchForNode(ancestorChart);
     if (node != nullptr) {
@@ -19,6 +35,10 @@ void AncestorChart::printPerson(AncestorChart &ancestorChart) {
     }
 }
 
+/**
+  * Function to edit a person in the ancestor chart.
+  * @param ancestorChart
+  */
 void AncestorChart::editPerson(AncestorChart &ancestorChart) {
     Node<Person> *node = searchForNode(ancestorChart);
     if (node != nullptr) {
@@ -28,6 +48,12 @@ void AncestorChart::editPerson(AncestorChart &ancestorChart) {
     }
 }
 
+
+/**
+  * Function to delete a person in the ancestor chart.
+  * @param ancestorChart
+  */
+/*
 void AncestorChart::deletePerson(AncestorChart &ancestorChart) {
     Node<Person> *node = searchForNode(ancestorChart);
     if (node != nullptr) {
@@ -40,10 +66,10 @@ void AncestorChart::deletePerson(AncestorChart &ancestorChart) {
         }
     }
 }
+ */
 
 /**
  * Prints all persons in the ancestor chart.
- *
  * @param &ancestorChart.
  * @return none.
  */
@@ -54,11 +80,6 @@ void AncestorChart::printAllPersons(AncestorChart &ancestorChart) {
     };
     ancestorChart.getBinaryTree().traverseDepthFirst(printPersons);
     promptToReturnToMainMenu();
-}
-
-
-BinaryTree<Person> AncestorChart::getBinaryTree() const {
-    return binaryTree_;
 }
 
 /**
@@ -110,7 +131,7 @@ std::vector<Node<Person> *> selectSearchTerm(AncestorChart ancestorChart) {
             break;
         }
         default:
-            std::cout << "Please enter a number between 0 and 4:\n";
+            std::cout << std::endl << "Please enter a number between 0 and 4:" << std::endl;
             break;
     }
     return persons;
@@ -135,7 +156,7 @@ Node<Person> *AncestorChart::searchForNode(AncestorChart &ancestorChart) {
                       << " " << persons[index]->getData().getFullName() << std::endl;
         }
         std::cout << "\n"
-                  << "Please select a person: " << std::endl;
+                  << "Please select a person: ";
         int selectedPerson = inputValidIntBetween(0, persons.size());
         return persons[selectedPerson];
     }
@@ -187,4 +208,7 @@ std::vector<Node<Person> *> AncestorChart::getPersonsMatchingGender(const Person
     };
     binaryTree_.traverseDepthFirst(printPersons);
     return persons;
+}
+void AncestorChart::deleteAllPersons(AncestorChart &ancestorChart) {
+
 }

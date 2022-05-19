@@ -27,9 +27,8 @@ public:
     Node<T> *getParent();
     Node<T> *getRightChild();
     Node<T> *getLeftChild();
-
     void traverseDepthFirst(std::function<void(Node<T>*)>&) const;
-
+    void destroyRecursive(Node<T> *node);
     void insertNode(Node<T> *node, T data);
     bool isEmpty();
     bool isRoot();
@@ -44,8 +43,19 @@ private:
 };
 
 template<typename T>
-BinaryTree<T>::~BinaryTree(){ //TODO: start from root, delete all nodes
+BinaryTree<T>::~BinaryTree(){
+    // destroyRecursive(root_);
+}
 
+template<typename T>
+void BinaryTree<T>::destroyRecursive(Node<T>* node)
+{
+    if (node)
+    {
+        destroyRecursive(node->getLeftPtr());
+        destroyRecursive(node->getRightPtr());
+        delete node;
+    }
 }
 
 template<typename T>
@@ -83,7 +93,7 @@ bool BinaryTree<T>::isEmpty() {
 template<typename T>
 Node<T> *BinaryTree<T>::getRoot() {
     if(isEmpty()){
-        std::cout << "Binarytree is empty!" << std::endl;
+        std::cout << "BinaryTree is empty!" << std::endl;
         return nullptr;
     }
     else {

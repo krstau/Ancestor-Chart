@@ -16,14 +16,15 @@ public:
     int getYear() const;
     void setDate(int day, int month, int year);
     void printDate();
+    friend std::ostream &operator << (std::ostream &os, const Date &date);
     static void inputDate(Date &dateType);
     static bool compareDates(Date &date1, Date &date2);
     static bool isValidDateFormat(std::string dateString);
     static bool isValidDate(int day, int month, int year);
 
 private:
-    int day_ = 01;
-    int month_ = 01;
+    int day_ = 1;
+    int month_ = 1;
     int year_ = 1970;
 };
 

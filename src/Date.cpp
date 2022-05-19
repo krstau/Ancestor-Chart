@@ -29,18 +29,6 @@ void Date::setDate(int day, int month, int year) {
 }
 
 /**
-* Prints the date in 00/00/0000 format.
-* @param &date.
-* @return os.
-*/
-std::ostream &operator<<(std::ostream &os, const Date &date) {
-    os << std::setw(2) << std::setfill('0') << date.getDay()
-       << "/" << std::setw(2) << std::setfill('0') << date.getMonth()
-       << "/" << std::setw(4) << std::setfill('0') << date.getYear();
-    return os;
-}
-
-/**
  * Function to check if date is a valid date.
  *
  * @param day Day of the date.
@@ -127,4 +115,16 @@ void Date::inputDate(Date &dateType) {
             std::cout << "\nInvalid date! Please enter a valid date (DD/MM/YYYY): \n";
         }
     }
+}
+
+/**
+* Prints the date in 00/00/0000 format.
+* @param &date.
+* @return os.
+*/
+std::ostream &operator<<(std::ostream &os, const Date &date) {
+    os << std::setw(2) << std::setfill('0') << date.getDay()
+       << "/" << std::setw(2) << std::setfill('0') << date.getMonth()
+       << "/" << std::setw(4) << std::setfill('0') << date.getYear();
+    return os;
 }
