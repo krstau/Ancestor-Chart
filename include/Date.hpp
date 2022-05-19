@@ -1,8 +1,9 @@
 #ifndef ANCESTOR_CHART_DATE_H
 #define ANCESTOR_CHART_DATE_H
+#include "../include/Formatting.hpp"
+#include <iomanip>
 #include <iostream>
 #include <string>
-#include "../include/Formatting.hpp"
 
 /**
  * Date class.
@@ -10,11 +11,14 @@
 class Date {
 public:
     Date() = default;
-    std::string getDate() const;
+    int getDay() const;
+    int getMonth() const;
+    int getYear() const;
     void setDate(int day, int month, int year);
+    void printDate();
     static void enterDate(Date &dateType);
     static bool isValidDateFormat(std::string dateString);
-    static bool isValidDate(int day, int month, int year) ;
+    static bool isValidDate(int day, int month, int year);
 
 private:
     int day_ = 01;

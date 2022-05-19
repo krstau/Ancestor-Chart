@@ -9,7 +9,7 @@ void AncestorChart::addPerson(AncestorChart &ancestorChart) {
     }
 }
 
-void AncestorChart::searchForPerson(AncestorChart &ancestorChart) {
+void AncestorChart::printPerson(AncestorChart &ancestorChart) {
     Node<Person> *node = searchForNode(ancestorChart);
     if (node != nullptr) {
         std::cout << node->getData();
@@ -25,6 +25,7 @@ void AncestorChart::editPerson(AncestorChart &ancestorChart) {
     }
 }
 
+/*
 void AncestorChart::deletePerson(AncestorChart &ancestorChart) {
     Node<Person> *node = searchForNode(ancestorChart);
     if (node != nullptr) {
@@ -32,6 +33,7 @@ void AncestorChart::deletePerson(AncestorChart &ancestorChart) {
         std::cout << node->setData();
     }
 }
+*/
 
 /**
  * Prints all persons in the ancestor chart.

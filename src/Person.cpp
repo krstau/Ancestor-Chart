@@ -149,10 +149,11 @@ Person Person::createPerson() {
 std::ostream &operator<<(std::ostream &os, const Person &person) {
     os << "Firstname: " << person.getFirstName() << '\n'
        << "Lastname: " << person.getLastName() << '\n'
-       << "Gender: " << Person::genderValueToString(person.getGender()) << '\n'
-       << "Date of birth: " << person.getDateOfBirth().getDate() << '\n';
+       << "Gender: " << Person::genderValueToString(person.getGender()) << '\n';
+    Date dateOfBirth = person.getDateOfBirth();
+    os << "Date of birth: " << dateOfBirth << '\n';
     if (person.getState() == Person::deceased) {
-        os << "Date of death: " << person.getDateOfDeath().getDate() << '\n';
+        os << "Date of death: " << person.getDateOfDeath() << '\n';
     }
     return os;
 }
