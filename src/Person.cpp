@@ -134,12 +134,12 @@ Person Person::createPerson() {
     std::cin >> lastName;
     lastName = capitalizeString(lastName);
     std::cout << "Enter date of birth (DD/MM/YYYY):" << std::endl;
-    Date::enterDate(dateOfBirth);
+    Date::inputDate(dateOfBirth);
     std::cout << "Is the person deceased (Yes/No)?" << std::endl;
     bool answer = yesOrNo();
     if (answer) {
         while (!validDate) {
-            Date::enterDate(dateOfDeath);
+            Date::inputDate(dateOfDeath);
             if (Date::compareDates(dateOfBirth, dateOfDeath)) {
                 state = Person::deceased;
                 validDate = true;

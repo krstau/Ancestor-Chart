@@ -16,7 +16,7 @@ public:
     int getYear() const;
     void setDate(int day, int month, int year);
     void printDate();
-    static void enterDate(Date &dateType);
+    static void inputDate(Date &dateType);
     static bool compareDates(Date &date1, Date &date2);
     static bool isValidDateFormat(std::string dateString);
     static bool isValidDate(int day, int month, int year);
