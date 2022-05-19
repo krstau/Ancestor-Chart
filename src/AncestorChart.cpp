@@ -1,9 +1,9 @@
 #include "../include/AncestorChart.hpp"
 
 void AncestorChart::addPerson(AncestorChart &ancestorChart) {
-    std::cout << "Who's parent do you want to add?" << std::endl;
     Node<Person> *node = searchForNode(ancestorChart);
     if (node != nullptr) {
+        std::cout << "Adding parent to " << node->getData().getFullName() << ": " << std::endl;
         Person person = Person::createPerson();
         ancestorChart.getBinaryTree().insertNode(node, person);
     }
@@ -18,9 +18,19 @@ void AncestorChart::searchForPerson(AncestorChart &ancestorChart) {
 }
 
 void AncestorChart::editPerson(AncestorChart &ancestorChart) {
+    Node<Person> *node = searchForNode(ancestorChart);
+    if (node != nullptr) {
+        std::cout << "Editing " << node->getData().getFullName() << "'s information: " << std::endl;
+        Person person = Person::createPerson();
+        node->setData(person);
+    }
 }
 
 void AncestorChart::deletePerson(AncestorChart &ancestorChart) {
+    Node<Person> *node = searchForNode(ancestorChart);
+    if (node != nullptr) {
+        std::cout << node->getData();
+    }
 }
 
 /**

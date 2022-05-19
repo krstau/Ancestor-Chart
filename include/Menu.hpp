@@ -112,13 +112,13 @@ void mainMenu() {
                 break;
             }
             case 2: {
-                std::cout << "Something" << "\n";
+                std::cout << "Who's detailed information to search for?" << "\n";
                 printSearchMenu();
                 AncestorChart::searchForPerson(ancestorChart);
                 break;
             }
             case 3: {
-                std::cout << "Something" << "\n";
+                std::cout << "Who's information do you want to edit?" << "\n";
                 printSearchMenu();
                 AncestorChart::editPerson(ancestorChart);
                 break;
