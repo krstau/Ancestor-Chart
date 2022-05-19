@@ -93,11 +93,11 @@ Person::Gender Person::inputGender() {
 }
 
 /**
-    * Converts a gender enum to a string.
-    *
-    * @param gender.
-    * @return the gender in string format.
-    */
+* Converts a gender enum to a string.
+*
+* @param gender.
+* @return the gender in string format.
+*/
 std::string Person::genderValueToString(Person::Gender gender) {
     switch (gender) {
         case Person::male: {
@@ -112,10 +112,10 @@ std::string Person::genderValueToString(Person::Gender gender) {
     }
 }
 
-//with lambda function; find all people matching description and return in a vector
-//from the returned vector, ask the user which is the correct person
-//ask the user; is the person the mother or the father of the correct person
-//if father, add or edit leftNode, if mother add or edit rightNode
+/**
+ * Creates a person.
+ * @return Person.
+ */
 Person Person::createPerson() {
     std::string firstName, lastName;
     Date dateOfDeath;
@@ -142,18 +142,18 @@ Person Person::createPerson() {
 }
 
 /**
-    * Prints all available information for a person.
-    *
-    * @param &person.
-    * @return os.
-    */
+* Prints all available information for a person.
+* @param &person.
+* @return os.
+*/
 std::ostream &operator<<(std::ostream &os, const Person &person) {
     os << "Firstname: " << person.getFirstName() << '\n'
        << "Lastname: " << person.getLastName() << '\n'
-       << "Gender: " << Person::genderValueToString(person.getGender()) << '\n'
-       << "Date of birth: " << person.getDateOfBirth().getDate() << '\n';
+       << "Gender: " << Person::genderValueToString(person.getGender()) << '\n';
+    Date dateOfBirth = person.getDateOfBirth();
+    os << "Date of birth: " << dateOfBirth << '\n';
     if (person.getState() == Person::deceased) {
-        os << "Date of death: " << person.getDateOfDeath().getDate() << '\n';
+        os << "Date of death: " << person.getDateOfDeath() << '\n';
     }
     return os;
 }

@@ -6,10 +6,17 @@
 
 // Inspiration for code: https://github.com/devos50/BinaryTree
 
+/**
+ *
+ * @tparam T Data input.
+ */
 template<typename T>
 class BinaryTree {
 public:
-    // Constructors
+    /**
+     *
+     * @param data
+     */
     explicit BinaryTree(const T& data);
 
     // Destructor
@@ -17,7 +24,6 @@ public:
 
     int getSize();
     Node<T> *getRoot();
-
     Node<T> *getParent();
     Node<T> *getRightChild();
     Node<T> *getLeftChild();
@@ -60,7 +66,7 @@ void BinaryTree<T>::insertNode(Node<T> *node, T data) {
         size_++;
     }
     else {
-        std::cout << "Error: node is full \n";
+        std::cout << "Error: node is full!" << std::endl;
     }
 }
 
@@ -77,7 +83,7 @@ bool BinaryTree<T>::isEmpty() {
 template<typename T>
 Node<T> *BinaryTree<T>::getRoot() {
     if(isEmpty()){
-        std::cout << "Binarytree is empty!\n";
+        std::cout << "Binarytree is empty!" << std::endl;
         return nullptr;
     }
     else {
