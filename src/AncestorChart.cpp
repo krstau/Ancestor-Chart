@@ -23,6 +23,29 @@ void AncestorChart::editPerson(AncestorChart &ancestorChart) {
 void AncestorChart::deletePerson(AncestorChart &ancestorChart) {
 }
 
+/**
+ * Prints all persons.
+ *
+ * @param none.
+ * @return none.
+ */
+void AncestorChart::printAllPersons(AncestorChart &ancestorChart) {
+    nodePointerFunction printPersons = [](Node<Person> *node) {
+        Person person = node->getData();
+        std::cout << person.getFullName() << std::endl;
+    };
+    ancestorChart.getBinaryTree().traverseDepthFirst(printPersons);
+    std::cout << "\n" << "Enter 0 to return to main menu." << std::endl;
+    int input;
+    std::cin >> input;
+    if (input == 0) {
+    }
+    else {
+        std::cout << "Invalid input, please enter 0 to return to main menu." << std::endl;
+    }
+}
+
+
 BinaryTree<Person> AncestorChart::getBinaryTree() const {
     return binaryTree_;
 }
@@ -153,18 +176,4 @@ std::vector<Node<Person> *> AncestorChart::getPersonsMatchingGender(const Person
     };
     binaryTree_.traverseDepthFirst(printPersons);
     return persons;
-}
-
-/**
- * Prints all persons.
- *
- * @param none.
- * @return none.
- */
-void AncestorChart::printPersons() {
-    nodePointerFunction printPersons = [](Node<Person> *node) {
-        Person person = node->getData();
-        std::cout << person.getFullName() << '\n';
-    };
-    binaryTree_.traverseDepthFirst(printPersons);
 }

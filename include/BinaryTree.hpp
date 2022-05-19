@@ -39,6 +39,7 @@ private:
 
 template<typename T>
 BinaryTree<T>::~BinaryTree(){ //TODO: start from root, delete all nodes
+
 }
 
 template<typename T>

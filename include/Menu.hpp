@@ -31,17 +31,15 @@ void printLogo() {
   / _ \ | '_ \ / __/ _ \/ __| __/ _ \| '__| | |   | '_ \ / _` | '__| __|
  / ___ \| | | | (_|  __/\__ \ || (_) | |    | |___| | | | (_| | |  | |_
 /_/   \_\_| |_|\___\___||___/\__\___/|_|     \____|_| |_|\__,_|_|   \__|
-
-)"
-              << "\n";
+)"            << std::endl;
 }
 
 /**
-    * Function to print menu to terminal.
-    *
-    * @param none.
-    * @return none.
-    */
+* Function to print menu to terminal.
+*
+* @param none.
+* @return none.
+*/
 AncestorChart setupAncestorChart() {
     std::cout << "Please create a root person:\n";
     Person rootPerson = Person::createPerson();
@@ -50,11 +48,11 @@ AncestorChart setupAncestorChart() {
 }
 
 /**
-    * Function to print main menu to terminal.
-    *
-    * @param none.
-    * @return none.
-    */
+* Function to print main menu to terminal.
+*
+* @param none.
+* @return none.
+*/
 void printMainMenu() {
     printLogo();
     std::cout << "Main menu:"
@@ -94,18 +92,18 @@ void printSearchMenu(){
 }
 
 /**
-    * Function to display a menu to the terminal.
-    *
-    * @param none.
-    * @return none.
-    */
+* Function to display a menu to the terminal.
+*
+* @param none.
+* @return none.
+*/
 void mainMenu() {
     std::cout << "Welcome to:";
     printLogo();
     AncestorChart ancestorChart = setupAncestorChart();
     while (running) {
         printMainMenu();
-        int choice = getValidIntBetween(0, 4);
+        int choice = getValidIntBetween(0, 5);
         switch (choice) {
             case 1: {
                 std::cout << "Who's parent do you want to add?" << "\n";
@@ -132,8 +130,8 @@ void mainMenu() {
                 break;
             }
             case 5: {
-                std::cout << "Something" << "\n";
-                printSearchMenu();
+                std::cout << "Printing all persons in ancestor chart" << "\n" << std::endl;
+                AncestorChart::printAllPersons(ancestorChart);
                 break;
             }
             case 0: {
@@ -146,9 +144,4 @@ void mainMenu() {
         }
     }
 }
-
-
-
-
-
 #endif//ANCESTOR_CHART_MENU_HPP
