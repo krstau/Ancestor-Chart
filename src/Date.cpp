@@ -91,12 +91,12 @@ bool Date::isValidDateFormat(std::string dateString) {
  * @return true if the date is correct format 00/00/0000.
  */
 bool Date::compareDates(Date &date1, Date &date2) {
-    if ((date1.getYear() > date2.getYear() ||
+    if ((date1.getYear() < date2.getYear() ||
          (date1.getYear() == date2.getYear() &&
-          date1.getMonth() > date2.getMonth()) ||
+          date1.getMonth() < date2.getMonth()) ||
          (date1.getYear() == date2.getYear() &&
           date1.getMonth() == date2.getMonth() &&
-          date1.getDay() > date2.getDay()))) {
+          date1.getDay() <= date2.getDay()))) {
         return true;
     }
     else {
