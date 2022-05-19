@@ -87,20 +87,19 @@ namespace {
 
     /**
     * Prompts the user an option to return to main menu.
-    *
-    * @param none.
     */
     void promptToReturnToMainMenu() {
         bool validInput = false;
         std::cout << "\n"
                   << "Enter 0 to return to main menu." << std::endl;
-        int input = validateNumberInput();
-        while (!validInput)
+        while (!validInput) {
+            int input = validateNumberInput();
             if (input == 0) {
                 validInput = true;
             } else {
                 std::cout << "Invalid input, please enter 0 to return to main menu." << std::endl;
             }
+        }
     }
 }// namespace
 #endif//ANCESTORCHART_FORMATTING_HPP
