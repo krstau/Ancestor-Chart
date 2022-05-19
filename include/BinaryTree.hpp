@@ -17,7 +17,6 @@ public:
 
     int getSize();
     Node<T> *getRoot();
-
     Node<T> *getParent();
     Node<T> *getRightChild();
     Node<T> *getLeftChild();

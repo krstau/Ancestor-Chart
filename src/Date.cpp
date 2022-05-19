@@ -1,20 +1,10 @@
 #include "../include/Date.hpp"
 
 /**
-* Date default constructor.
-* Sets the date to 01/01/1970.
-*/
-Date::Date() {
-    day_ = 1;
-    month_ = 1;
-    year_ = 1970;
-}
-
-/**
  * Function to get the date.
  * @return Date as a string in 00/00/0000-format.
  */
-std::string Date::getDate() const {
+std::string Date::getDate() const { // TODO: Leading zeros!
     return std::to_string(day_) + "/" + std::to_string(month_) + "/" + std::to_string(year_);
 }
 
@@ -40,7 +30,7 @@ void Date::setDate(int day, int month, int year){
  */
 bool Date::isValidDate(int day, int month, int year) {
     if ((day >= 1 && day <= 30) &&
-                (month == 4) || (month == 6) ||(month == 9) || (month == 11)) {
+                (month == 4) || (month == 6) ||(month == 9) || (month == 11)) { //TODO: repeated branch?
         return true;
     }
     else if ((day >= 1 && day <= 31) &&

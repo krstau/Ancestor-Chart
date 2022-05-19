@@ -9,7 +9,7 @@
  */
 class Date {
 public:
-    Date();
+    Date() = default;
     std::string getDate() const;
     void setDate(int day, int month, int year);
     static void enterDate(Date &dateType);
@@ -17,9 +17,9 @@ public:
     static bool isValidDate(int day, int month, int year) ;
 
 private:
-    int day_;
-    int month_;
-    int year_;
+    int day_ = 01;
+    int month_ = 01;
+    int year_ = 1970;
 };
 
 #endif//ANCESTOR_CHART_DATE_H
