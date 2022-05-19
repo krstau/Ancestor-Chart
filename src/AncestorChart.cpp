@@ -28,18 +28,37 @@ void AncestorChart::editPerson(AncestorChart &ancestorChart) {
     }
 }
 
-void AncestorChart::deletePerson(AncestorChart &ancestorChart) {
+/*void AncestorChart::deletePerson(AncestorChart &ancestorChart) {
     Node<Person> *node = searchForNode(ancestorChart);
     if (node != nullptr) {
-        if(node->isLeaf()){
-            //delete
-        }
-        else { //TODO: add logic asking user if setting data to unknown instead of deleting is fine
-            Person unknownperson = Person();
-            node->setData(unknownperson);
+        std::cout << "Are you sure you want to delete " << node->getData().getFullName() << "? (yes/no)" << std::endl;
+        bool confirmation = yesOrNo();
+        if (confirmation) {
+            if (node->isLeaf()) {
+                Node<Person> *parentNode = searchForParent(ancestorChart, node);
+                if(parentNode->getLeftPtr() == node) {
+                    deleteNode(node);       //need to make node deconstructor
+                    parentNode->setLeftPtr(nullptr);
+                }
+                else {
+                    deleteNode(node);
+                    parentNode->setRightPtr(nullptr);
+                }
+            }
+
+            else {
+                std::cout << node->getData().getFullName() << " has ancestors in the Graph!" << std::endl;
+                std::cout << "Do you want to set " << node->getData().getFullName() << "'s information to unknown?" << std::endl;
+                bool answer = yesOrNo();
+                if (answer) {
+                    std::cout << node->getData().getFullName() << " has been wiped!" << std::endl;
+                    Person unknownperson = Person();
+                    node->setData(unknownperson);
+                }
+            }
         }
     }
-}
+}*/
 
 /**
  * Prints all persons in the ancestor chart.
@@ -140,6 +159,31 @@ Node<Person> *AncestorChart::searchForNode(AncestorChart &ancestorChart) {
         return persons[selectedPerson];
     }
 }
+
+
+
+Node<Person> * AncestorChart::searchForParent(AncestorChart &ancestorChart, Node<Person> * &nodeToBeDeleted) {
+    std::vector<Node<Person> *> persons;
+    nodePointerFunction compareNodes = [&persons, &nodeToBeDeleted](Node<Person> *node) {
+        Person person = node->getData();
+        if (node->getLeftPtr() == nodeToBeDeleted || node->getRightPtr() == nodeToBeDeleted ) {
+            persons.emplace_back(node);
+        }
+    };
+    binaryTree_.traverseDepthFirst(compareNodes);
+
+
+
+    if (persons.size() == 1) {
+        return persons[0];
+    }
+    else {
+        std::cout << "You cannot delete the root person!";
+        return nullptr;
+    }
+}
+
+
 
 std::vector<Node<Person> *> AncestorChart::getPersonsMatchingFirstName(const std::string &firstName) {
     std::vector<Node<Person> *> persons;
