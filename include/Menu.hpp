@@ -1,6 +1,10 @@
 #ifndef ANCESTOR_CHART_MENU_HPP
 #define ANCESTOR_CHART_MENU_HPP
 #include "AncestorChart.hpp"
+#include <algorithm>
+#include <iostream>
+#include <string>
+#include <utility>
 
 /**
 * Sets the state of the menu.
@@ -63,8 +67,6 @@ void printMainMenu() {
               << "\n"
               << "[5] Print all persons"
               << "\n"
-              << "[6] Delete all persons"
-              << "\n"
               << "[0] Exit"
               << "\n"
               << "\n"
@@ -123,18 +125,13 @@ void mainMenu() {
             }
             case 4: {
                 std::cout << "Which person do you want to delete?" << "\n" << std::endl;
-                printSearchMenu();
-                // AncestorChart::deletePerson(ancestorChart);
+                //printSearchMenu();
+                //AncestorChart::deletePerson(ancestorChart);
                 break;
             }
             case 5: {
                 std::cout << "\nPrinting all persons in ancestor chart: " << "\n" << std::endl;
                 AncestorChart::printAllPersons(ancestorChart);
-                break;
-            }
-            case 6: {
-                std::cout << "\nDeleting all persons in ancestor chart: " << "\n" << std::endl;
-                AncestorChart::deleteAllPersons(ancestorChart);
                 break;
             }
             case 0: {

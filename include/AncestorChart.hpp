@@ -23,14 +23,17 @@ public:
     static void deleteAllPersons(AncestorChart &ancestorChart);
     BinaryTree<Person> getBinaryTree() const;
     static Node<Person>* searchForNode(AncestorChart &ancestorChart);
+    Node<Person> *searchForParent(AncestorChart &ancestorChart, Node<Person> * &nodeToBeDeleted);
     std::vector<Node<Person>*> getPersonsMatchingFirstName(const std::string &firstName);
     std::vector<Node<Person>*> getPersonsMatchingLastName(const std::string &lastName);
     std::vector<Node<Person>*> getPersonsMatchingFullName(const std::string &firstName, const std::string &lastName);
     std::vector<Node<Person>*> getPersonsMatchingGender(const Person::Gender &Gender);
 
+
 private:
     BinaryTree<Person> binaryTree_;
     typedef std::function<void(Node<Person> *)> nodePointerFunction;
+
 };
 
 #endif//ANCESTOR_CHART_ANCESTORCHART_HPP
