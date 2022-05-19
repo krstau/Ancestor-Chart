@@ -136,7 +136,7 @@ Person Person::createPerson() {
     std::string firstName, lastName;
     Date dateOfDeath;
     Date dateOfBirth;
-    Person::State state = Person::alive;
+    Person::State state = unknownState;
     Person::Gender gender;
     bool validDate = false;
     std::cout << "Enter firstname:";
@@ -148,8 +148,8 @@ Person Person::createPerson() {
     std::cout << "Enter date of birth (DD/MM/YYYY):";
     Date::inputDate(dateOfBirth);
     std::cout << "Is the person deceased (Yes/No)?";
-    bool isDead = yesOrNo();
-    if (isDead) {
+    bool isDeceased = yesOrNo();
+    if (isDeceased) {
         while (!validDate) {
             std::cout << "Enter date of death (DD/MM/YYYY):";
             Date::inputDate(dateOfDeath);
