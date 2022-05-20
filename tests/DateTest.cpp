@@ -1,5 +1,5 @@
 #define CONFIG_CATCH_MAIN
-#include "../external/Catch2/catch.hpp"
+#include "catch.hpp"
 #include "../include/Date.hpp"
 
 
