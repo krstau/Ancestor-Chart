@@ -7,7 +7,6 @@ TEST_CASE( "Date can be set", "[Date]" ){
 
     Date date = Date();
     date.setDate(1, 1, 1970);
-    std::string dateOutput = NULL;
 
     SECTION( "date can be changed" ) {
         date.setDate(24, 12, 2000);
