@@ -30,6 +30,8 @@ Main features of the program:
 
 The program uses a depth first traversal algorithm for searching for persons by attribute.
 
+## UML Diagram
+
 UML Class Diagram generated with Doxygen displaying all the classes and their relations, in addition to included libraries and additional necessary files:
 
 ![uml](https://user-images.githubusercontent.com/98808638/169454787-4083d54d-3a82-4ccc-81e5-fee4af135d9f.png)
