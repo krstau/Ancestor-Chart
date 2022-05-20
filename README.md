@@ -32,4 +32,5 @@ The program uses a depth first traversal algorithm for searching for persons by 
 
 UML Class Diagram generated with Doxygen displaying all the classes and their relations:
 
-![uml](https://user-images.githubusercontent.com/98808638/169454068-e2ed71f5-9547-418d-8788-2636a5bc5e1e.png)
+![uml](https://user-images.githubusercontent.com/98808638/169454787-4083d54d-3a82-4ccc-81e5-fee4af135d9f.png)
+
