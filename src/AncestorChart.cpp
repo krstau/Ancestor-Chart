@@ -116,11 +116,25 @@ void AncestorChart::deletePerson(AncestorChart &ancestorChart) {
  * @param &ancestorChart
  */
 void AncestorChart::printAllPersons(AncestorChart &ancestorChart) {
-    nodePointerFunction printPersons = [](Node<Person> *node) {
-        Person person = node->getData();
-        std::cout << person.getFullName() << std::endl;
+    std::vector<Node<Person> *> persons;
+    Node <Person>* selectedNode;
+    nodePointerFunction printPersons = [&persons](Node<Person> *node) {
+        persons.emplace_back(node);
     };
     ancestorChart.getBinaryTree().traverseDepthFirst(printPersons);
+    std::cout << "\n"
+              << "List of persons:" << std::endl;
+    for (int index = 0; index < persons.size(); ++index) {
+        std::cout << "\n"
+                  << "[" << index << "]"
+                  << " " << persons[index]->getData().getFullName() << std::endl;
+    }
+    std::cout << "\n"
+              << "Please select a person:";
+    int choice = inputValidIntBetween(0, persons.size()); // NOLINT(cppcoreguidelines-narrowing-conversions)
+    selectedNode = persons[choice];
+    std::cout << "\nDisplaying information for " << selectedNode->getData().getFullName() << ":" << std::endl;
+    std::cout << selectedNode->getData();
     promptToReturnToMainMenu();
 }
 
