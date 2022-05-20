@@ -4,7 +4,7 @@ Candidate numbers:
 * 10028
 * 10015
  
-## A program that let's you create an ancestor chart.
+## A program that let's you create an ancestor chart
 
 The program uses a binary tree where nodes holds the data of each person.
 
