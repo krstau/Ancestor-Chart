@@ -2,6 +2,7 @@
 
 /**
  * AncestorChart constructor.
+ * @param rootPerson
  */
 AncestorChart::AncestorChart(const Person &rootPerson) : binaryTree_(BinaryTree<Person>(rootPerson)){}
 
@@ -16,6 +17,7 @@ Person AncestorChart::createRootPerson() {
 
 /**
  * Add person to ancestor chart.
+ * @param ancestorChart
  */
 void AncestorChart::addPerson(AncestorChart &ancestorChart) {
     Node<Person> *node = searchForNode(ancestorChart);
@@ -30,6 +32,7 @@ void AncestorChart::addPerson(AncestorChart &ancestorChart) {
 
 /**
  * Print person in ancestor chart.
+ * @param ancestorChart
  */
 void AncestorChart::printPerson(AncestorChart &ancestorChart) {
     Node<Person> *node = searchForNode(ancestorChart);
@@ -41,6 +44,7 @@ void AncestorChart::printPerson(AncestorChart &ancestorChart) {
 
 /**
  * Edit person in ancestor chart.
+ * @param ancestorChart
  */
 void AncestorChart::editPerson(AncestorChart &ancestorChart) {
     Node<Person> *node = searchForNode(ancestorChart);
@@ -53,6 +57,7 @@ void AncestorChart::editPerson(AncestorChart &ancestorChart) {
 
 /**
  * Delete all persons in ancestor chart.
+ * @param ancestorChart
  */
 void AncestorChart::deleteAllPersons(AncestorChart &ancestorChart) {
     nodePointerFunction printPersons = [](Node<Person> *node) {
@@ -65,6 +70,7 @@ void AncestorChart::deleteAllPersons(AncestorChart &ancestorChart) {
 
 /**
  * Deletes a person in ancestor chart.
+ * @param ancestorChart
  */
 void AncestorChart::deletePerson(AncestorChart &ancestorChart) {
     Node<Person> *node = searchForNode(ancestorChart);
@@ -101,7 +107,7 @@ void AncestorChart::deletePerson(AncestorChart &ancestorChart) {
 
 /**
  * Prints all persons in the ancestor chart.
- * @param &ancestorChart.
+ * @param &ancestorChart
  */
 void AncestorChart::printAllPersons(AncestorChart &ancestorChart) {
     nodePointerFunction printPersons = [](Node<Person> *node) {
@@ -114,7 +120,7 @@ void AncestorChart::printAllPersons(AncestorChart &ancestorChart) {
 
 /**
  * Gets the binary tree object in the ancestor chart.
- * @param binaryTree_.
+ * @return binaryTree_
  */
 BinaryTree<Person> AncestorChart::getBinaryTree() const {
     return binaryTree_;
@@ -123,6 +129,8 @@ BinaryTree<Person> AncestorChart::getBinaryTree() const {
 /**
   * Displays available search terms for finding a person.
   * Lets the user select a search term and find a person.
+  * @param ancestorChart
+  * @return persons
   */
 std::vector<Node<Person> *> selectSearchTerm(AncestorChart ancestorChart) {
     std::vector<Node<Person> *> persons;
@@ -204,9 +212,10 @@ Node<Person> *AncestorChart::searchForNode(AncestorChart &ancestorChart) {
 }
 
 /**
- *
+ * Searches for parent node of node to be deleted.
  * @param firstName
- * @return
+ * @return persons
+ * @return nullptr
  */
 Node<Person> * AncestorChart::searchForParent(AncestorChart &ancestorChart, Node<Person> * &nodeToBeDeleted) {
     std::vector<Node<Person> *> persons;
@@ -227,11 +236,10 @@ Node<Person> * AncestorChart::searchForParent(AncestorChart &ancestorChart, Node
     }
 }
 
-
 /**
- *
+ * Gets persons with matching firstname.
  * @param firstName
- * @return
+ * @return persons
  */
 std::vector<Node<Person> *> AncestorChart::getPersonsMatchingFirstName(const std::string &firstName) {
     std::vector<Node<Person> *> persons;
@@ -246,9 +254,9 @@ std::vector<Node<Person> *> AncestorChart::getPersonsMatchingFirstName(const std
 }
 
 /**
- *
- * @param firstName
- * @return
+ * Gets persons with matching lastname.
+ * @param lastName
+ * @return persons
  */
 std::vector<Node<Person> *> AncestorChart::getPersonsMatchingLastName(const std::string &lastName) {
     std::vector<Node<Person> *> persons;
@@ -263,9 +271,10 @@ std::vector<Node<Person> *> AncestorChart::getPersonsMatchingLastName(const std:
 }
 
 /**
- *
+ * Gets persons with matching full name.
  * @param firstName
- * @return
+ * @param lastName
+ * @return persons
  */
 std::vector<Node<Person> *> AncestorChart::getPersonsMatchingFullName(const std::string &firstName, const std::string &lastName) {
     std::vector<Node<Person> *> persons;
@@ -280,9 +289,9 @@ std::vector<Node<Person> *> AncestorChart::getPersonsMatchingFullName(const std:
 }
 
 /**
- *
- * @param firstName
- * @return
+ * Gets persons with matching gender.
+ * @param gender
+ * @return persons
  */
 std::vector<Node<Person> *> AncestorChart::getPersonsMatchingGender(const Person::Gender &gender) {
     std::vector<Node<Person> *> persons;
