@@ -2,7 +2,6 @@
 #define ANCESTOR_CHART_BINARYTREE_HPP
 #include "Node.hpp"
 #include <functional>
-#include <iostream>
 
 /**
  * BinaryTree class.
@@ -22,7 +21,7 @@ private:
 
 /**
  * BinaryTree default constructor.
- * @tparam T
+ * @tparam T Data input.
  */
 template<typename T>
 BinaryTree<T>::BinaryTree(const T& data) : root_(new Node<T>(data)) {
@@ -31,7 +30,7 @@ BinaryTree<T>::BinaryTree(const T& data) : root_(new Node<T>(data)) {
 /**
  * Inserts a node into BinaryTree
  * If a left pointer already exists, a right pointer will be set.
- * @tparam T
+ * @tparam T Data input.
  */
 template<typename T>
 void BinaryTree<T>::insertNode(Node<T> *node, T data) {
@@ -45,12 +44,12 @@ void BinaryTree<T>::insertNode(Node<T> *node, T data) {
     }
 }
 
-
 /**
-* Recursive depth first traversal function.
-* @param root node.
-* @param nodeFunction.
-*/
+ * Recursive depth first traversal function.
+ * @param root node.
+ * @param nodeFunction.
+ * @tparam T Data input.
+ */
 template<typename T>
 void BinaryTree<T>::traverseDepthFirst(Node<T>* root, std::function<void(Node<T>*)>& nodeFunction) const {
     if (root == nullptr) {
@@ -62,10 +61,11 @@ void BinaryTree<T>::traverseDepthFirst(Node<T>* root, std::function<void(Node<T>
 }
 
 /**
-* Depth first traversal function.
-* @param root node.
-* @param nodeFunction.
-*/
+ * Depth first traversal function.
+ * @param root node.
+ * @param nodeFunction.
+ * @tparam T Data input.
+ */
 template<typename T>
 void BinaryTree<T>::traverseDepthFirst(std::function<void(Node<T>*)>& nodeFunction) const {
     traverseDepthFirst(root_, nodeFunction);

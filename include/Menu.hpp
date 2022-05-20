@@ -1,10 +1,6 @@
 #ifndef ANCESTOR_CHART_MENU_HPP
 #define ANCESTOR_CHART_MENU_HPP
 #include "AncestorChart.hpp"
-#include <algorithm>
-#include <iostream>
-#include <string>
-#include <utility>
 
 /**
  * Sets the state of the menu.
@@ -19,7 +15,7 @@ void shutdown() {
 }
 
 /**
- * Function to print logo to terminal.
+ * Function to print logo.
  */
 void printLogo() {
     std::cout << R"(

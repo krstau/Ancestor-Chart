@@ -7,8 +7,8 @@
 AncestorChart::AncestorChart(const Person &rootPerson) : binaryTree_(BinaryTree<Person>(rootPerson)){}
 
 /**
- * Create new ancestor chart.
- * @return ancestorChart.
+ * Create rootPerson.
+ * @return rootPerson.
  */
 Person AncestorChart::createRootPerson() {
     Person rootPerson = Person::createPerson();
@@ -76,6 +76,9 @@ void AncestorChart::deleteAllPersons(AncestorChart &ancestorChart) {
 
 /**
  * Deletes a person in ancestor chart.
+ * If a person has ancestors in the ancestor chart,
+ * you will get an option to set the person to "unknown",
+ * which sets the person to Person default constructor.
  * @param ancestorChart
  */
 void AncestorChart::deletePerson(AncestorChart &ancestorChart) {
@@ -98,7 +101,7 @@ void AncestorChart::deletePerson(AncestorChart &ancestorChart) {
                 }
             }
             else {
-                std::cout << node->getData().getFullName() << " has ancestors in the Graph!" << std::endl;
+                std::cout << node->getData().getFullName() << " has ancestors in the ancestor chart!" << std::endl;
                 std::cout << "Do you want to set " << node->getData().getFullName() << "'s information to unknown? (yes/no)" << std::endl;
                 bool answer = yesOrNo();
                 if (answer) {

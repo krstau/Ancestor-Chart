@@ -82,7 +82,8 @@ Person::State Person::getState() const {
 }
 
 /**
- * Prints all available information for a person.
+ * Prints all available information for a person
+ * using overloading.
  * @param &person.
  * @return os.
  */
@@ -99,7 +100,7 @@ std::ostream &operator<<(std::ostream &os, const Person &person) {
 
 /**
  * Prompts the user for entering state.
- * @return state
+ * @return state as enum.
  */
 Person::State Person::inputState() {
     std::string state;
@@ -123,7 +124,7 @@ Person::State Person::inputState() {
 
 /**
  * Prompts the user for entering gender.
- * @return gender
+ * @return gender as enum.
  */
 Person::Gender Person::inputGender() {
     std::string gender;
@@ -166,7 +167,7 @@ std::string Person::genderValueToString(Person::Gender gender) {
 
 /**
  * Creates a person.
- * @return Person.
+ * @return Person created.
  */
 Person Person::createPerson() {
     std::string firstName, lastName;

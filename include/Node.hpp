@@ -1,7 +1,6 @@
 #ifndef ANCESTOR_CHART_NODE_HPP
 #define ANCESTOR_CHART_NODE_HPP
 #include "Person.hpp"
-#include <memory>
 
 /**
  * Node class.

@@ -1,8 +1,6 @@
 #ifndef ANCESTOR_CHART_ANCESTORCHART_HPP
 #define ANCESTOR_CHART_ANCESTORCHART_HPP
 #include "BinaryTree.hpp"
-#include <algorithm>
-#include <string>
 
 /**
  * AncestorChart class
