@@ -7,7 +7,7 @@
  * @return 0.
  */
 int main() {
-    menu();
+    mainMenu();
     return 0;
 }
 

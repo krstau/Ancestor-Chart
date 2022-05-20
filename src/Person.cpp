@@ -1,6 +1,18 @@
 #include "../include/Person.hpp"
 
 /**
+ * Person default constructor.
+ */
+Person::Person() {
+    firstName_ = "Unknown";
+    lastName_ = "Unknown";
+    dateOfBirth_ = Date();
+    dateOfDeath_ = Date();
+    gender_ = unknownGender;
+    state_ = unknownState;
+}
+
+/**
  * Person constructor.
  * @param firstName Firstname of person.
  * @param lastName Lastname of person.

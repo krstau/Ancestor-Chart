@@ -13,19 +13,10 @@
 template<typename T>
 class BinaryTree {
 public:
-    /**
-     *
-     * @param data
-     */
-    BinaryTree();
     explicit BinaryTree(const T& data);
-
-    // Destructor
     ~BinaryTree();
-
     int getSize() const;
     Node<T> *getRoot() const;
-    void setRoot();
     Node<T> *getParent();
     Node<T> *getRightChild();
     Node<T> *getLeftChild();
@@ -44,16 +35,19 @@ private:
     void traverseDepthFirst(Node<T>* root, std::function<void(Node<T>*)>&) const;
 };
 
-template<typename T>
-Node<T> *BinaryTree<T>::setRoot(){}() {
-}
-
-
+/**
+ * BinaryTree destructor.
+ * @tparam T
+ */
 template<typename T>
 BinaryTree<T>::~BinaryTree(){
     // destroyRecursive(root_);
 }
 
+/**
+ *
+ * @tparam T
+ */
 template<typename T>
 void BinaryTree<T>::destroyRecursive(Node<T>* node)
 {
@@ -65,11 +59,20 @@ void BinaryTree<T>::destroyRecursive(Node<T>* node)
     }
 }
 
+/**
+ * BinaryTree default constructor.
+ * @tparam T
+ */
 template<typename T>
 BinaryTree<T>::BinaryTree(const T& data) : root_(new Node<T>(data)) {
     size_++;
 }
 
+/**
+ * Inserts a node into BinaryTree
+ * If a left pointer already exists, a right pointer will be set.
+ * @tparam T
+ */
 template<typename T>
 void BinaryTree<T>::insertNode(Node<T> *node, T data) {
     if (node->getLeftPtr() == nullptr){
@@ -87,16 +90,31 @@ void BinaryTree<T>::insertNode(Node<T> *node, T data) {
     }
 }
 
+/**
+ * Gets the amount of nodes in the BinaryTree.
+ * @tparam T
+ * @return size_ amount of nodes.
+ */
 template<typename T>
 int BinaryTree<T>::getSize() const {
     return size_;
 }
 
+/**
+ * Checks if BinaryTree does not have any nodes.
+ * @tparam T
+ * @return true if BinaryTree has no nodes.
+ */
 template<typename T>
 bool BinaryTree<T>::isEmpty() {
     return (size_ == 0);
 }
 
+/**
+ * Gets the root node of the BinaryTree.
+ * @tparam T
+ * @return true if BinaryTree has no nodes.
+ */
 template<typename T>
 Node<T> *BinaryTree<T>::getRoot() const {
     if(isEmpty()){
@@ -109,11 +127,9 @@ Node<T> *BinaryTree<T>::getRoot() const {
 }
 
 /**
-* Depth first traversal function.
-*
+* Recursive depth first traversal function.
 * @param rootnode.
 * @param nodeFunction.
-* @return none.
 */
 template<typename T>
 void BinaryTree<T>::traverseDepthFirst(Node<T>* root, std::function<void(Node<T>*)>& nodeFunction) const {
@@ -125,6 +141,11 @@ void BinaryTree<T>::traverseDepthFirst(Node<T>* root, std::function<void(Node<T>
     traverseDepthFirst(root->getRightPtr(), nodeFunction);
 }
 
+/**
+* Depth first traversal function.
+* @param rootnode.
+* @param nodeFunction.
+*/
 template<typename T>
 void BinaryTree<T>::traverseDepthFirst(std::function<void(Node<T>*)>& nodeFunction) const {
     traverseDepthFirst(root_, nodeFunction);

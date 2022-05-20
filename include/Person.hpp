@@ -40,16 +40,16 @@ public:
     Date getDateOfDeath() const;
     Gender getGender() const;
     State getState() const;
-    Person createPerson();
+    static Person createPerson();
     static Gender inputGender();
     static std::string genderValueToString(Gender gender);
 
 private:
-    std::string firstName_ = "Unknown";
-    std::string lastName_ = "Unknown";
+    std::string firstName_;
+    std::string lastName_;
     Date dateOfBirth_;
     Date dateOfDeath_;
-    Gender gender_ = unknownGender;
-    State state_ = unknownState;
+    Gender gender_;
+    State state_;
 };
 #endif//PERSON_CLI_PERSON_H

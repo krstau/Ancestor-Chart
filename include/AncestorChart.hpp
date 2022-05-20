@@ -11,21 +11,18 @@ class AncestorChart {
 public:
     /**
      * Constructor to create an ancestor chart.
-     *
-     * @param firstName Firstname of the person.
      */
-    AncestorChart();
-    void createAncestorChart();
+    explicit AncestorChart(const Person& rootPerson);
+    static Person createRootPerson();
     static void addPerson(AncestorChart &ancestorChart);
     static void printPerson(AncestorChart &ancestorChart);
-    void setRootPerson(Person person);
-    // static void deletePerson(AncestorChart &ancestorChart);
     static void editPerson(AncestorChart &ancestorChart);
+    static void deletePerson(AncestorChart &ancestorChart);
     static void printAllPersons(AncestorChart &ancestorChart) ;
     static void deleteAllPersons(AncestorChart &ancestorChart);
     BinaryTree<Person> getBinaryTree() const;
     static Node<Person>* searchForNode(AncestorChart &ancestorChart);
-    Node<Person> *searchForParent(AncestorChart &ancestorChart, Node<Person> * &nodeToBeDeleted);
+    static Node<Person> *searchForParent(AncestorChart &ancestorChart, Node<Person> * &nodeToBeDeleted);
     std::vector<Node<Person>*> getPersonsMatchingFirstName(const std::string &firstName);
     std::vector<Node<Person>*> getPersonsMatchingLastName(const std::string &lastName);
     std::vector<Node<Person>*> getPersonsMatchingFullName(const std::string &firstName, const std::string &lastName);
@@ -33,7 +30,6 @@ public:
 
 
 private:
-    Person rootPerson_;
     BinaryTree<Person> binaryTree_;
     typedef std::function<void(Node<Person> *)> nodePointerFunction;
 };

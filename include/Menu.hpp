@@ -7,8 +7,8 @@
 #include <utility>
 
 /**
-* Sets the state of the menu.
-*/
+ * Sets the state of the menu.
+ */
 bool running = true;
 
 /**
@@ -19,11 +19,8 @@ void shutdown() {
 }
 
 /**
-* Function to print logo to terminal.
-*
-* @param none.
-* @return none.
-*/
+ * Function to print logo to terminal.
+ */
 void printLogo() {
     std::cout << R"(
     _                        _                ____ _                _
@@ -35,13 +32,13 @@ void printLogo() {
 }
 
 /**
-* Function to print setup menu to terminal.
-*/
+ * Function to print setup menu.
+ */
 void printSetupMenu() {
     printLogo();
-    std::cout << "Setup menu:"
+    std::cout << "Please create a root person:"
               << "\n"
-              << "[1] Create a new ancestor chart"
+              << "[1] Create a root person for the ancestor chart"
               << "\n"
               << "[0] Exit"
               << "\n"
@@ -49,32 +46,31 @@ void printSetupMenu() {
               << "Enter choice:";
 }
 
-
-void setupMenu() {
+/**
+ * Function to setup ancestor chart.
+ */
+Person setupRootPerson() {
     printSetupMenu();
     int choice = inputValidIntBetween(0, 1);
     switch (choice) {
         case 1: {
-            std::cout << "Please create a root person:";
-            ancestorChart.createAncestorChart;
-        } break;
+            Person rootPerson = AncestorChart::createRootPerson();
+            return rootPerson;
+        }
+        case 0: {
+            shutdown();
+            break;
+        }
+        default:
+            std::cout << "Please enter a number between 0 and 1:" << std::endl;
+            break;
     }
-    case 2: {
-
-        break;
-    }
-    case 0: {
-        shutdown();
-        break;
-    }
-    default:
-        std::cout << "Please enter a number between 0 and 5:" << std::endl;
-        break;
+    return {};
 }
 
 /**
-* Function to print main menu to terminal.
-*/
+ * Function to print main menu.
+ */
 void printMainMenu() {
     printLogo();
     std::cout << "Main menu:"
@@ -95,6 +91,9 @@ void printMainMenu() {
               << "Enter choice:";
 }
 
+/**
+ * Function to print search menu.
+ */
 void printSearchMenu() {
     std::cout << "\n"
               << "Please select a search term, or enter 0 to return to main menu:"
@@ -113,15 +112,12 @@ void printSearchMenu() {
               << "Enter choice:";
 }
 
-
 /**
-* Function to display a menu to the terminal.
-*
-* @param none.
-* @return none.
+* Function to display main menu to the terminal.
 */
 void mainMenu() {
-    printLogo();
+    Person rootPerson = setupRootPerson();
+    AncestorChart ancestorChart(rootPerson);
     while (running) {
         printMainMenu();
         int choice = inputValidIntBetween(0, 5);
@@ -165,6 +161,13 @@ void mainMenu() {
                 AncestorChart::printAllPersons(ancestorChart);
                 break;
             }
+            case 6: {
+                std::cout << "\nDeleting all persons in ancestor chart: "
+                          << "\n"
+                          << std::endl;
+                AncestorChart::deleteAllPersons(ancestorChart);
+                break;
+            }
             case 0: {
                 shutdown();
                 break;
@@ -174,10 +177,5 @@ void mainMenu() {
                 break;
         }
     }
-}
-
-void menu() {
-    setupMenu();
-    mainMenu();
 }
 #endif//ANCESTOR_CHART_MENU_HPP

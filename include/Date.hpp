@@ -15,7 +15,6 @@ public:
     int getMonth() const;
     int getYear() const;
     void setDate(int day, int month, int year);
-    void printDate();
     friend std::ostream &operator << (std::ostream &os, const Date &date);
     static void inputDate(Date &dateType);
     static bool compareDates(Date &date1, Date &date2);
