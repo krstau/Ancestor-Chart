@@ -28,8 +28,8 @@ Main features of the program:
 * Option to print all persons
 * Unit tests (Catch2)
 
-## UML Diagram
+## UML Class Diagram
 
 UML Class Diagram generated with Doxygen displaying all the classes and their relations, in addition to included libraries and additional necessary files:
 
-![uml2](https://user-images.githubusercontent.com/98808638/169455928-a6534c1f-254b-47fb-b59a-a175e92308b8.png)
+![uml3](https://user-images.githubusercontent.com/98808638/169465533-24cdbace-0e21-4d8f-b2f5-45c5d858d778.png)
