@@ -134,10 +134,10 @@ void Date::inputDate(Date &date) {
 }
 
 /**
-* Prints the date in DD/MM/YYYY format.
-* @param date.
-* @return os.
-*/
+ * Prints the date in DD/MM/YYYY format.
+ * @param date.
+ * @return os.
+ */
 std::ostream &operator<<(std::ostream &os, const Date &date) {
     os << std::setw(2) << std::setfill('0') << date.getDay()
        << "/" << std::setw(2) << std::setfill('0') << date.getMonth()

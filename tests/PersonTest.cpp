@@ -3,11 +3,10 @@
 #include "../src/Person.cpp"
 #include "../src/Date.cpp"
 
-
 TEST_CASE("Person functionality", "[Person]"){
     Person testPerson = Person();
 
-    SECTION("Defualt constructor and getters"){
+    SECTION("Default constructor and getters"){
         REQUIRE(testPerson.getFirstName() == "Unknown");
         REQUIRE(testPerson.getLastName() == "Unknown");
         REQUIRE(testPerson.getFullName() == "Unknown Unknown");

@@ -2,7 +2,6 @@
 #include "catch.hpp"
 #include "../include/Node.hpp"
 
-
 TEST_CASE("Node functionality", "[Node<T>]"){
     int data = 1;
     Node<int> testNode = Node(data);
