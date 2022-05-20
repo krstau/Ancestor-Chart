@@ -29,7 +29,7 @@ void AncestorChart::addPerson(AncestorChart &ancestorChart) {
             std::cout << person.getFullName() << " has been added as " << node->getData().getFullName() << "'s parent!" << std::endl;
         }
         else {
-            std::cout << "Error: node is full!" << std::endl;
+            std::cout << node->getData().getFullName() << " already has 2 parents!" << std::endl;
         }
     }
     promptToReturnToMainMenu();
