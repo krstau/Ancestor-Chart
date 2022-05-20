@@ -6,8 +6,7 @@ Candidate numbers:
  
 ## A program that let's you create an ancestor chart
 
-The program uses a binary tree where nodes holds the data of each person and uses a depth first traversal algorithm for search.
-
+The program uses a binary tree where nodes holds the data of each person.
 
 Persons will have the following attributes:
 
@@ -29,9 +28,10 @@ Main features of the program:
 * Option to print all persons
 * Unit tests (Catch2)
 
+The program uses a depth first traversal algorithm for searching for persons by attribute.
+
 ## UML Diagram
 
 UML Class Diagram generated with Doxygen displaying all the classes and their relations, in addition to included libraries and additional necessary files:
 
-![uml](https://user-images.githubusercontent.com/98808638/169454787-4083d54d-3a82-4ccc-81e5-fee4af135d9f.png)
-
+![uml2](https://user-images.githubusercontent.com/98808638/169455928-a6534c1f-254b-47fb-b59a-a175e92308b8.png)
