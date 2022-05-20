@@ -32,4 +32,4 @@ Main features of the program:
 
 UML Class Diagram generated with Doxygen displaying all the classes and their relations, in addition to included libraries and additional necessary files:
 
-![uml4](https://user-images.githubusercontent.com/98808638/169466022-85600ce8-e472-42c9-9451-6608a4937a0e.png)
+![uml6](https://user-images.githubusercontent.com/98808638/169467701-7fbc1cac-8feb-40f7-915f-eabda8d22b34.png)
