@@ -74,29 +74,30 @@ void AncestorChart::deletePerson(AncestorChart &ancestorChart) {
         if (confirmation) {
             if (node->isLeaf()) {
                 Node<Person> *parentNode = searchForParent(ancestorChart, node);
-                if(parentNode->getLeftPtr() == node) {
-                    deleteNode(node);       //need to make node deconstructor
-                    parentNode->setLeftPtr(nullptr);
-                }
-                else {
-                    deleteNode(node);
-                    parentNode->setRightPtr(nullptr);
+                if (parentNode != nullptr) {
+                    if (parentNode->getLeftPtr() == node) {
+                        delete node;
+                        parentNode->setLeftPtr(nullptr);
+                    }
+                    else {
+                        delete node;
+                        parentNode->setRightPtr(nullptr);
+                    }
                 }
             }
-
             else {
                 std::cout << node->getData().getFullName() << " has ancestors in the Graph!" << std::endl;
                 std::cout << "Do you want to set " << node->getData().getFullName() << "'s information to unknown?" << std::endl;
                 bool answer = yesOrNo();
                 if (answer) {
                     std::cout << node->getData().getFullName() << " has been wiped!" << std::endl;
-                    Person unknownperson = Person();
-                    node->setData(unknownperson);
+                    Person unknownPerson = Person();
+                    node->setData(unknownPerson);
                 }
             }
         }
     }
-}*/
+}
 
 /**
  * Prints all persons in the ancestor chart.

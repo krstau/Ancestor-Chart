@@ -10,6 +10,7 @@
 template<class T>
 class Node {
 public:
+    ~Node();
     explicit Node(const T& data);
     Node(const T& data,Node<T> *leftPtr,Node<T> *rightPtr);
     T getData() const;
@@ -26,6 +27,17 @@ private:
     Node<T> *left_ = nullptr; /**< Pointer towards the nodes left child. */
     Node<T> *right_ = nullptr; /**< Pointer towards the nodes right child. */
 };
+
+/**
+ * Node destructor.
+ * @tparam T
+ */
+template<typename T>
+Node<T>::~Node() {
+    delete Node<T>::getLeftPtr();
+    delete Node<T>::getRightPtr();
+}
+
 /**
  * Constructor to create node with both pointers set to null.
  * @tparam T class of data

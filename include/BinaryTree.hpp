@@ -32,7 +32,7 @@ public:
 private:
     Node<T> *root_ = nullptr;
     int size_ = 0;
-    void traverseDepthFirst(Node<T>* root, std::function<void(Node<T>*)>&) const;
+    void traverseDepthFirst(Node<T> *root, std::function<void(Node<T>*)>&) const;
 };
 
 /**
