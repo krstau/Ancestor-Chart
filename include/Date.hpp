@@ -3,7 +3,6 @@
 #include "../include/Formatting.hpp"
 #include <iomanip>
 #include <iostream>
-#include <string>
 
 /**
  * Date class.

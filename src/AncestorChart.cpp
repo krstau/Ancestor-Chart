@@ -153,7 +153,7 @@ BinaryTree<Person> AncestorChart::getBinaryTree() const {
   * Displays available search terms for finding a person.
   * Lets the user select a search term and find a person.
   * @param ancestorChart
-  * @return persons
+  * @return persons vector
   */
 std::vector<Node<Person> *> selectSearchTerm(AncestorChart ancestorChart) {
     std::vector<Node<Person> *> persons;
@@ -205,9 +205,9 @@ std::vector<Node<Person> *> selectSearchTerm(AncestorChart ancestorChart) {
 
 /**
  * Function to search for persons by traits.
- * Displays the persons and enabled user to select correct person.
- * @param &ancestorChart.
- * @return persons.
+ * Displays the persons and enables user to select correct person.
+ * @param ancestorChart.
+ * @return person as a node
  */
 Node<Person> *AncestorChart::searchForNode(AncestorChart &ancestorChart) {
     std::vector<Node<Person> *> persons = selectSearchTerm(ancestorChart);
@@ -261,8 +261,8 @@ Node<Person> * AncestorChart::searchForParent(AncestorChart &ancestorChart, Node
 
 /**
  * Gets persons with matching firstname.
- * @param firstName
- * @return persons
+ * @param firstName of person
+ * @return persons vector
  */
 std::vector<Node<Person> *> AncestorChart::getPersonsMatchingFirstName(const std::string &firstName) {
     std::vector<Node<Person> *> persons;
@@ -278,8 +278,8 @@ std::vector<Node<Person> *> AncestorChart::getPersonsMatchingFirstName(const std
 
 /**
  * Gets persons with matching lastname.
- * @param lastName
- * @return persons
+ * @param lastName of person
+ * @return persons vector
  */
 std::vector<Node<Person> *> AncestorChart::getPersonsMatchingLastName(const std::string &lastName) {
     std::vector<Node<Person> *> persons;
@@ -295,9 +295,9 @@ std::vector<Node<Person> *> AncestorChart::getPersonsMatchingLastName(const std:
 
 /**
  * Gets persons with matching full name.
- * @param firstName
- * @param lastName
- * @return persons
+ * @param firstName persons firstname
+ * @param lastName persons lastname
+ * @return persons vector
  */
 std::vector<Node<Person> *> AncestorChart::getPersonsMatchingFullName(const std::string &firstName, const std::string &lastName) {
     std::vector<Node<Person> *> persons;
@@ -313,8 +313,8 @@ std::vector<Node<Person> *> AncestorChart::getPersonsMatchingFullName(const std:
 
 /**
  * Gets persons with matching gender.
- * @param gender
- * @return persons
+ * @param gender persons gender
+ * @return persons as vector
  */
 std::vector<Node<Person> *> AncestorChart::getPersonsMatchingGender(const Person::Gender &gender) {
     std::vector<Node<Person> *> persons;

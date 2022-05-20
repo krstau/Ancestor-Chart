@@ -13,18 +13,18 @@ public:
      * Allows the gender of the person to be either male, female or unknown.
      */
     enum Gender {
-        male, /**< Gender value male. */
-        female, /**< Gender value female. */
-        unknownGender /**< Gender value unknown. */
+        male,
+        female,
+        unknownGender
     };
     /**
      * State enum.
      * Allows the state of the person to be either alive, deceased or unknown.
      */
     enum State {
-        alive, /**< State value alive. */
-        deceased, /**< State value deceased. */
-        unknownState /**< State value unknown. */
+        alive,
+        deceased,
+        unknownState
     };
     /**
      * Person default constructor.

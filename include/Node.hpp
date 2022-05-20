@@ -29,7 +29,7 @@ private:
 
 /**
  * Node destructor.
- * @tparam T
+ * @tparam T data
  */
 template<typename T>
 Node<T>::~Node() {
@@ -39,7 +39,7 @@ Node<T>::~Node() {
 
 /**
  * Constructor to create node with both pointers set to null.
- * @tparam T class of data
+ * @tparam T data
  * @param data data the node holds
  */
 template<typename T>
@@ -47,8 +47,7 @@ Node<T>::Node(const T& data) : data_(data){}
 
 /**
  * Constructor to create node with data and both pointers set.
- * @tparam T class of data
- * @param data data the node holds
+ * @tparam T data
  * @param leftPtr left pointer of the node
  * @param rightPtr right pointer of the node
  */
@@ -57,7 +56,7 @@ Node<T>::Node(const T& data,Node<T>* leftPtr,Node<T>* rightPtr) : data_(data), l
 
 /**
  * Sets the data of the node to data
- * @tparam T class of data
+ * @tparam T data
  * @param data data the node holds
  */
 template<typename T>
@@ -67,7 +66,6 @@ void Node<T>::setData(const T& data){
 
 /**
  * Gets the data a node is holding
- * @tparam T class of data to be returned
  * @return data the node is holding
  */
 template<typename T>

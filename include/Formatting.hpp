@@ -5,6 +5,9 @@
 #include <string>
 #include <limits>
 
+/**
+ * Namespace for globally used functions
+ */
 namespace {
     /**
     * Function that that takes user input from user and checks if it is an integer.
