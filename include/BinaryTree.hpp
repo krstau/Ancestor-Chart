@@ -19,7 +19,6 @@ public:
 
 private:
     Node<T> *root_ = nullptr;
-    int size_ = 0;
     void traverseDepthFirst(Node<T> *root, std::function<void(Node<T>*)>&) const;
 };
 
@@ -29,7 +28,6 @@ private:
  */
 template<typename T>
 BinaryTree<T>::BinaryTree(const T& data) : root_(new Node<T>(data)) {
-    size_++;
 }
 
 /**
@@ -42,12 +40,10 @@ void BinaryTree<T>::insertNode(Node<T> *node, T data) {
     if (node->getLeftPtr() == nullptr){
         auto newNode = new Node(data);
         node->setLeftPtr(newNode);
-        size_++;
     }
     else {
         auto newNode = new Node(data);
         node->setRightPtr(newNode);
-        size_++;
     }
 }
 

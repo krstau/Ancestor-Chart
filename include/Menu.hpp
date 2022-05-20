@@ -55,6 +55,10 @@ Person setupRootPerson() {
     switch (choice) {
         case 1: {
             Person rootPerson = AncestorChart::createRootPerson();
+            std::cout << "\n"
+                      << rootPerson.getFullName()
+                      << " has been added as root person to the ancestor chart!" << std::endl;
+            promptToReturnToMainMenu();
             return rootPerson;
         }
         case 0: {
@@ -75,7 +79,7 @@ void printMainMenu() {
     printLogo();
     std::cout << "Main menu:"
               << "\n"
-              << "[1] Add person"
+              << "[1] Add parent"
               << "\n"
               << "[2] Search for person"
               << "\n"
@@ -113,8 +117,8 @@ void printSearchMenu() {
 }
 
 /**
-* Function to display main menu to the terminal.
-*/
+ * Function to display main menu to the terminal.
+ */
 void mainMenu() {
     Person rootPerson = setupRootPerson();
     AncestorChart ancestorChart(rootPerson);
@@ -123,32 +127,28 @@ void mainMenu() {
         int choice = inputValidIntBetween(0, 5);
         switch (choice) {
             case 1: {
-                std::cout << "Who's parent do you want to add?"
-                          << "\n"
+                std::cout << "\nWho do you want to add a parent to?"
                           << std::endl;
                 printSearchMenu();
                 AncestorChart::addPerson(ancestorChart);
                 break;
             }
             case 2: {
-                std::cout << "Who's detailed information to search for?"
-                          << "\n"
+                std::cout << "\nWho do you want to display information for?"
                           << std::endl;
                 printSearchMenu();
                 AncestorChart::printPerson(ancestorChart);
                 break;
             }
             case 3: {
-                std::cout << "Who's information do you want to edit?"
-                          << "\n"
+                std::cout << "\nWho's information do you want to edit?"
                           << std::endl;
                 printSearchMenu();
                 AncestorChart::editPerson(ancestorChart);
                 break;
             }
             case 4: {
-                std::cout << "Which person do you want to delete?"
-                          << "\n"
+                std::cout << "\nWhich person do you want to delete?"
                           << std::endl;
                 printSearchMenu();
                 AncestorChart::deletePerson(ancestorChart);
@@ -156,14 +156,12 @@ void mainMenu() {
             }
             case 5: {
                 std::cout << "\nPrinting all persons in ancestor chart: "
-                          << "\n"
                           << std::endl;
                 AncestorChart::printAllPersons(ancestorChart);
                 break;
             }
             case 6: {
                 std::cout << "\nDeleting all persons in ancestor chart: "
-                          << "\n"
                           << std::endl;
                 AncestorChart::deleteAllPersons(ancestorChart);
                 break;
@@ -173,7 +171,8 @@ void mainMenu() {
                 break;
             }
             default:
-                std::cout << "Please enter a number between 0 and 5:" << std::endl;
+                std::cout << "\nPlease enter a number between 0 and 5:"
+                          << std::endl;
                 break;
         }
     }

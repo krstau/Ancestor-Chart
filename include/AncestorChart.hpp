@@ -9,9 +9,6 @@
  */
 class AncestorChart {
 public:
-    /**
-     * Constructor to create an ancestor chart.
-     */
     explicit AncestorChart(const Person& rootPerson);
     static Person createRootPerson();
     static void addPerson(AncestorChart &ancestorChart);

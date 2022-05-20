@@ -42,9 +42,10 @@ void AncestorChart::addPerson(AncestorChart &ancestorChart) {
 void AncestorChart::printPerson(AncestorChart &ancestorChart) {
     Node<Person> *node = searchForNode(ancestorChart);
     if (node != nullptr) {
-        std::cout << "\nDisplaying information for " << node->getData().getFullName() << ":" << std::endl;
+        std::cout << "\nDisplaying information for " << node->getData().getFullName() << ":\n" << std::endl;
         std::cout << node->getData();
     }
+    promptToReturnToMainMenu();
 }
 
 /**
@@ -203,7 +204,7 @@ Node<Person> *AncestorChart::searchForNode(AncestorChart &ancestorChart) {
         return persons[0];
     } else {
         std::cout << "\n"
-                  << "List of persons: " << std::endl;
+                  << "List of persons meeting search requirements: " << std::endl;
         for (size_t index{}; index < persons.size(); ++index) {
             std::cout << "\n"
                       << "[" << index << "]"

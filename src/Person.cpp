@@ -183,7 +183,6 @@ Person Person::createPerson() {
     lastName = capitalizeString(lastName);
     std::cout << "Enter date of birth (DD/MM/YYYY):";
     Date::inputDate(dateOfBirth);
-    std::cout << "Is the person deceased (Yes/No)?";
     state = inputState();
     if (state == State::deceased) {
         while (!validDate) {
