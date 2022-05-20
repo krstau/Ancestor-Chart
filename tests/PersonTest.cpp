@@ -1,7 +1,7 @@
-#define CONFIG_CATCH_MAIN
+#define CATCH_CONFIG_MAIN
 #include "catch.hpp"
-#include "../include/Person.hpp"
 #include "../src/Person.cpp"
+#include "../src/Date.cpp"
 
 
 TEST_CASE("Person functionality", "[Person]"){

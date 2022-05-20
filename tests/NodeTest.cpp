@@ -1,4 +1,4 @@
-#define CONFIG_CATCH_MAIN
+#define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 #include "../include/Node.hpp"
 
@@ -12,21 +12,21 @@ TEST_CASE("Node functionality", "[Node<T>]"){
         REQUIRE(testNode.getRightPtr() == nullptr);
     }
     SECTION("Setters in Node") {
-        int data = 1;
-        Node<int> pointerTestNode = Node(data);
+        int data2 = 2;
+        Node<int> pointerTestNode = Node(data2);
         testNode.setData(2);
         testNode.setLeftPtr(&pointerTestNode);
         testNode.setRightPtr(&pointerTestNode);
         REQUIRE(testNode.getData() == 2);
-        REQUIRE(testNode.getLeftPtr() == &pointerTestNode);
-        REQUIRE(testNode.getRightPtr() == &pointerTestNode);
+        REQUIRE(testNode.getLeftPtr()->getData() == 2);
+        REQUIRE(testNode.getRightPtr()->getData() == 2);
     }
     SECTION("Check node relationships"){
         REQUIRE(testNode.isLeaf() == true);
         REQUIRE(testNode.hasSpace() == true);
 
-        int data = 1;
-        Node<int> pointerTestNode = Node(data);
+        int data3 = 1;
+        Node<int> pointerTestNode = Node(data3);
         testNode.setLeftPtr(&pointerTestNode);
 
         REQUIRE(testNode.isLeaf() == false);
