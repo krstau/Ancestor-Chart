@@ -9,7 +9,7 @@ TEST_CASE( "Date can be set", "[Date]" ){
     date.setDate(1, 1, 1970);
     std::string dateOutput = NULL;
 
-    SECTION( "date can be changed to a valid date" ) {
+    SECTION( "date can be changed" ) {
         date.setDate(24, 12, 2000);
         int dayOutput = date.getDay();
         int monthOutput = date.getMonth();
@@ -26,6 +26,9 @@ TEST_CASE( "Date can be set", "[Date]" ){
         REQUIRE(!Date::isValidDate(0, 1, 1970));
         REQUIRE(!Date::isValidDate(1, 0, 1970));
         REQUIRE(!Date::isValidDate(1, 1, 0));
+        REQUIRE(!Date::isValidDate(-1, 1, 1970));
+        REQUIRE(!Date::isValidDate(1, -1, 1970));
+        REQUIRE(!Date::isValidDate(1, 1, -1));
         REQUIRE(!Date::isValidDate(30, 2, 1970));
         REQUIRE(!Date::isValidDate(29, 2, 1970));
         REQUIRE(Date::isValidDate(29, 2, 1972));
