@@ -25,6 +25,10 @@ Person::Person(std::string firstName, std::string lastName, Date dateOfBirth, Da
     : firstName_(std::move(firstName)), lastName_(std::move(lastName)), dateOfBirth_(dateOfBirth), dateOfDeath_(dateOfDeath), gender_(gender), state_(state) {
 }
 
+Person::~Person() {
+
+}
+
 /**
  * Gets firstname of Person object.
  * @return firstname of person.
