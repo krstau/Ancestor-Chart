@@ -1,17 +1,25 @@
 #include "../include/Date.hpp"
 
 /**
- * Function to get the date.
- * @return Date as a string in 00/00/0000-format.
+ * Function to get the day.
+ * @return day_
  */
 int Date::getDay() const {
     return day_;
 }
 
+/**
+ * Function to get the day.
+ * @return month_
+ */
 int Date::getMonth() const {
     return month_;
 }
 
+/**
+ * Function to get the day.
+ * @return year_
+ */
 int Date::getYear() const {
     return year_;
 }
@@ -30,7 +38,6 @@ void Date::setDate(int day, int month, int year) {
 
 /**
  * Function to check if date is a valid date.
- *
  * @param day Day of the date.
  * @param month Month of the date.
  * @param year Year of the date.
@@ -67,7 +74,7 @@ bool Date::isValidDate(int day, int month, int year) {
  * Validates if date is correct format.
  *
  * @param Date as a string.
- * @return true if the date is correct format 00/00/0000.
+ * @return true if the date is correct format DD/MM/YYYY.
  */
 bool Date::isValidDateFormat(std::string dateString) {
     if (dateString.size() != 10) return false;
@@ -84,7 +91,7 @@ bool Date::isValidDateFormat(std::string dateString) {
  * Compares if date of death is less than date of birth.
  * @param &dateOfBirth
  * @param &dateOfDeath
- * @return true if the date is correct format 00/00/0000.
+ * @return true if the date is correct format DD/MM/YYYY.
  */
 bool Date::compareDates(Date &date1, Date &date2) {
     if ((date1.getYear() < date2.getYear() ||
@@ -105,8 +112,9 @@ bool Date::compareDates(Date &date1, Date &date2) {
  * Takes user input as a string,
  * splits the string into day, month and year.
  * Sets the date only if it is a valid date.
+ * @param date
  */
-void Date::inputDate(Date &dateType) {
+void Date::inputDate(Date &date) {
     std::string dateInput;
     int validDate = false;
     while (!validDate) {
@@ -116,7 +124,7 @@ void Date::inputDate(Date &dateType) {
             int month = std::stoi(dateInput.substr(3, 2));
             int year = std::stoi(dateInput.substr(6));
             if (isValidDate(day, month, year)) {
-                dateType.setDate(day, month, year);
+                date.setDate(day, month, year);
                 validDate = true;
             }
         } else {
@@ -126,8 +134,8 @@ void Date::inputDate(Date &dateType) {
 }
 
 /**
-* Prints the date in 00/00/0000 format.
-* @param &date.
+* Prints the date in DD/MM/YYYY format.
+* @param date.
 * @return os.
 */
 std::ostream &operator<<(std::ostream &os, const Date &date) {

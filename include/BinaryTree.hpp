@@ -4,8 +4,6 @@
 #include <functional>
 #include <iostream>
 
-// Inspiration for BinaryTree code: https://github.com/devos50/BinaryTree
-
 /**
  * BinaryTree class.
  * @tparam T Data input.
