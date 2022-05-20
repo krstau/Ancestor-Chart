@@ -11,9 +11,13 @@ TEST_CASE( "Date can be set", "[Date]" ){
 
     SECTION( "date can be changed to a valid date" ) {
         date.setDate(24, 12, 2000);
-        dateOutput = date.getDate();
+        int dayOutput = date.getDay();
+        int monthOutput = date.getMonth();
+        int yearOutput = date.getYear();
 
-        REQUIRE(dateOutput == "24/12/2000");
+        REQUIRE(dayOutput == 24);
+        REQUIRE(monthOutput == 12);
+        REQUIRE(yearOutput == 2000);
     }
     SECTION( "invalid date will be detected") {
         REQUIRE(!Date::isValidDate(35, 1, 1970));
