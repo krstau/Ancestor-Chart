@@ -80,13 +80,10 @@ void BinaryTree<T>::insertNode(Node<T> *node, T data) {
         node->setLeftPtr(newNode);
         size_++;
     }
-    else if (node->getRightPtr() == nullptr){
+    else {
         auto newNode = new Node(data);
         node->setRightPtr(newNode);
         size_++;
-    }
-    else {
-        std::cout << "Error: node is full!" << std::endl;
     }
 }
 

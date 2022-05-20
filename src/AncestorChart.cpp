@@ -22,10 +22,15 @@ Person AncestorChart::createRootPerson() {
 void AncestorChart::addPerson(AncestorChart &ancestorChart) {
     Node<Person> *node = searchForNode(ancestorChart);
     if (node != nullptr) {
-        std::cout << "Adding parent to " << node->getData().getFullName() << ": " << std::endl;
-        Person person = Person::createPerson();
-        ancestorChart.getBinaryTree().insertNode(node, person);
-        std::cout << person.getFullName() << " has been added as " << node->getData().getFullName() << "'s parent!" << std::endl;
+        if (node->hasSpace()) {
+            std::cout << "Adding parent to " << node->getData().getFullName() << ": " << std::endl;
+            Person person = Person::createPerson();
+            ancestorChart.getBinaryTree().insertNode(node, person);
+            std::cout << person.getFullName() << " has been added as " << node->getData().getFullName() << "'s parent!" << std::endl;
+        }
+        else {
+            std::cout << "Error: node is full!" << std::endl;
+        }
     }
     promptToReturnToMainMenu();
 }
@@ -93,10 +98,10 @@ void AncestorChart::deletePerson(AncestorChart &ancestorChart) {
             }
             else {
                 std::cout << node->getData().getFullName() << " has ancestors in the Graph!" << std::endl;
-                std::cout << "Do you want to set " << node->getData().getFullName() << "'s information to unknown?" << std::endl;
+                std::cout << "Do you want to set " << node->getData().getFullName() << "'s information to unknown? (yes/no)" << std::endl;
                 bool answer = yesOrNo();
                 if (answer) {
-                    std::cout << node->getData().getFullName() << " has been wiped!" << std::endl;
+                    std::cout << node->getData().getFullName() << "'s information has been wiped!" << std::endl;
                     Person unknownPerson = Person();
                     node->setData(unknownPerson);
                 }
