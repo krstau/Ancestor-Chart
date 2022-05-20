@@ -6,7 +6,8 @@ Candidate numbers:
  
 ## A program that let's you create an ancestor chart
 
-The program uses a binary tree where nodes holds the data of each person.
+The program uses a binary tree where nodes holds the data of each person and uses a depth first traversal algorithm for search.
+
 
 Persons will have the following attributes:
 
@@ -27,8 +28,6 @@ Main features of the program:
 * Option to delete persons
 * Option to print all persons
 * Unit tests (Catch2)
-
-The program uses a depth first traversal algorithm for searching for persons by attribute.
 
 ## UML Diagram
 
