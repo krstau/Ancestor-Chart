@@ -1,4 +1,4 @@
-#include "../external/Catch2/catch.hpp"
+#include "catch.hpp"
 #include "../include/Person.hpp"
 #include "../src/Person.cpp"
 
