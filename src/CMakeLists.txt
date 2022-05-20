@@ -1,3 +1,21 @@
-set(HEADER_LIST AncestorChart.hpp BinaryTree.hpp Date.hpp Menu.hpp Node.hpp Person.hpp)
+set(publicHeaderDir ${PROJECT_SOURCE_DIR}/include)
 
-add_library(source_library AncestorChart.cpp Person.cpp Date.cpp)
+set(publicHeaders
+        "${publicHeaderDir}/AncestorChart.hpp"
+        "${publicHeaderDir}/BinaryTree.hpp"
+        "${publicHeaderDir}/Date.hpp"
+        "${publicHeaderDir}/Formatting.hpp"
+        "${publicHeaderDir}/Menu.hpp"
+        "${publicHeaderDir}/Node.hpp"
+        "${publicHeaderDir}/Person.hpp"
+        )
+
+set(sources
+        AncestorChart.cpp
+        Date.cpp
+        Person.cpp
+        )
+
+add_library(AncestorChart_lib ${sources} ${publicHeaders})
+
+target_include_directories(AncestorChart_lib PUBLIC ${publicHeaderDir})

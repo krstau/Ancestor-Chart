@@ -11,4 +11,4 @@ add_subdirectory(src)
 # executable file here
 add_subdirectory(app)
 
-include_directories(/include)
+add_subdirectory(tests)

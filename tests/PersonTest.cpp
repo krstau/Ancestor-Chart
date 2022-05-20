@@ -1,3 +1,4 @@
+#define CONFIG_CATCH_MAIN
 #include "catch.hpp"
 #include "../include/Person.hpp"
 #include "../src/Person.cpp"

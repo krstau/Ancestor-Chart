@@ -1,3 +1,7 @@
-include_directories("${PROJECT_SOURCE_DIR}/src")
+include_directories("${PROJECT_SOURCE_DIR}/include")
 
-add_executable(test_library AncestorChartAndBinaryTreeTest.cpp PersonTest.cpp DateTest.cpp. NodeTest.cpp)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/bin")
+
+add_executable(NodeTest NodeTest.cpp)
+add_executable(PersonTest PersonTest.cpp)
+add_executable(DateTest DateTest.cpp)
