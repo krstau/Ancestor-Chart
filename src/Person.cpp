@@ -25,10 +25,6 @@ Person::Person(std::string firstName, std::string lastName, Date dateOfBirth, Da
     : firstName_(std::move(firstName)), lastName_(std::move(lastName)), dateOfBirth_(dateOfBirth), dateOfDeath_(dateOfDeath), gender_(gender), state_(state) {
 }
 
-Person::~Person() {
-
-}
-
 /**
  * Gets firstname of Person object.
  * @return firstname of person.
@@ -102,8 +98,32 @@ std::ostream &operator<<(std::ostream &os, const Person &person) {
 }
 
 /**
- * Prompts the user for entering gender for either male or female.
- * @return gender.
+ * Prompts the user for entering state.
+ * @return state
+ */
+Person::State Person::inputState() {
+    std::string state;
+    std::cout << "Enter state (alive/deceased/unknown):";
+    while (true) {
+        std::cin >> state;
+        state = capitalizeString(state);
+        if (state == "Alive") {
+            return Person::State::alive;
+        }
+        if (state == "Deceased") {
+            return Person::State::deceased;
+        }
+        if (state == "Unknown") {
+            return Person::State::unknownState;
+        } else {
+            std::cout << std::endl << "Error: please enter a valid state (alive/deceased/unknown):" << std::endl;
+        }
+    }
+}
+
+/**
+ * Prompts the user for entering gender.
+ * @return gender
  */
 Person::Gender Person::inputGender() {
     std::string gender;
@@ -152,7 +172,7 @@ Person Person::createPerson() {
     std::string firstName, lastName;
     Date dateOfDeath;
     Date dateOfBirth;
-    Person::State state = unknownState;
+    Person::State state;
     Person::Gender gender;
     bool validDate = false;
     std::cout << "Enter firstname:";
@@ -164,8 +184,8 @@ Person Person::createPerson() {
     std::cout << "Enter date of birth (DD/MM/YYYY):";
     Date::inputDate(dateOfBirth);
     std::cout << "Is the person deceased (Yes/No)?";
-    bool isDeceased = yesOrNo();
-    if (isDeceased) {
+    state = inputState();
+    if (state == State::deceased) {
         while (!validDate) {
             std::cout << "Enter date of death (DD/MM/YYYY):";
             Date::inputDate(dateOfDeath);

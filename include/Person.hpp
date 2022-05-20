@@ -32,17 +32,17 @@ public:
      */
     Person();
     Person(std::string firstName, std::string lastName, Date dateOfBirth, Date dateOfDeath, Gender gender, State state);
-    ~Person();
     friend std::ostream &operator << (std::ostream &os, const Person &person);
-    std::string getFirstName() const;
-    std::string getLastName() const;
-    std::string getFullName() const;
-    Date getDateOfBirth() const;
-    Date getDateOfDeath() const;
-    Gender getGender() const;
-    State getState() const;
+    [[nodiscard]] std::string getFirstName() const;
+    [[nodiscard]] std::string getLastName() const;
+    [[nodiscard]] std::string getFullName() const;
+    [[nodiscard]] Date getDateOfBirth() const;
+    [[nodiscard]] Date getDateOfDeath() const;
+    [[nodiscard]] Gender getGender() const;
+    [[nodiscard]] State getState() const;
     static Person createPerson();
     static Gender inputGender();
+    static State inputState();
     static std::string genderValueToString(Gender gender);
 
 private:

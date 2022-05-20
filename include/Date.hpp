@@ -11,9 +11,9 @@
 class Date {
 public:
     Date() = default;
-    int getDay() const;
-    int getMonth() const;
-    int getYear() const;
+    [[nodiscard]] int getDay() const;
+    [[nodiscard]] int getMonth() const;
+    [[nodiscard]] int getYear() const;
     void setDate(int day, int month, int year);
     friend std::ostream &operator << (std::ostream &os, const Date &date);
     static void inputDate(Date &dateType);

@@ -4,7 +4,7 @@
 #include <functional>
 #include <iostream>
 
-// Inspiration for code: https://github.com/devos50/BinaryTree
+// Inspiration for BinaryTree code: https://github.com/devos50/BinaryTree
 
 /**
  *
@@ -140,7 +140,7 @@ void BinaryTree<T>::traverseDepthFirst(Node<T>* root, std::function<void(Node<T>
 
 /**
 * Depth first traversal function.
-* @param rootnode.
+* @param root node.
 * @param nodeFunction.
 */
 template<typename T>

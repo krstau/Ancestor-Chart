@@ -20,14 +20,13 @@ public:
     static void deletePerson(AncestorChart &ancestorChart);
     static void printAllPersons(AncestorChart &ancestorChart) ;
     static void deleteAllPersons(AncestorChart &ancestorChart);
-    BinaryTree<Person> getBinaryTree() const;
     static Node<Person>* searchForNode(AncestorChart &ancestorChart);
     static Node<Person> *searchForParent(AncestorChart &ancestorChart, Node<Person> * &nodeToBeDeleted);
+    [[nodiscard]] BinaryTree<Person> getBinaryTree() const;
     std::vector<Node<Person>*> getPersonsMatchingFirstName(const std::string &firstName);
     std::vector<Node<Person>*> getPersonsMatchingLastName(const std::string &lastName);
     std::vector<Node<Person>*> getPersonsMatchingFullName(const std::string &firstName, const std::string &lastName);
     std::vector<Node<Person>*> getPersonsMatchingGender(const Person::Gender &Gender);
-
 
 private:
     BinaryTree<Person> binaryTree_;
