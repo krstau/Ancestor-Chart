@@ -78,7 +78,7 @@ T Node<T>::getData() const{
 
 /**
  * Checks if a node is a leaf (no children)
- * @return returns true if both pointers are nullpointers
+ * @return returns true if both pointers are nullptr
  */
 template<typename T>
 bool Node<T>::isLeaf(){
@@ -87,7 +87,7 @@ bool Node<T>::isLeaf(){
 
 /**
  * Checks if a node has space for more offspring
- * @return returns true if either of the pointers returns nullpointer
+ * @return returns true if either of the pointers returns nullptr
  */
 template<typename T>
 bool Node<T>::hasSpace(){
