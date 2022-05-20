@@ -211,7 +211,7 @@ Node<Person> *AncestorChart::searchForNode(AncestorChart &ancestorChart) {
         }
         std::cout << "\n"
                   << "Please select a person: " << std::endl;
-        int selectedPerson = inputValidIntBetween(0, persons.size());
+        int selectedPerson = inputValidIntBetween(0, persons.size()); // NOLINT(cppcoreguidelines-narrowing-conversions)
         return persons[selectedPerson];
     }
 }
