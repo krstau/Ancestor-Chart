@@ -2,6 +2,7 @@
 #define ANCESTORCHART_FORMATTING_HPP
 #include <algorithm>
 #include <iostream>
+#include <string>
 #include <limits>
 
 namespace {
@@ -58,7 +59,7 @@ namespace {
                        [](char const &c) {
                            return std::tolower(c);
                        });
-        word[0] = std::toupper(word[0]);
+        word[0] = std::toupper(word[0]); // NOLINT(cppcoreguidelines-narrowing-conversions)
         return word;
     }
 
